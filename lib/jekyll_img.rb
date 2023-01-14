@@ -12,19 +12,26 @@ module ImgModule
 end
 
 module Jekyll
-  # Usage: {% img [Options][src='path'] %}
+  # Usage: {% img [Options][src='path'|src=['path1', 'path2', 'pathN']] %}
+  #   When src is specified as an array, the following options apply to the div
+  #   that the images are enclosed within, unless they are also specified as arrays:
+  #     align, alt, caption, url
+  #
   # Options are:
   #   align="left|inline|right|center"
-  #   alt="Some text"
-  #   caption="whatever"
-  #   class="whatever"
+  #   alt="Alt text" # default is caption
+  #   alt=["Alt text 1", "Alt text 2", "Alt text N"]
+  #   caption="A caption"
+  #   caption=["Caption 1", "Caption 2", "Caption N"]
+  #   class="class1 class2 classN"
   #   id="someId"
-  #   nofollow
-  #   size='fullsize|halfsize|initial|quartersize'
+  #   nofollow # Only applicable when url is specified
+  #   size='fullsize|halfsize|initial|quartersize|XXXYY' # XXX is a float, YY is unit
   #   style='css goes here'
-  #   target='none|whatever'
-  #   title="A title"
-  #   url='https://blabla.com'
+  #   target='none|whatever' # default is _blank
+  #   title="A title" # default is caption
+  #   url='https://domain.com'
+  #   url='[https://domain1.com, https://domain2.com, https://domainN.com]'
   #
   # _size is an alias for size
   class Img < JekyllSupport::JekyllTag # rubocop:disable Metrics/AbcSize, Metrics/ClassLength
@@ -55,7 +62,7 @@ module Jekyll
       target_setup
       title_setup
 
-      html
+      maybe_generate_figure
     end
 
     private
@@ -83,60 +90,50 @@ module Jekyll
       @classes = @class || 'liImg2 rounded shadow'
     end
 
-    def html
+    def maybe_generate_figure
       <<~END_HTML
-        #{'<figure>' if figure}
-        #{ if url
-             "<a href='#{@url}' #{@targetTag} #{@nofollow}>#{@img}</a>"
-           else
-             img
-           end }
-          <figcaption class="#{@sizeClass}" style="width: 100%; text-align: center;">
-            #{if url
-                <<~END_URL
-                  <a href="#{@url}" #{@targetTag} #{@nofollow}>
-                    #{@caption}
-                  </a>
-                END_URL
-              else
-                @caption
-              end }
-          </figcaption>
-          #{'</figure>' if figure}
+        #{'<div style="#{@alignDiv}#{@sizeSpec}">
+            <figure>' if @caption}
+            #{ if url
+                  "<a href='#{@url}' #{@targetTag} #{@nofollow}>#{generate_img}</a>"
+               else
+                  generate_img
+               end
+            }
+            #{fig_caption if @caption}
+          #{'</figure>
+        </div>' if @caption}
       END_HTML
+    end
+
+    def fig_caption
+      <<~END_CAPTION
+        <figcaption class='#{@sizeClass}' style='width: 100%; text-align: center;'>
+          #{if url
+              <<~END_URL
+                <a href="#{@url}" #{@targetTag} #{@nofollow}>
+                  #{@caption}
+                </a>
+              END_URL
+            else
+              @caption
+            end
+          }
+        </figcaption>
+      END_CAPTION
     end
 
     def id_setup
       @idTag = id.nil? ? '' : "id='#{id}'"
     end
 
-    def img
+    def generate_img
       <<~END_IMG
         <picture#{@idTag}>
           <source srcset="#{@src}" type="image/webp">
           <source srcset="#{@srcPng}" type="image/png">
           <img src="#{@srcPng}" #{@titleTag} class="#{@alignImg} #{@sizeClass} #{@classes}" #{@styleTag} #{@altTag} />
         </picture>
-        <div style="{{alignDiv}}{{sizeSpec}}">
-          {% if figure %} <figure>{% endif %}
-          {% if url %}
-            <a href="{{url}}" {{targetTag}} {{nofollow}}>{{img}}</a>
-          {% else %}
-            {{img}}
-          {% endif %}
-        {% if caption %}
-            <figcaption class="{{sizeClass}}" style="width: 100%; text-align: center;">
-              {% if url %}
-              <a href="{{url}}" {{targetTag}} {{nofollow}}>
-                {{caption}}
-              </a>
-              {% else %}
-                {{caption}}
-              {% endif %}
-            </figcaption>
-          </figure>
-        {% endif %}
-        </div>
       END_IMG
     end
 
