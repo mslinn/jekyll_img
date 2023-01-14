@@ -1,0 +1,39 @@
+AllCops:
+  Exclude:
+      - vendor/**/*
+      - exe/**/*
+      - Gemfile*
+      - Rakefile
+  NewCops: enable
+  TargetRubyVersion: 2.6
+
+Layout/HashAlignment:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 150
+
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/BlockLength:
+  Exclude:
+    - jekyll_img.gemspec
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false

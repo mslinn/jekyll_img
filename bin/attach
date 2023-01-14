@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Assumes that the target Jekyll website contains a script called _bin/debug.
+# See https://www.mslinn.com/blog/2022/02/21/jekyll-debugging.html
+
+if [ -z "$1" ]; then
+  echo "Error: Please provide the directory name of the Jekyll website where the plugin is to be tested from."
+  exit 1
+fi
+
+if [ ! -f "$1/_bin/debug" ]; then
+  echo "Error: $1/_bin/debug does not exist."
+  exit 1
+fi
+
+GIT_ROOT="$( git rev-parse --show-toplevel )"
+cd "${GIT_ROOT}"
+
+bin/build
+
+set -e
+
+cd "$1" > /dev/null || exit 1
+_bin/debug
