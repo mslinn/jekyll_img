@@ -14,7 +14,7 @@ class ImgBuilder
 
   # rubocop:disable Style/MultilineIfModifier
   def maybe_generate_figure
-    <<~END_HTML
+    result = <<~END_HTML
       #{"<div style='#{@props.attr_align_div}#{@props.attr_width}'>
           <figure>" if @props.caption}
           #{ if @props.url
@@ -27,10 +27,13 @@ class ImgBuilder
         #{'</figure>
       </div>' if @props.caption}
     END_HTML
+    result.strip
   end
   # rubocop:enable Style/MultilineIfModifier
 
   def generate_figure_caption
+    return nil unless @props.caption
+
     <<~END_CAPTION
       <figcaption class='#{@props.attr_size_class}' style='width: 100%; text-align: center;'>
         #{if url
