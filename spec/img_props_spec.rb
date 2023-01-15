@@ -37,6 +37,7 @@ class ImgProperitesTest
     it 'raises exception if src was not specified' do
       props = ImgProperties.new
       expect { props.src_png }.to raise_error(SystemExit)
+      expect { props.send(:setup_src) }.to raise_error(SystemExit)
     end
 
     it 'generates proper alignment attributes' do

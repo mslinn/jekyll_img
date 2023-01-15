@@ -61,7 +61,7 @@ class ImgProperties
   end
 
   def src_png
-    abort('src was not specified') if @src.to_s.empty?
+    abort 'src parameter was not specified' if @src.to_s.empty?
 
     @src.gsub('.webp', '.png')
   end
@@ -87,7 +87,7 @@ class ImgProperties
   end
 
   def setup_src
-    @src = @src.to_s.trim
+    @src = @src.to_s.strip
     abort 'src parameter was not specified' if @src.empty?
 
     @src = "/assets/images/#{@src}" unless ImgProperties.local_path?(@src) || url?(@src)
