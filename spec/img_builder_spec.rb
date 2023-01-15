@@ -13,7 +13,7 @@ class ImgProperitesTest
         <picture>
           <source srcset="/assets/images/blah.webp" type="image/webp">
           <source srcset="/assets/images/blah.png" type="image/png">
-          <img src="/assets/images/blah.png" class=" ">
+          <img src="/assets/images/blah.png" class=" " />
         </picture>
       END_IMG
     end
