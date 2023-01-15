@@ -38,6 +38,18 @@ class ImgProperitesTest
       props = ImgProperties.new
       expect { props.src_png }.to raise_error(SystemExit)
       expect { props.send(:setup_src) }.to raise_error(SystemExit)
+
+      props.src = 'relative/path.webp'
+      props.send(:setup_src)
+      expect(props.src).to eq('/assets/images/relative/path.webp')
+
+      props.src = './local/path.webp'
+      props.send(:setup_src)
+      expect(props.src).to eq('./local/path.webp')
+
+      props.src = '/absolute/path.webp'
+      props.send(:setup_src)
+      expect(props.src).to eq('/absolute/path.webp')
     end
 
     it 'generates proper alignment attributes' do
