@@ -3,7 +3,8 @@
 # attr_ methods can be called after compute_dependant_properties
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
-  attr_accessor :align, :alt, :attr_align_div, :attr_align_img, :caption, :classes, :id, :nofollow, :src, :size, :style, :target, :title, :url
+  attr_accessor :align, :alt, :attr_align_class, :attr_align_div, :attr_align_img, :caption, \
+                :classes, :id, :nofollow, :src, :size, :style, :target, :title, :url
 
   def attr_alt
     "alt='#{@alt}'" if @alt
@@ -79,15 +80,15 @@ class ImgProperties
   private
 
   def setup_align
-    if @align == 'inline'
-      @attr_align_div = 'display: inline-block; margin: 0.5em; vertical-align: top;'
-      @attr_align_img = nil
+    if @align == 'center'
+      @attr_align_img = 'center'
     elsif @align
-      @attr_align_div = "text-align: #{@align};"
+      @attr_align_div = 'display: inline-block; margin: 0.5em; vertical-align: top;'
       @attr_align_img = @align
+      @attr_align_class = "class='#{@align}'"
     else
-      @attr_align_div = nil
-      @attr_align_img = nil
+      @attr_align_div = 'display: inline-block; margin: 0.5em; vertical-align: top;'
+      @attr_align_img = 'inline'
     end
   end
 

@@ -96,6 +96,20 @@ pre {
   width: 690px;
 }
 
+.blackBorder {
+  border: 1px black solid;
+}
+
+.centered {
+  text-align: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .codeLabel {
   color: white;
   background-color: #666;
@@ -118,7 +132,6 @@ pre {
 .error {
   color: red;
 }
-
 
 .fullsize {
   height: auto;
@@ -159,6 +172,22 @@ pre {
 .unselectable.numbered_line,
 .numbered_line.unselectable {
   color: #5fb25f;
+}
+
+.rounded {
+  border: 1px solid;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+.shadow {
+  -moz-box-shadow: 5px 5px 6px #999;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999')";
+  -webkit-box-shadow: 5px 5px 6px #999;
+  border: thin gray solid;
+  box-shadow: 5px 5px 6px #999;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color='#999999');
 }
 
 .unselectable {
