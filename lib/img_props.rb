@@ -47,7 +47,7 @@ class ImgProperties
   end
 
   def attr_width
-    "width: #{@size};" if @size
+    "width: #{@size};" if size_unit_specified?
   end
 
   def compute_dependant_properties
@@ -96,7 +96,7 @@ class ImgProperties
   UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze
 
   def size_unit_specified?
-    return false if @size.to_s.empty?
+    return false if @size.to_s.strip.empty?
 
     @size.end_with?(*UNITS)
   end

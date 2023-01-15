@@ -65,6 +65,26 @@ class ImgProperitesTest
 
       props.nofollow = true
       expect(props.attr_nofollow).to eq(" rel='nofollow'")
+
+      props.size = 'initial'
+      expect(props.attr_size_class).to eq('initial')
+
+      props.size = '100px'
+      expect(props.attr_size_class).to be nil
+      expect(props.attr_width).to eq('width: 100px;')
+
+      props.size = 'fullsize'
+      expect(props.attr_size_class).to eq('fullsize')
+      expect(props.attr_width).to be nil
+
+      props.style = 'margin-top: 0;'
+      expect(props.attr_style).to eq("style='margin-top: 0;'")
+
+      props.target = 'moon'
+      expect(props.attr_target).to eq(" target='moon'")
+
+      props.title = 'The End'
+      expect(props.attr_title).to eq("title='The End'")
     end
 
     it 'generates proper alignment attributes' do
