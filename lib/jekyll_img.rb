@@ -20,18 +20,15 @@ module Jekyll
   # Options are:
   #   align="left|inline|right|center"
   #   alt="Alt text" # default is caption
-  #   alt=["Alt text 1", "Alt text 2", "Alt text N"]
   #   caption="A caption"
-  #   caption=["Caption 1", "Caption 2", "Caption N"]
   #   class="class1 class2 classN"
   #   id="someId"
   #   nofollow # Only applicable when url is specified
-  #   size='fullsize|halfsize|initial|quartersize|XXXYY' # XXX is a float, YY is unit
+  #   size='fullsize|halfsize|initial|quartersize|XXXYY|XXX%' # XXX is a float, YY is unit
   #   style='css goes here'
   #   target='none|whatever' # default is _blank
   #   title="A title" # default is caption
   #   url='https://domain.com'
-  #   url='[https://domain1.com, https://domain2.com, https://domainN.com]'
   #
   # _size is an alias for size
   class Img < JekyllSupport::JekyllTag

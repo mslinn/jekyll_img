@@ -71,7 +71,13 @@ class ImgProperitesTest
 
       props.size = '100px'
       expect(props.attr_size_class).to be nil
+      expect(props.attr_style).to eq("style='width: 100px;'")
       expect(props.attr_width).to eq('width: 100px;')
+
+      props.size = '10%'
+      expect(props.attr_size_class).to be nil
+      expect(props.attr_style).to eq("style='width: 10%;'")
+      expect(props.attr_width).to eq('width: 10%;')
 
       props.size = 'fullsize'
       expect(props.attr_size_class).to eq('fullsize')

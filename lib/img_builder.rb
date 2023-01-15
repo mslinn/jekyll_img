@@ -50,6 +50,7 @@ class ImgBuilder
     END_CAPTION
   end
 
+  # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
   def generate_img
     <<~END_IMG
       <picture#{@props.attr_id}>
