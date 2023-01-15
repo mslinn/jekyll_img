@@ -5,11 +5,15 @@ last_modified_at: 2023-01-14
 layout: default
 title: Img Test
 ---
-{% img src="/assets/images/jekyll.webp" %}
-{% img src="/assets/images/jekyll.webp" size="fullsize" %}
-{% img src="/assets/images/jekyll.webp" size="halfsize" %}
-{% img src="/assets/images/jekyll.webp" size="quartersize" %}
-{% img src="/assets/images/jekyll.webp" style="max-width: 10%" %}
-{% img caption="This is a caption" src="/assets/images/jekyll.webp" %}
-{% img class="clear" align="left" src="/assets/images/jekyll.webp" size="quartersize" %}
-{% img align="left" caption="This is a caption" src="/assets/images/jekyll.webp" size="quartersize" %}
+<h2 id="sizes">Sizes</h2>
+{% img src="jekyll.webp" %}
+{% img src="jekyll.webp" size="fullsize" %}
+{% img src="jekyll.webp" size="halfsize" %}
+{% img class="clear" align="left" src="jekyll.webp" size="quartersize" %}
+{% img src="jekyll.webp" size="quartersize" %}
+{% img src="jekyll.webp" style="10%" %}
+
+
+<h2 id="captions" class="clear">Captions</h2>
+{% img caption="This is a caption" src="jekyll.webp" %}
+{% img align="left" caption="This is a caption" src="jekyll.webp" size="quartersize" %}

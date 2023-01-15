@@ -36,7 +36,7 @@ class ImgBuilder
 
     <<~END_CAPTION
       <figcaption class='#{@props.attr_size_class}' style='width: 100%; text-align: center;'>
-        #{if url
+        #{if @props.url
             <<~END_URL
               <a href="#{@props.url}" #{@props.attr_target} #{@props.attr_nofollow}>
                 #{@props.caption}

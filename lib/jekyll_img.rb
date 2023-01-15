@@ -1,12 +1,14 @@
 require 'jekyll_plugin_support'
 require 'jekyll_plugin_support_helper'
+require_relative 'img_builder'
+require_relative 'img_props'
 require_relative 'jekyll_img/version'
 
 # @author Copyright 2023 Michael Slinn
 # @license SPDX-License-Identifier: Apache-2.0
 
 module ImgModule
-  PLUGIN_NAME = 'img'
+  PLUGIN_NAME = 'img'.freeze
 end
 
 module Jekyll
@@ -33,7 +35,7 @@ module Jekyll
   #
   # _size is an alias for size
   class Img < JekyllSupport::JekyllTag
-    def render_impl # rubocop:disable Metrics/AbcSize
+    def render_impl
       props = ImgProperties.new
       props.align    = @helper.parameter_specified? 'align'
       props.alt      = @helper.parameter_specified? 'alt'

@@ -119,10 +119,36 @@ pre {
   color: red;
 }
 
+
+.fullsize {
+  height: auto;
+  width: 100%;
+}
+
+.halfsize {
+  height: auto;
+  width: 450px;
+}
+
 .inner {
   margin: 0 auto;
   position: relative;
   width: 940px;
+}
+
+.left {
+  float: left;
+  margin-right: 1em;
+}
+
+.liImg {
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+}
+
+.liImg2 {
+  margin-bottom: 1em;
+  margin-top: 0.5em;
 }
 
 .maxOneScreenHigh {
@@ -140,6 +166,16 @@ pre {
   -moz-user-select: none;
   -khtml-user-select: none;
   user-select: none;
+}
+
+.quartersize {
+  height: auto;
+  width: 225px;
+}
+
+.right {
+  float: right;
+  margin-left: 1em;
 }
 
 .code, code, pre, tt, kbd {
