@@ -143,6 +143,13 @@ pre {
   width: 450px;
 }
 
+.imgItem {
+  color: red;
+  max-height: 275px;
+  vertical-align: top;
+  width: 200px;
+}
+
 .inner {
   margin: 0 auto;
   position: relative;

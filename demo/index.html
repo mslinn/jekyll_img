@@ -128,14 +128,11 @@ title: Img Test
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >padding: 1em / right / nofollow / target='blah' / rounded shadow</legend>
+  <legend >wrapper_class='rounded shadow'</legend>
   {% img
-    align="right"
-    class='rounded shadow'
-    nofollow
+    caption='Caption is required for wrapper_class'
     src="jekyll_240x103.webp"
-    style='padding: 1em;'
-    target='blah'
     url='https://www.mslinn.com'
+    wrapper_class="rounded shadow"
   %}
 </fieldset>
