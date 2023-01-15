@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'jekyll_plugin_support'
 require 'jekyll_plugin_support_helper'
 require_relative 'jekyll_img/version'

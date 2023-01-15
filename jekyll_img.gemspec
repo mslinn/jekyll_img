@@ -1,6 +1,6 @@
 require_relative 'lib/jekyll_img/version'
 
-Gem::Specification.new do |spec|
+Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   github = 'https://github.com/mslinn/jekyll_img'
 
   spec.bindir = 'exe'
@@ -26,13 +26,14 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.6.0'
   spec.summary = 'Provides a Jekyll filter that creates formatted quotes.'
   spec.test_files = spec.files.grep %r{^(test|spec|features)/}
-  spec.version = JekyllQuoteVersion::VERSION
+  spec.version = JekyllImgVersion::VERSION
 
   spec.add_dependency 'jekyll', '>= 3.5.0'
 
   # spec.add_development_dependency 'debase'
   spec.add_development_dependency 'jekyll_plugin_support'
-  # spec.add_development_dependency 'rspec-match_ignoring_whitespace'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rspec-match_ignoring_whitespace'
   spec.add_development_dependency 'rubocop'
   # spec.add_development_dependency 'rubocop-jekyll'
   spec.add_development_dependency 'rubocop-rake'

@@ -3,7 +3,7 @@
 # attr_ methods can be called after compute_dependant_properties
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
-  attr_accessor :align, :alt, :caption, :classes, :id, :src, :size, :style, :target, :title, :url
+  attr_accessor :align, :alt, :attr_align_div, :attr_align_img, :caption, :classes, :id, :src, :size, :style, :target, :title, :url
 
   def attr_alt
     "alt='#{@alt}'" if @alt
@@ -38,11 +38,12 @@ class ImgProperties
   def attr_target
     return nil if @target == 'none'
 
-    " target='#{@target}'"
+    target = @target || '_blank'
+    " target='#{target}'"
   end
 
   def attr_title
-    "title='#{@title}'" if @title
+    "title='#{@title}'" if @title && !@title.empty?
   end
 
   def attr_width
@@ -60,19 +61,23 @@ class ImgProperties
   end
 
   def src_png
+    abort('src was not specified') if @src.to_s.empty?
+
     @src.gsub('.webp', '.png')
   end
 
-  private
+  def self.last_n_chars(string, n)
+    return '' if string.nil?
 
-  def last_n_chars(string, n)
     string[-n..] || string
   end
 
-  def relative_path?(src)
+  def self.local_path?(src)
     first_char = src[0]
     first_char.match?(%r{[./]})
   end
+
+  private
 
   def setup_align
     if @align == 'inline'
@@ -91,12 +96,12 @@ class ImgProperties
     @src = @src.to_s.trim
     abort 'src parameter was not specified' if @src.empty?
 
-    @src = "/assets/images/#{@src}" unless relative_path?(@src) || url?(@src)
+    @src = "/assets/images/#{@src}" unless ImgProperties.local_path?(@src) || url?(@src)
   end
 
   def size_unit_specified?
-    last_char = last_n_chars(@size, 1)
-    last_2_chars = last_n_chars(@size, 2)
+    last_char = ImgProperties.last_n_chars(@size, 1)
+    last_2_chars = ImgProperties.last_n_chars(@size, 2)
     %w[em px pt].include?(last_2_chars) || last_char == '%'
   end
 
