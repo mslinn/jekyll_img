@@ -49,7 +49,6 @@ module Jekyll
       props.title    = @helper.parameter_specified? 'title'
       props.url      = @helper.parameter_specified? 'url'
 
-      abort 'src parameter was not specified' if props.src.to_s.empty?
       @builder = ImgBuilder.new(props)
       @builder.to_s
     end

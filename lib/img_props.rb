@@ -1,6 +1,6 @@
 # Properties from user
-# attr_ methods can be called after finalize
-# All methods are idempotent except finalize
+# attr_ methods can be called after compute_dependant_properties
+# All methods are idempotent except compute_dependant_properties
 class ImgProperties
   attr_accessor :align, :alt, :caption, :classes, :id, :src, :size, :style, :target, :title, :url
 
@@ -23,7 +23,7 @@ class ImgProperties
   def attr_size_class
     if @size == 'initial'
       'initial'
-    elsif size_units_specified?
+    elsif size_unit_specified?
       nil
     else
       @size
@@ -48,7 +48,7 @@ class ImgProperties
     "width: #{@size};" if @size
   end
 
-  def finalize
+  def compute_dependant_properties
     setup_align
     setup_src
 
@@ -68,6 +68,11 @@ class ImgProperties
     string[-n..] || string
   end
 
+  def relative_path?(src)
+    first_char = src[0]
+    first_char.match?(%r{[./]})
+  end
+
   def setup_align
     if @align == 'inline'
       @attr_align_div = 'display: inline-block; margin: 0.5em; vertical-align: top;'
@@ -82,14 +87,19 @@ class ImgProperties
   end
 
   def setup_src
-    first_char = @src[0]
-    protocol = @src[0, 4]
-    @src = "/assets/images/#{@src}" unless ['.', '/'].include?(first_char) || protocol == 'http'
+    @src = @src.to_s.trim
+    abort 'src parameter was not specified' if @src.empty?
+
+    @src = "/assets/images/#{@src}" unless relative_path?(@src) || url?(@src)
   end
 
-  def size_units_specified?
+  def size_unit_specified?
     last_char = last_n_chars(@size, 1)
     last_2_chars = last_n_chars(@size, 2)
     %w[em px pt].include?(last_2_chars) || last_char == '%'
+  end
+
+  def url?(src)
+    src.start_with? 'http'
   end
 end

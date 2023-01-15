@@ -5,7 +5,7 @@ class ImgBuilder
   end
 
   def to_s
-    @props.finalize
+    @props.compute_dependant_properties
     maybe_generate_figure
   end
 
