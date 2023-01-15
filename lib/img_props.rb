@@ -66,12 +66,6 @@ class ImgProperties
     @src.gsub('.webp', '.png')
   end
 
-  def self.last_n_chars(string, n)
-    return '' if string.nil?
-
-    string[-n..] || string
-  end
-
   def self.local_path?(src)
     first_char = src[0]
     first_char.match?(%r{[./]})
@@ -99,10 +93,12 @@ class ImgProperties
     @src = "/assets/images/#{@src}" unless ImgProperties.local_path?(@src) || url?(@src)
   end
 
+  UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze
+
   def size_unit_specified?
-    last_char = ImgProperties.last_n_chars(@size, 1)
-    last_2_chars = ImgProperties.last_n_chars(@size, 2)
-    %w[em px pt].include?(last_2_chars) || last_char == '%'
+    return false if @size.to_s.empty?
+
+    @size.end_with?(*UNITS)
   end
 
   def url?(src)

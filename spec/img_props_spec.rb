@@ -4,12 +4,6 @@ require_relative '../lib/img_props'
 # Test ImgProperties
 class ImgProperitesTest
   RSpec.describe ImgProperties do # rubocop:disable Metrics/BlockLength
-    it 'generates last n characters of a string' do
-      expect(ImgProperties.last_n_chars('abcdef', 1)).to eq('f')
-      expect(ImgProperties.last_n_chars('abcdef', 2)).to eq('ef')
-      expect(ImgProperties.last_n_chars('', 2)).to       eq('')
-    end
-
     it 'detects relative paths' do
       expect(ImgProperties.local_path?('abcdef')).to be false
       expect(ImgProperties.local_path?('./abc')).to be true
@@ -45,7 +39,7 @@ class ImgProperitesTest
       expect { props.src_png }.to raise_error(SystemExit)
     end
 
-    it 'generates proper attributes' do
+    it 'generates proper alignment attributes' do
       props = ImgProperties.new
 
       props.align = 'inline'
