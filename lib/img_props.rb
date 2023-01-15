@@ -1,6 +1,7 @@
 # Properties from user
+# All methods are idempotent.
 # attr_ methods can be called after compute_dependant_properties
-# All methods are idempotent
+# All methods except compute_dependant_properties can be called in any order
 class ImgProperties
   attr_accessor :align, :alt, :caption, :classes, :id, :src, :size, :style, :target, :title, :url
 
