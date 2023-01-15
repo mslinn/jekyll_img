@@ -32,7 +32,8 @@ class ImgProperties
   end
 
   def attr_style
-    "style='#{@style}'" if @style
+    style = "max-width: #{@size}; " if size_unit_specified?
+    "style='#{style}#{@style}'" if @style
   end
 
   def attr_target
