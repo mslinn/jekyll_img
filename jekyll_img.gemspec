@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'jekyll', '>= 3.5.0'
 
-  spec.add_development_dependency 'debase'
+  # spec.add_development_dependency 'debase'
   spec.add_development_dependency 'jekyll_plugin_support'
   # spec.add_development_dependency 'rspec-match_ignoring_whitespace'
   spec.add_development_dependency 'rubocop'
