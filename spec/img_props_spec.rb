@@ -23,10 +23,10 @@ class ImgProperitesTest
       expect(props.attr_id).to         be nil
       expect(props.attr_nofollow).to   be nil
       expect(props.attr_size_class).to be nil
-      expect(props.attr_style).to      be nil
+      expect(props.attr_style_img).to      be nil
       expect(props.attr_target).to     eq(" target='_blank'")
       expect(props.attr_title).to      be nil
-      expect(props.attr_width).to      be nil
+      expect(props.attr_width_img).to      be nil
 
       props.send(:setup_align)
       expect(props.attr_align_div).to be nil
@@ -51,7 +51,7 @@ class ImgProperitesTest
       expect(props.src).to eq('/absolute/path.webp')
     end
 
-    it 'generates proper simple attributes' do
+    it 'generates proper simple attributes' do # rubocop:disable Metrics/BlockLength
       props = ImgProperties.new
 
       props.alt = 'blah'
@@ -71,26 +71,35 @@ class ImgProperitesTest
 
       props.size = '100px'
       expect(props.attr_size_class).to be nil
-      expect(props.attr_style).to eq("style='width: 100px;'")
-      expect(props.attr_width).to eq('width: 100px;')
+      expect(props.attr_style_img).to eq("style='width: 100px;'")
+      expect(props.attr_width_caption).to be nil
+      expect(props.attr_width_img).to eq('width: 100px;')
 
       props.size = '10%'
       expect(props.attr_size_class).to be nil
-      expect(props.attr_style).to eq("style='width: 10%;'")
-      expect(props.attr_width).to eq('width: 10%;')
+      expect(props.attr_style_img).to eq("style='width: 10%;'")
+      expect(props.attr_width_caption).to be nil
+      expect(props.attr_width_img).to eq('width: 10%;')
 
       props.size = 'fullsize'
       expect(props.attr_size_class).to eq('fullsize')
-      expect(props.attr_width).to be nil
+      expect(props.attr_width_caption).to be nil
+      expect(props.attr_width_img).to be nil
 
       props.style = 'margin-top: 0;'
-      expect(props.attr_style).to eq("style='margin-top: 0;'")
+      expect(props.attr_style_img).to eq("style='margin-top: 0;'")
 
       props.target = 'moon'
       expect(props.attr_target).to eq(" target='moon'")
 
       props.title = 'The End'
       expect(props.attr_title).to eq("title='The End'")
+
+      props.size = '100px'
+      props.caption = 'A caption'
+      expect(props.attr_size_class).to be nil
+      expect(props.attr_width_caption).to eq('width: 100px;')
+      expect(props.attr_width_img).to be nil
     end
 
     it 'generates proper alignment attributes' do

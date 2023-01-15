@@ -31,9 +31,9 @@ class ImgProperties
     end
   end
 
-  def attr_style
-    style = "max-width: #{@size}; " if size_unit_specified?
-    "style='#{style}#{@style}'" if @style
+  def attr_style_img
+    style = "width: #{@size};" if !@caption && size_unit_specified?
+    "style='#{style}#{@style}'" if @style || style
   end
 
   def attr_target
@@ -47,8 +47,12 @@ class ImgProperties
     "title='#{@title}'" if @title && !@title.empty?
   end
 
-  def attr_width
-    "width: #{@size};" if size_unit_specified?
+  def attr_width_caption
+    "width: #{@size};" if size_unit_specified? && @caption
+  end
+
+  def attr_width_img
+    "width: #{@size};" if size_unit_specified? && !@caption
   end
 
   def compute_dependant_properties

@@ -15,7 +15,7 @@ class ImgBuilder
   # rubocop:disable Style/MultilineIfModifier
   def maybe_generate_figure
     result = <<~END_HTML
-      #{"<div style='#{@props.attr_align_div}#{@props.attr_width}'>
+      #{"<div style='#{@props.attr_align_div}#{@props.attr_width_caption}'>
           <figure>" if @props.caption}
           #{ if @props.url
                "<a href='#{@props.url}'#{@props.attr_target}#{@props.attr_nofollow}>#{generate_img}</a>"
@@ -56,7 +56,7 @@ class ImgBuilder
       <picture#{@props.attr_id}>
         <source srcset="#{@props.src}" type="image/webp">
         <source srcset="#{@props.src_png}" type="image/png">
-        <img src="#{@props.src_png}" #{@props.attr_title} class="#{@props.attr_align_img} #{@props.attr_size_class} #{@props.classes}" #{@props.attr_style} #{@props.attr_alt} />
+        <img src="#{@props.src_png}" #{@props.attr_title} class="#{@props.attr_align_img} #{@props.attr_size_class} #{@props.classes}" #{@props.attr_style_img} #{@props.attr_alt} />
       </picture>
     END_IMG
   end
