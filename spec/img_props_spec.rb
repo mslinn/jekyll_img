@@ -1,4 +1,3 @@
-require 'rspec/match_ignoring_whitespace'
 require_relative '../lib/img_props'
 
 # Test ImgProperties
@@ -50,6 +49,22 @@ class ImgProperitesTest
       props.src = '/absolute/path.webp'
       props.send(:setup_src)
       expect(props.src).to eq('/absolute/path.webp')
+    end
+
+    it 'generates proper simple attributes' do
+      props = ImgProperties.new
+
+      props.alt = 'blah'
+      expect(props.attr_alt).to eq("alt='blah'")
+
+      props.classes = 'blah'
+      expect(props.attr_classes).to eq('blah')
+
+      props.id = 'blah'
+      expect(props.attr_id).to eq(" id='blah'")
+
+      props.nofollow = true
+      expect(props.attr_nofollow).to eq(" rel='nofollow'")
     end
 
     it 'generates proper alignment attributes' do

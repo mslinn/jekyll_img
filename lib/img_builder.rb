@@ -1,6 +1,7 @@
 # Constructs HTML img tag from properties
 class ImgBuilder
   def initialize(props)
+    props.compute_dependant_properties
     @props = props
   end
 
@@ -52,7 +53,7 @@ class ImgBuilder
         <source srcset="#{@props.src}" type="image/webp">
         <source srcset="#{@props.src_png}" type="image/png">
         <img src="#{@props.src_png}" #{@props.attr_title} class="#{@props.attr_align_img} #{@props.attr_size_class} #{@props.classes}" #{@props.attr_style} #{@props.attr_alt} />
-      </picture>
+      </picture#>
     END_IMG
   end
 end
