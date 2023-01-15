@@ -4,7 +4,7 @@
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
   attr_accessor :align, :alt, :attr_align_class, :attr_align_div, :attr_align_img, :caption, \
-                :classes, :id, :nofollow, :src, :size, :style, :target, :title, :url
+                :classes, :id, :nofollow, :src, :size, :style, :target, :title, :url, :wrapper_class
 
   def attr_alt
     "alt='#{@alt}'" if @alt
@@ -82,13 +82,15 @@ class ImgProperties
   def setup_align
     if @align == 'center'
       @attr_align_img = 'center'
+      @attr_align_class = "class='#{@wrapper_class}'"
     elsif @align
       @attr_align_div = 'display: inline-block; margin: 0.5em; vertical-align: top;'
       @attr_align_img = @align
-      @attr_align_class = "class='#{@align}'"
+      @attr_align_class = "class='#{@align} #{@wrapper_class}'"
     else
       @attr_align_div = 'display: inline-block; margin: 0.5em; vertical-align: top;'
       @attr_align_img = 'inline'
+      @attr_align_class = "class='#{@wrapper_class}'"
     end
   end
 

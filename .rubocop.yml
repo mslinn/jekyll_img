@@ -17,7 +17,7 @@ Layout/MultilineMethodCallIndentation:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 30
+  Max: 35
 
 Metrics/BlockLength:
   Max: 30

@@ -34,17 +34,18 @@ module Jekyll
   class Img < JekyllSupport::JekyllTag
     def render_impl
       props = ImgProperties.new
-      props.align    = @helper.parameter_specified? 'align'
-      props.alt      = @helper.parameter_specified? 'alt'
-      props.caption  = @helper.parameter_specified? 'caption'
-      props.classes  = @helper.parameter_specified? 'class'
-      props.nofollow = @helper.parameter_specified? 'nofollow'
-      props.src      = @helper.parameter_specified? 'src'
-      props.style    = @helper.parameter_specified? 'style'
-      props.size     = @helper.parameter_specified?('size') || @helper.parameter_specified?('_size')
-      props.target   = @helper.parameter_specified? 'target'
-      props.title    = @helper.parameter_specified? 'title'
-      props.url      = @helper.parameter_specified? 'url'
+      props.align         = @helper.parameter_specified? 'align'
+      props.alt           = @helper.parameter_specified? 'alt'
+      props.caption       = @helper.parameter_specified? 'caption'
+      props.classes       = @helper.parameter_specified? 'class'
+      props.nofollow      = @helper.parameter_specified? 'nofollow'
+      props.src           = @helper.parameter_specified? 'src'
+      props.style         = @helper.parameter_specified? 'style'
+      props.size          = @helper.parameter_specified?('size') || @helper.parameter_specified?('_size')
+      props.target        = @helper.parameter_specified? 'target'
+      props.title         = @helper.parameter_specified? 'title'
+      props.url           = @helper.parameter_specified? 'url'
+      props.wrapper_class = @helper.parameter_specified? 'wrapper_class'
 
       @builder = ImgBuilder.new(props)
       @builder.to_s
