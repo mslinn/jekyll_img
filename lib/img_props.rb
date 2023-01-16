@@ -3,9 +3,8 @@
 # attr_ methods can be called after compute_dependant_properties
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
-  attr_accessor :align, :alt, :attr_img_align_class, \
-                :attr_wrapper_align_class, :caption, :classes, :id, :nofollow, \
-                :src, :size, :style, :target, :title, :url, :wrapper_class
+  attr_accessor :align, :alt, :attr_wrapper_align_class, :caption, :classes, :id, :nofollow, \
+                :src, :size, :style, :target, :title, :url, :wrapper_class, :wrapper_style
 
   SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
 
@@ -59,7 +58,6 @@ class ImgProperties
   end
 
   def compute_dependant_properties
-    setup_align
     setup_src
 
     @target ||= '_blank'
@@ -81,12 +79,8 @@ class ImgProperties
 
   private
 
-  def setup_align
-    if @align
-      @attr_img_align_class = @align
-    else
-      @attr_img_align_class = 'inline'
-    end
+  def attr_img_align_class
+    @align || 'inline'
   end
 
   def setup_src

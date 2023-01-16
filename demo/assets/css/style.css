@@ -180,7 +180,9 @@ pre {
   vertical-align: top;
 }
 
+/* Center captions within div.imgWrapper */
 .imgFigCaption {
+  display: inline-block;
   text-align: center;
   width: 100%;
 }
