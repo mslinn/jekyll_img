@@ -18,18 +18,20 @@ class ImgProperitesTest
 
     it 'does not generate attributes for most empty properties' do
       props = ImgProperties.new
-      expect(props.attr_alt).to        be nil
-      expect(props.attr_classes).to    eq('imgImg rounded shadow')
-      expect(props.attr_id).to         be nil
-      expect(props.attr_nofollow).to   be nil
-      expect(props.attr_size_class).to be nil
-      expect(props.attr_style_img).to  be nil
-      expect(props.attr_target).to     eq(" target='_blank'")
-      expect(props.attr_title).to      be nil
-      expect(props.attr_width_img).to  be nil
+      expect(props.attr_alt).to           be nil
+      expect(props.attr_img_classes).to   eq('rounded shadow')
+      expect(props.attr_id).to            be nil
+      expect(props.attr_nofollow).to      be nil
+      expect(props.attr_size_class).to    be nil
+      expect(props.attr_style_img).to     be nil
+      expect(props.attr_target).to        eq(" target='_blank'")
+      expect(props.attr_title).to         be nil
+      expect(props.attr_width_caption).to be nil
+      expect(props.attr_width_img).to     be nil
 
       props.send(:setup_align)
-      expect(props.attr_align_img).to be nil
+      expect(props.attr_img_align_class).to     eq('inline')
+      expect(props.attr_wrapper_align_class).to be nil
     end
 
     it 'raises exception if src was not specified' do
@@ -57,7 +59,7 @@ class ImgProperitesTest
       expect(props.attr_alt).to eq("alt='blah'")
 
       props.classes = 'blah'
-      expect(props.attr_classes).to eq('blah')
+      expect(props.attr_img_classes).to eq('blah')
 
       props.id = 'blah'
       expect(props.attr_id).to eq(" id='blah'")
@@ -70,13 +72,13 @@ class ImgProperitesTest
 
       props.size = '100px'
       expect(props.attr_size_class).to be nil
-      expect(props.attr_style_img).to eq("style='width: 100px;'")
+      expect(props.attr_style_img).to eq("style='max-width: 100px;'")
       expect(props.attr_width_caption).to be nil
       expect(props.attr_width_img).to eq('width: 100px;')
 
       props.size = '10%'
       expect(props.attr_size_class).to be nil
-      expect(props.attr_style_img).to eq("style='width: 10%;'")
+      expect(props.attr_style_img).to eq("style='max-width: 10%;'")
       expect(props.attr_width_caption).to be nil
       expect(props.attr_width_img).to eq('width: 10%;')
 
@@ -106,11 +108,11 @@ class ImgProperitesTest
 
       props.align = 'inline'
       props.send(:setup_align)
-      expect(props.attr_align_img).to be nil
+      expect(props.attr_img_align_class).to eq('inline')
 
       props.align = 'center'
       props.send(:setup_align)
-      expect(props.attr_align_img).to eq('center')
+      expect(props.attr_img_align_class).to eq('center')
     end
   end
 end

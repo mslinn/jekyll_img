@@ -40,7 +40,7 @@ end
 
 # These tests all fail because I have not figured out how to provide a Jekyll block body to a test
 class MyTest
-  RSpec.describe Jekyll::Img do # rubocop:disable Metrics/BlockLength
+  RSpec.describe Jekyll::Img do
     let(:logger) do
       PluginMetaLogger.instance.new_logger(self, PluginMetaLogger.instance.config)
     end

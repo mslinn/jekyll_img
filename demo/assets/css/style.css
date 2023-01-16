@@ -157,6 +157,12 @@ pre {
   margin-right: auto;
 }
 
+.eighthsize {
+  height: auto;
+  width: 12.5%;
+}
+
+
 .fullsize {
   height: auto;
   width: 100%;
@@ -164,38 +170,37 @@ pre {
 
 .halfsize {
   height: auto;
-  width: 450px;
+  width: 50%;
 }
 
-.imgAlignDiv {
+/* Marker class, indicates a caption was specified */
+.imgWrapper {
   display: inline-block;
   margin: 0.5em;
   vertical-align: top;
 }
 
 .imgFigCaption {
-  width: 100%;
   text-align: center;
+  width: 100%;
 }
 
-/* Renamed from .liImg2 */
+/* Marker class applied to <img> tag */
 .imgImg {
   margin-bottom: 1em;
   margin-top: 0.5em;
 }
 
-.imgImgUrl { }            /* placeholder */
+.imgImgUrl { }            /* Marker class, indicates a URL was specified */
 
-.imgFigCaption > a { }    /* placeholder */
-
-.imgOuterDiv { }          /* placeholder */
+.imgFigCaption > a { }    /* Only applies to URLs in captions */
 
 .imgOuterDiv > figure {
   margin: 0;
   padding: 0;
 }
 
-.imgPicture { }           /* placeholder */
+.imgPicture { }           /* Marker class, applies to <picture> element */
 
 .imgPicture > img { }     /* placeholder */
 
@@ -210,7 +215,7 @@ pre {
 
 .quartersize {
   height: auto;
-  width: 225px;
+  width: 25%;
 }
 
 .right {

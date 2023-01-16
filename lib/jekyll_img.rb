@@ -21,16 +21,19 @@ module Jekyll
   #   align="left|inline|right|center"
   #   alt="Alt text" # default is caption
   #   caption="A caption"
-  #   class="class1 class2 classN"
+  #   classes="class1 class2 classN"
   #   id="someId"
   #   nofollow # Only applicable when url is specified
-  #   size='fullsize|halfsize|initial|quartersize|XXXYY|XXX%' # XXX is a float, YY is unit
+  #   size='eighthsize|fullsize|halfsize|initial|quartersize|XXXYY|XXX%' # XXX is a float, YY is unit
   #   style='css goes here'
   #   target='none|whatever' # default is _blank
   #   title="A title" # default is caption
   #   url='https://domain.com'
+  #   wrapper_class='class1 class2'
+  #   wrapper_style='color: red;'
   #
-  # _size is an alias for size
+  # unit is one of: Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw
+  # _size is an alias for size; it applies to the entire generated construct
   class Img < JekyllSupport::JekyllTag
     def render_impl
       props = ImgProperties.new
@@ -38,14 +41,16 @@ module Jekyll
       props.alt           = @helper.parameter_specified? 'alt'
       props.caption       = @helper.parameter_specified? 'caption'
       props.classes       = @helper.parameter_specified? 'class'
+      props.id            = @helper.parameter_specified? 'id'
       props.nofollow      = @helper.parameter_specified? 'nofollow'
+      props.size          = @helper.parameter_specified?('size') || @helper.parameter_specified?('_size')
       props.src           = @helper.parameter_specified? 'src'
       props.style         = @helper.parameter_specified? 'style'
-      props.size          = @helper.parameter_specified?('size') || @helper.parameter_specified?('_size')
       props.target        = @helper.parameter_specified? 'target'
       props.title         = @helper.parameter_specified? 'title'
       props.url           = @helper.parameter_specified? 'url'
       props.wrapper_class = @helper.parameter_specified? 'wrapper_class'
+      props.wrapper_style = @helper.parameter_specified? 'wrapper_style'
 
       @builder = ImgBuilder.new(props)
       @builder.to_s

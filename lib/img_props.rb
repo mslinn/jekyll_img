@@ -3,16 +3,19 @@
 # attr_ methods can be called after compute_dependant_properties
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
-  attr_accessor :align, :alt, :attr_align_class, :attr_align_img, :caption, \
-                :classes, :id, :nofollow, :src, :size, :style, :target, \
-                :title, :url, :wrapper_class
+  attr_accessor :align, :alt, :attr_img_align_class, \
+                :attr_wrapper_align_class, :caption, :classes, :id, :nofollow, \
+                :src, :size, :style, :target, :title, :url, :wrapper_class
+
+  SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
 
   def attr_alt
     "alt='#{@alt}'" if @alt
   end
 
+  # <img> tag assets, except alignment classes (inline, left, center, right)
   def attr_img_classes
-    @classes || 'imgImg rounded shadow'
+    @classes || 'rounded shadow'
   end
 
   def attr_id
@@ -24,17 +27,15 @@ class ImgProperties
   end
 
   def attr_size_class
-    if @size == 'initial'
-      'initial'
-    elsif size_unit_specified?
-      nil
-    else
-      @size
-    end
+    return nil if @size.nil? || size_unit_specified?
+
+    abort "'#{@size}' is not a recognized size; must be one of #{SIZES.join(', ')}, or an explicit unit." \
+      unless SIZES.include?(@size)
+    @size
   end
 
   def attr_style_img
-    style = "max-width: #{@size};" if size_unit_specified?
+    style = "max-width: #{@caption ? '100%' : @size};" if @caption || size_unit_specified?
     "style='#{style}#{@style}'" if @style || style
   end
 
@@ -81,15 +82,10 @@ class ImgProperties
   private
 
   def setup_align
-    if @align == 'center'
-      @attr_align_img = 'center'
-      @attr_align_class = @wrapper_class
-    elsif @align
-      @attr_align_img = @align
-      @attr_align_class = "imgAlignDiv #{@align} #{@wrapper_class}"
+    if @align
+      @attr_img_align_class = @align
     else
-      @attr_align_img = 'inline'
-      @attr_align_class = "imgAlignDiv #{@wrapper_class}"
+      @attr_img_align_class = 'inline'
     end
   end
 

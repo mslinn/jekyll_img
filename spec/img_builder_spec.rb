@@ -4,16 +4,16 @@ require_relative '../lib/img_props'
 
 # Test ImgProperties
 class ImgProperitesTest
-  RSpec.describe ImgBuilder do # rubocop:disable Metrics/BlockLength
+  RSpec.describe ImgBuilder do
     it 'generates an img' do
       props = ImgProperties.new
       props.src = 'blah.webp'
       builder = ImgBuilder.new(props)
       picture = <<~END_IMG
-        <picture>
+        <picture class='imgPicture'>
           <source srcset="/assets/images/blah.webp" type="image/webp">
           <source srcset="/assets/images/blah.png" type="image/png">
-          <img src="/assets/images/blah.png" class=" " />
+          <img src="/assets/images/blah.png" class="imgImg rounded shadow inline" />
         </picture>
       END_IMG
 

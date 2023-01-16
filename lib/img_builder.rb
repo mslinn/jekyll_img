@@ -21,8 +21,9 @@ class ImgBuilder
 
   # rubocop:disable Style/MultilineIfModifier
   def maybe_generate_figure
+    # TODO: define and add wrapper_style
     result = <<~END_HTML
-      #{"<div class='imgOuterDiv #{@props.attr_align_class}' style='#{@props.attr_width_caption}'>
+      #{"<div class='imgWrapper #{@props.wrapper_class} #{@props.attr_wrapper_align_class} #{@props.attr_size_class}' style='#{@props.attr_width_caption}'>
           <figure>" if @props.caption}
           #{ if @props.url
                "<a href='#{@props.url}'#{@props.attr_target}#{@props.attr_nofollow} class='imgImgUrl'>#{generate_img}</a>"
@@ -59,13 +60,14 @@ class ImgBuilder
 
   # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
   def generate_img
-    classes = "#{@props.attr_img_classes} #{@props.attr_align_img} #{@props.attr_size_class} #{@props.classes}".squish
+    # Classes for <img> tag:
+    classes = "#{@props.attr_img_classes} #{@props.attr_img_align_class} #{@props.attr_size_class} #{@props.classes}".squish
     <<~END_IMG
       <picture#{@props.attr_id} class='imgPicture'>
         <source srcset="#{@props.src}" type="image/webp">
         <source srcset="#{@props.src_png}" type="image/png">
         <img src="#{@props.src_png}" #{@props.attr_title}
-          class="#{classes}"
+          class="imgImg #{classes}"
           #{@props.attr_style_img}
           #{@props.attr_alt} />
       </picture>
