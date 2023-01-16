@@ -1,8 +1,10 @@
+/* Styles just for testing */
+
 * {
   box-sizing: border-box;
 }
 
-a, a code, a.code, a .code, a tt {
+a, a code, a tt {
   color: #2879d0;
 }
 
@@ -18,8 +20,8 @@ body {
   margin: 0;
 }
 
-code, pre, tt, .codeLabel {
-  font-family: Monaco,"Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+code, pre, tt {
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-stretch: semi-condensed;
 }
 
@@ -34,7 +36,7 @@ h1, .h1 {
   margin-inline-end: 0px;
 }
 
-h1, h2, header, nav#sidebar, .error {
+h1, h2, header, nav#sidebar {
   font-family: "Helvetica Neue", Helvetica, Arial, serif;
 }
 
@@ -88,38 +90,17 @@ pre {
 }
 
 #main-content {
+  float: left;
   margin-bottom: 2em;
+  width: 690px;
 }
 
-#main-content {
-  float: left;
-  width: 690px;
+.bg_yellow {
+  background-color: yellow;
 }
 
 .blackBorder {
   border: 1px black solid;
-}
-
-.centered {
-  text-align: center;
-}
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.codeLabel {
-  color: white;
-  background-color: #666;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  padding-left: 1em;
-}
-
-.codeLabel+pre {
-  margin-top: 0;
 }
 
 .copyright {
@@ -129,22 +110,7 @@ pre {
   padding-top: 0.5em;
 }
 
-.error {
-  color: red;
-}
-
-.fullsize {
-  height: auto;
-  width: 100%;
-}
-
-.halfsize {
-  height: auto;
-  width: 450px;
-}
-
 .imgItem {
-  color: red;
   max-height: 275px;
   vertical-align: top;
   width: 200px;
@@ -156,155 +122,11 @@ pre {
   width: 940px;
 }
 
-.left {
-  float: left;
-  margin-right: 1em;
-}
-
-.liImg {
-  margin-bottom: 1em;
-  margin-top: 0.5em;
-}
-
-.liImg2 {
-  margin-bottom: 1em;
-  margin-top: 0.5em;
-}
-
-.maxOneScreenHigh {
-  max-height: 500px;
-}
-
-.numbered_line,
-.unselectable.numbered_line,
-.numbered_line.unselectable {
-  color: #5fb25f;
-}
-
-.rounded {
-  border: 1px solid;
-  border-radius: 7px;
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
-}
-
-.shadow {
-  -moz-box-shadow: 5px 5px 6px #999;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999')";
-  -webkit-box-shadow: 5px 5px 6px #999;
-  border: thin gray solid;
-  box-shadow: 5px 5px 6px #999;
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color='#999999');
-}
-
-.unselectable {
-  color: #7922f9;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  user-select: none;
-}
-
-.quartersize {
-  height: auto;
-  width: 225px;
-}
-
-.right {
-  float: right;
-  margin-left: 1em;
-}
-
-.code, code, pre, tt, kbd {
-  color: #222;
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-stretch: semi-condensed;
-}
-
-
-/* Modified from https://codepen.io/mad-d/pen/xwqpWg and https://stackoverflow.com/a/21014546/553865 */
-
-blockquote, .quote {
-  font-style: italic;
-}
-
-.quote {
-  background: #f7f7f7;
-  border: thin gray solid;
-  border-radius: 8px;
-  box-shadow: 5px 5px 6px #999;
-  color: #5d5b5b;
-  line-height: 1.5;
-  margin-top: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  padding-right: 1.2rem;
-  padding-top: 1rem;
-  position: relative;
-  quotes: '\201c' '\201d';
-  width: 80%;  /* space for the quotes */
-  text-indent: 0;
-}
-
-.quote:before, .quote:after {
-  color: #E8E8E8;
-  font-family: "Helvetica Neue","Helvetica", Helvetica, Arial, sans-serif;
-  font-style: italic;
-  font-size: 80px;
-  position: absolute;
-  top: 0;
-}
-
-.quote:before {
-  content: open-quote;
-  margin-right: 23px;
-  right: 100%;
-}
-
-.quote:after {
-  bottom: 0;
-  content: close-quote;
-  left: 100%;
-  margin-left: 0.15em;
-}
-
-.quote code {
-  font-style: normal;
-}
-
-.quote h2 {
-  margin-top: 0;
-}
-
-.quote > ol, .quote > ul {
-  margin-top: 0;
-}
-
 @media only screen and (min-width: 768px) and (max-width: 959px) {
   .inner {
     width: 740px;
   }
-
-  #main-content {
-    width: 490px;
-  }
 }
-
-@media only screen and (min-width: 768px) {
-  #tocSide {
-    position: relative;
-    right: 0;
-    width: 220px;
-    display: block;
-  }
-
-  #tocMain {
-    display: none;
-  }
-}
-
 
 @media only screen and (max-width: 767px) {
   .inner {
@@ -324,16 +146,91 @@ blockquote, .quote {
     min-height: 0;
     padding: 20px 0;
   }
+}
 
-  nav#sidebar a.button {
-    display: none;
-  }
 
-  #tocSide {
-    display: none;
-  }
+/* Styles referenced by the jekyll_img plugin */
 
-  #tocMain {
-    display: block;
-  }
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fullsize {
+  height: auto;
+  width: 100%;
+}
+
+.halfsize {
+  height: auto;
+  width: 450px;
+}
+
+.imgAlignDiv {
+  display: inline-block;
+  margin: 0.5em;
+  vertical-align: top;
+}
+
+.imgFigCaption {
+  width: 100%;
+  text-align: center;
+}
+
+/* Renamed from .liImg2 */
+.imgImg {
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+}
+
+.imgImgUrl { }            /* placeholder */
+
+.imgFigCaption > a { }    /* placeholder */
+
+.imgOuterDiv { }          /* placeholder */
+
+.imgOuterDiv > figure {
+  margin: 0;
+  padding: 0;
+}
+
+.imgPicture { }           /* placeholder */
+
+.imgPicture > img { }     /* placeholder */
+
+.inline {
+  display: inline-block;
+}
+
+.left {
+  float: left;
+  margin-right: 1em;
+}
+
+.quartersize {
+  height: auto;
+  width: 225px;
+}
+
+.right {
+  float: right;
+  margin-left: 1em;
+}
+
+.rounded {
+  border: 1px solid;
+  border-radius: 7px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+.shadow {
+  -moz-box-shadow: 5px 5px 6px #999;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999')";
+  -webkit-box-shadow: 5px 5px 6px #999;
+  border: thin gray solid;
+  box-shadow: 5px 5px 6px #999;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color='#999999');
+  margin-bottom: 10px;
 }

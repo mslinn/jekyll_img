@@ -3,15 +3,16 @@
 # attr_ methods can be called after compute_dependant_properties
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
-  attr_accessor :align, :alt, :attr_align_class, :attr_align_div, :attr_align_img, :caption, \
-                :classes, :id, :nofollow, :src, :size, :style, :target, :title, :url, :wrapper_class
+  attr_accessor :align, :alt, :attr_align_class, :attr_align_img, :caption, \
+                :classes, :id, :nofollow, :src, :size, :style, :target, \
+                :title, :url, :wrapper_class
 
   def attr_alt
     "alt='#{@alt}'" if @alt
   end
 
-  def attr_classes
-    @classes || 'liImg2 rounded shadow'
+  def attr_img_classes
+    @classes || 'imgImg rounded shadow'
   end
 
   def attr_id
@@ -33,7 +34,7 @@ class ImgProperties
   end
 
   def attr_style_img
-    style = "width: #{@size};" if !@caption && size_unit_specified?
+    style = "max-width: #{@size};" if size_unit_specified?
     "style='#{style}#{@style}'" if @style || style
   end
 
@@ -62,7 +63,7 @@ class ImgProperties
 
     @target ||= '_blank'
 
-    @alt ||= @caption || @title
+    @alt   ||= @caption || @title
     @title ||= @caption || @alt # rubocop:disable Naming/MemoizedInstanceVariableName
   end
 
@@ -82,15 +83,13 @@ class ImgProperties
   def setup_align
     if @align == 'center'
       @attr_align_img = 'center'
-      @attr_align_class = "class='#{@wrapper_class}'"
+      @attr_align_class = @wrapper_class
     elsif @align
-      @attr_align_div = 'display: inline-block; margin: 0.5em; vertical-align: top;'
       @attr_align_img = @align
-      @attr_align_class = "class='#{@align} #{@wrapper_class}'"
+      @attr_align_class = "imgAlignDiv #{@align} #{@wrapper_class}"
     else
-      @attr_align_div = 'display: inline-block; margin: 0.5em; vertical-align: top;'
       @attr_align_img = 'inline'
-      @attr_align_class = "class='#{@wrapper_class}'"
+      @attr_align_class = "imgAlignDiv #{@wrapper_class}"
     end
   end
 

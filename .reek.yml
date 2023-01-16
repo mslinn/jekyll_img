@@ -1,0 +1,12 @@
+exclude_paths:
+  /
+
+detectors:
+  DuplicateMethodCall:
+    enabled: false
+
+  RepeatedConditional:
+    enabled: false
+
+  TooManyStatements:
+    enabled: false

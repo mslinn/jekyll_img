@@ -5,6 +5,7 @@
 `jekyll_img` is a Jekyll plugin that displays formatted quotes.
 
 See [demo/index.html](demo/index.html) for examples.
+Styles referenced by the jekyll_img plugin are at the bottom of [demo/assets/css/style.css](demo/assets/css/style.css)
 
 
 ## Installation
@@ -26,10 +27,6 @@ plugins:
 And then execute:
 
     $ bundle install
-
-Or install it yourself as:
-
-    $ gem install jekyll_img
 
 
 ## Additional Information

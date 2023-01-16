@@ -7,47 +7,47 @@ title: Img Test
 ---
 <h2 id="sizes">Sizes</h2>
 <fieldset class="blackBorder">
-  <legend >size='10%'</legend>
-  {% img src="jekyll_240x103.webp" size='10%' %}
-</fieldset>
-
-<fieldset class="blackBorder">
-  <legend >defaults</legend>
+  <legend>defaults</legend>
   {% img src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >size='initial'</legend>
+  <legend><code>size='10%'</code></legend>
+  {% img src="jekyll_240x103.webp" size='10%' %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend><code>size='initial'</code></legend>
   {% img src="jekyll_240x103.webp" size="initial" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >size='fullsize'</legend>
+  <legend><code>size='fullsize'</code></legend>
   {% img src="jekyll_240x103.webp" size="fullsize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >size='halfsize'</legend>
+  <legend><code>size='halfsize'</code></legend>
   {% img src="jekyll_240x103.webp" size="halfsize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >size='quartersize'</legend>
+  <legend><code>size='quartersize'</code></legend>
   {% img src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >align='left' size='quartersize'</legend>
+  <legend><code>align='left'</code> / <code>size='quartersize'</code></legend>
   {% img align="left" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >align='center' size='quartersize'</legend>
+  <legend><code>align='center'</code> / <code>size='quartersize'</code></legend>
   {% img align="center" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >align='right' size='quartersize'</legend>
+  <legend><code>align='right'</code> / <code>size='quartersize'</code></legend>
   {% img align="right" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
@@ -55,49 +55,80 @@ title: Img Test
 <h2 id="captions" class="clear">Captions</h2>
 <fieldset class="blackBorder">
   <legend >defaults</legend>
-  {% img caption="This is a caption" src="jekyll_240x103.webp" %}
+  {% img caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >align='left'</legend>
-  {% img align="left" caption="This is a caption" src="jekyll_240x103.webp" size="quartersize" %}
+  <legend ><code>align='left'</code></legend>
+  {% img align="left" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >align='center'</legend>
-  {% img align="center" caption="This is a caption" src="jekyll_240x103.webp" size="quartersize" %}
+  <legend ><code>align='center'</code></legend>
+  {% img align="center" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >align='right'</legend>
-  {% img align="right" caption="This is a caption" src="jekyll_240x103.webp" size="quartersize" %}
+  <legend ><code>align='right'</code></legend>
+  {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend ><code>align='right'</code> / <code>quartersize</code></legend>
+  {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="quartersize" %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend ><code>size='20%'</code> / <code>align='left'</code></legend>
+  {% img align="left" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend ><code>size='20%'</code> / <code>align='center'</code></legend>
+  {% img align="center" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend ><code>size='20%'</code> / <code>align='right'</code></legend>
+  {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
 </fieldset>
 
 
 <h2 id="urls" class="clear">URLs</h2>
 <fieldset class="blackBorder">
-  <legend >with caption</legend>
-  {% img caption="This is a caption" src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
+  <legend >defaults</legend>
+  {% img src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >defaults</legend>
-  {% img src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
+  <legend >with <code>caption</code></legend>
+  {% img caption="This is a caption" src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
 </fieldset>
 
 
 <h2 id="classes" class="clear">Classes</h2>
 <fieldset class="blackBorder">
-  <legend >rounded shadow</legend>
-  {% img class='rounded shadow' src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
+  <legend><code>rounded bg_yellow shadow</code></legend>
+  {% img class='bg_yellow rounded shadow' src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend><code>wrapper_class='bg_yellow'</code></legend>
+  {% img
+    caption='A caption is required for <code>wrapper_class</code> to be applied to.'
+    size='150px'
+    src="jekyll_240x103.webp"
+    url='https://www.mslinn.com'
+    wrapper_class="bg_yellow"
+  %}
 </fieldset>
 
 
 <h2 id="styles" class="clear">Styles</h2>
 <fieldset class="blackBorder">
-  <legend >padding: 1em / rounded shadow</legend>
+  <legend><code>padding: 1em</code> / <code>bg_yellow rounded</code></legend>
   {% img
-    class='rounded shadow'
+    class='bg_yellow rounded'
     src="jekyll_240x103.webp"
     style='padding: 1em;'
     url='https://www.mslinn.com'
@@ -105,10 +136,10 @@ title: Img Test
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >padding: 1em / center / rounded shadow</legend>
+  <legend><code>padding: 1em;</code> / center / <code>bg_yellow rounded</code></legend>
   {% img
     align="center"
-    class='rounded shadow'
+    class='bg_yellow rounded'
     src="jekyll_240x103.webp"
     style='padding: 1em;'
     url='https://www.mslinn.com'
@@ -116,10 +147,10 @@ title: Img Test
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >padding: 1em / right / nofollow / rounded shadow</legend>
+  <legend><code>padding: 1em;</code> / right / nofollow / empty class</legend>
   {% img
     align="right"
-    class='rounded shadow'
+    class=''
     nofollow
     src="jekyll_240x103.webp"
     style='padding: 1em;'
@@ -127,12 +158,48 @@ title: Img Test
   %}
 </fieldset>
 
-<fieldset class="blackBorder">
-  <legend >wrapper_class='rounded shadow'</legend>
+
+<h2 id="flow">Flow-like</h2>
+<div id="imgContainer">
   {% img
-    caption='Caption is required for wrapper_class'
+    caption="Jekyll and Hyde never met, but saw each other in mirrors"
+    class="imgItem rounded shadow"
     src="jekyll_240x103.webp"
-    url='https://www.mslinn.com'
-    wrapper_class="rounded shadow"
+    url="https://www.mslinn.com"
+    wrapper_class="imgItem"
   %}
-</fieldset>
+  {% img
+    caption="This is a long, long, long, long, long, long caption"
+    class="imgItem rounded shadow"
+    src="jekyll_240x103.webp"
+    url="https://www.mslinn.com"
+  %}
+  {% img
+    caption="This is a long, long, long, long, long, long caption"
+    class="imgItem rounded shadow"
+    src="jekyll_240x103.webp"
+    url="https://www.mslinn.com"
+    wrapper_class="imgItem"
+  %}
+  {% img
+    caption="Jekyll and Hyde never met, but saw each other in mirrors"
+    class="imgItem rounded shadow"
+    src="jekyll_240x103.webp"
+    url="https://www.mslinn.com"
+    wrapper_class="imgItem"
+  %}
+  {% img
+    caption="This is a long, long, long, long, long, long caption"
+    class="imgItem rounded shadow"
+    src="jekyll_240x103.webp"
+    url="https://www.mslinn.com"
+    wrapper_class="imgItem"
+  %}
+  {% img
+    caption="Jekyll and Hyde never met, but saw each other in mirrors"
+    class="imgItem rounded shadow"
+    src="jekyll_240x103.webp"
+    url="https://www.mslinn.com"
+    wrapper_class="imgItem"
+  %}
+</div>

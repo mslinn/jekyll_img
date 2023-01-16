@@ -5,8 +5,8 @@ class ImgProperitesTest
   RSpec.describe ImgProperties do # rubocop:disable Metrics/BlockLength
     it 'detects relative paths' do
       expect(ImgProperties.local_path?('abcdef')).to be false
-      expect(ImgProperties.local_path?('./abc')).to be true
-      expect(ImgProperties.local_path?('/abc')).to be true
+      expect(ImgProperties.local_path?('./abc')).to  be true
+      expect(ImgProperties.local_path?('/abc')).to   be true
     end
 
     it 'has other class methods' do
@@ -19,17 +19,16 @@ class ImgProperitesTest
     it 'does not generate attributes for most empty properties' do
       props = ImgProperties.new
       expect(props.attr_alt).to        be nil
-      expect(props.attr_classes).to    eq('liImg2 rounded shadow')
+      expect(props.attr_classes).to    eq('imgImg rounded shadow')
       expect(props.attr_id).to         be nil
       expect(props.attr_nofollow).to   be nil
       expect(props.attr_size_class).to be nil
-      expect(props.attr_style_img).to      be nil
+      expect(props.attr_style_img).to  be nil
       expect(props.attr_target).to     eq(" target='_blank'")
       expect(props.attr_title).to      be nil
-      expect(props.attr_width_img).to      be nil
+      expect(props.attr_width_img).to  be nil
 
       props.send(:setup_align)
-      expect(props.attr_align_div).to be nil
       expect(props.attr_align_img).to be nil
     end
 
@@ -86,8 +85,8 @@ class ImgProperitesTest
       expect(props.attr_width_caption).to be nil
       expect(props.attr_width_img).to be nil
 
-      props.style = 'margin-top: 0;'
-      expect(props.attr_style_img).to eq("style='margin-top: 0;'")
+      props.style = 'width: 30rem;'
+      expect(props.attr_style_img).to eq("style='width: 30rem;'")
 
       props.target = 'moon'
       expect(props.attr_target).to eq(" target='moon'")
@@ -107,12 +106,10 @@ class ImgProperitesTest
 
       props.align = 'inline'
       props.send(:setup_align)
-      expect(props.attr_align_div).to eq('display: inline-block; margin: 0.5em; vertical-align: top;')
       expect(props.attr_align_img).to be nil
 
       props.align = 'center'
       props.send(:setup_align)
-      expect(props.attr_align_div).to eq('text-align: center;')
       expect(props.attr_align_img).to eq('center')
     end
   end
