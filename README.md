@@ -2,10 +2,63 @@
 [![Gem Version](https://badge.fury.io/rb/jekyll_img.svg)](https://badge.fury.io/rb/jekyll_img)
 ===========
 
-`jekyll_img` is a Jekyll plugin that displays formatted quotes.
+`Jekyll_img` is a Jekyll plugin that displays images,
+and provides support for captions and URLs.
 
 See [demo/index.html](demo/index.html) for examples.
-Styles referenced by the jekyll_img plugin are at the bottom of [demo/assets/css/style.css](demo/assets/css/style.css)
+
+
+## Usage
+    {% img [Options] src='path' %}
+
+`Options` are:
+
+ - `align="left|inline|right|center"` Default value is `inline`
+ - `alt="Alt text"` Default value is the `caption` text, if provided
+ - `caption="A caption"` No default value
+ - `classes="class1 class2 classN"` Extra &lt;img&gt; classes; default is `rounded shadow`
+ - `id="someId"` No default value
+ - `nofollow`  Generates `rel='nofollow'`; only applicable when `url` is specified
+ - `size='eighthsize|fullsize|halfsize|initial|quartersize|XXXYY|XXX%'`
+   Defines width of image.
+   - `initial` is the default behavior.
+   - `eighthsize`, `fullsize`, `halfsize`, and `quartersize` are relative to the enclosing tag's width.
+   - CSS units can also be used, for those cases `XXX` is a float and `YY` is `unit` (see below)
+ - `style='css goes here'` CSS style for &lt;img&gt;; no default
+ - `target='none|whatever'` Only applicable when `url` is specified; default value is `_blank`
+ - `title="A title"` Default value is `caption` text, if provided
+ - `url='https://domain.com'` No default value
+ - `wrapper_class='class1 class2 classN'` Extra CSS classes for wrapper &lt;div&gt;; no default value
+ - `wrapper_style='background-color: black;'` CSS style for wrapper &lt;div&gt;; no default value
+
+[`unit`](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#numbers_lengths_and_percentages) is one of: `Q`, `ch`, `cm`, `em`, `dvh`, `dvw`, `ex`, `in`, `lh`,
+`lvh`, `lvw`, `mm`, `pc`, `px`, `pt`, `rem`, `rlh`, `svh`, `svw`, `vb`,
+`vh`, `vi`, `vmax`, `vmin`, or `vw`.
+
+CSS classes referenced by the `jekyll_img` plugin are at the bottom of [demo/assets/css/style.css](demo/assets/css/style.css). CSS marker classes are included, so CSS selectors can be used for additional styling.
+
+
+## Design
+The most significant design issue was the decision that image size and formatting should not change
+whether it had a caption.
+HTML captions exist within a `<figure />` element, which also surrounds the image.
+
+I also wanted to ensure that captions would wrap text under an image,
+and would not be wider than the image they were associated with.
+
+CSS behavior differs for `<figure />` and `<img />`.
+For example, centering, floating right and left.
+That means the CSS and where it would need to be applied are completely different for
+naked `<img />` and `<figure />`.
+Handling all possible situations of these two scenarios would significantly raise the complexity of the plugin code.
+
+### Wrapper &lt;div /&gt;
+To make the plugin code more manageable,
+the plugin always encloses the generated HTML & CSS within a wrapper `<div />`.
+The wrapper allows for a simpler, consistent approach regardless of whether a caption is generated or not.
+Within the wrapper `<div />`, the embedded `<img />` is displayed with `width=100%`.
+If a caption is required, the generated `<figure />` only makes the space taken by the generated HTML longer;
+the image width and height is not affected.
 
 
 ## Installation

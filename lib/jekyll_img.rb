@@ -12,28 +12,6 @@ module ImgModule
 end
 
 module Jekyll
-  # Usage: {% img [Options][src='path'|src=['path1', 'path2', 'pathN']] %}
-  #   When src is specified as an array, the following options apply to the div
-  #   that the images are enclosed within, unless they are also specified as arrays:
-  #     align, alt, caption, url
-  #
-  # Options are:
-  #   align="left|inline|right|center"
-  #   alt="Alt text" # default is caption
-  #   caption="A caption"
-  #   classes="class1 class2 classN"
-  #   id="someId"
-  #   nofollow # Only applicable when url is specified
-  #   size='eighthsize|fullsize|halfsize|initial|quartersize|XXXYY|XXX%' # XXX is a float, YY is unit
-  #   style='css goes here'
-  #   target='none|whatever' # default is _blank
-  #   title="A title" # default is caption
-  #   url='https://domain.com'
-  #   wrapper_class='class1 class2'
-  #   wrapper_style='color: red;'
-  #
-  # unit is one of: Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw
-  # _size is an alias for size; it applies to the entire generated construct
   class Img < JekyllSupport::JekyllTag
     def render_impl
       props = ImgProperties.new
