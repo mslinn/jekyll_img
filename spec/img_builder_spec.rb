@@ -3,7 +3,7 @@ require_relative '../lib/img_builder'
 require_relative '../lib/img_props'
 
 # Test ImgProperties
-class ImgProperitesTest
+class ImgPropertiesTest
   RSpec.describe ImgBuilder do
     it 'generates an img' do
       props = ImgProperties.new
@@ -14,7 +14,9 @@ class ImgProperitesTest
           <picture class='imgPicture'>
             <source srcset="/assets/images/blah.webp" type="image/webp">
             <source srcset="/assets/images/blah.png" type="image/png">
-            <img src="/assets/images/blah.png" class="imgImg rounded shadow" />
+            <img src="/assets/images/blah.png"
+              class="imgImg rounded shadow"
+              style='width: 100%; ' />
           </picture>
         </div>
       END_IMG

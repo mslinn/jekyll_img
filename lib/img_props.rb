@@ -34,8 +34,7 @@ class ImgProperties
   end
 
   def attr_style_img
-    style = "max-width: #{@caption ? '100%' : @size};" if @caption || size_unit_specified?
-    "style='#{style}#{@style}'" if @style || style
+    "style='width: 100%; #{@style}'".squish
   end
 
   def attr_target

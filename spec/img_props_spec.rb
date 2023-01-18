@@ -23,7 +23,7 @@ class ImgProperitesTest
       expect(props.attr_id).to            be nil
       expect(props.attr_nofollow).to      be nil
       expect(props.attr_size_class).to    be nil
-      expect(props.attr_style_img).to     be nil
+      expect(props.attr_style_img).to     eq("style='width: 100%; '")
       expect(props.attr_target).to        eq(" target='_blank'")
       expect(props.attr_title).to         be nil
       expect(props.attr_width_style).to   be nil
