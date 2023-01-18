@@ -51,5 +51,5 @@ plugins: # Use file name of the plugin entry point, not the gem name
   - jekyll
 sass:
   style: compressed
-title: Jekyll Plugin Template Demo
+title: Jekyll_img Plugin
 url: https://bogus.jekylldemo.com

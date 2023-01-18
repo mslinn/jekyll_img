@@ -100,7 +100,8 @@ pre {
 }
 
 .blackBorder {
-  border: 1px black solid;
+  border: 1px rgb(192, 187, 187) solid;
+  margin-bottom: 2em;
 }
 
 .copyright {

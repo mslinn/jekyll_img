@@ -32,7 +32,7 @@ class TestParseContext < Liquid::ParseContext
     @line_number = 123
 
     @registers = Registers.new(
-      { 'path' => 'https://feeds.soundcloud.com/users/soundcloud:users:7143896/sounds.rss' },
+      { },
       SiteMock.new
     )
   end

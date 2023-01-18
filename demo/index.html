@@ -1,13 +1,18 @@
 ---
-description: Test of quote plugin.
+description: Jekyll_img plugin usage examples.
 date: 2023-01-14
 last_modified_at: 2023-01-14
 layout: default
-title: Img Test
+title: Usage Examples
 ---
+<p>
+  All of these examples have a <code>src=''</code> parameter.
+</p>
+
+
 <h2 id="sizes">Sizes</h2>
 <fieldset class="blackBorder">
-  <legend>defaults</legend>
+  <legend>No other parameters specified</legend>
   {% img src="jekyll_240x103.webp" %}
 </fieldset>
 
@@ -47,98 +52,98 @@ title: Img Test
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>align='left'</code> / <code>size='quartersize'</code></legend>
+  <legend><code>align='left' size='quartersize'</code></legend>
   {% img align="left" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>align='center'</code> / <code>size='quartersize'</code></legend>
+  <legend><code>align='center' size='quartersize'</code></legend>
   {% img align="center" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>align='right'</code> / <code>size='quartersize'</code></legend>
+  <legend><code>align='right' size='quartersize'</code></legend>
   {% img align="right" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>align='right'</code> / <code>size='eighthsize'</code></legend>
+  <legend><code>align='right' size='eighthsize'</code></legend>
   {% img align="right" src="jekyll_240x103.webp" size="eighthsize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>align='right'</code> / <code>size='15em'</code></legend>
+  <legend><code>align='right' size='15em'</code></legend>
   {% img align="right" src="jekyll_240x103.webp" size='15em' %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>align='right'</code> / <code>size='10%'</code></legend>
+  <legend><code>align='right' size='10%'</code></legend>
   {% img align="right" src="jekyll_240x103.webp" size='10%' %}
 </fieldset>
 
 
 <h2 id="captions" class="clear">Captions</h2>
 <fieldset class="blackBorder">
-  <legend >defaults</legend>
+  <legend><code>caption='&mldr;'</code></legend>
   {% img caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend ><code>align='left'</code></legend>
+  <legend><code>align='left' caption='&mldr;'</code></legend>
   {% img align="left" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend ><code>align='center'</code></legend>
+  <legend><code>align='center' caption='&mldr;'</code></legend>
   {% img align="center" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend ><code>align='right'</code></legend>
+  <legend><code>align='right' caption='&mldr;'</code></legend>
   {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend ><code>align='right'</code> / <code>quartersize</code></legend>
+  <legend><code>align='right' caption='&mldr;' size='quartersize'</code></legend>
   {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend ><code>size='20%'</code> / <code>align='left'</code></legend>
+  <legend><code>align='left' caption='&mldr;' size='20%'</code></legend>
   {% img align="left" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend ><code>size='20%'</code> / <code>align='center'</code></legend>
+  <legend><code>align='center' caption='&mldr;' size='20%'</code></legend>
   {% img align="center" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend ><code>size='20%'</code> / <code>align='right'</code></legend>
+  <legend><code>align='right' caption='&mldr;' size='20%'</code></legend>
   {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
 </fieldset>
 
 
 <h2 id="urls" class="clear">URLs</h2>
 <fieldset class="blackBorder">
-  <legend >defaults</legend>
+  <legend><code>url='https://www.mslinn.com'</code></legend>
   {% img src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend >with <code>caption</code></legend>
-  {% img caption="This is a caption" src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
+  <legend><code>caption='This is a caption' url='https://mslinn.com'</code></legend>
+  {% img caption="This is a caption" src="jekyll_240x103.webp" url='https://mslinn.com' %}
 </fieldset>
 
 
 <h2 id="classes" class="clear">Classes</h2>
 <fieldset class="blackBorder">
-  <legend><code>rounded bg_yellow shadow</code></legend>
-  {% img class='bg_yellow rounded shadow' src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
+  <legend><code>class='rounded bg_yellow shadow' url='https://mslinn.com'</code></legend>
+  {% img class='bg_yellow rounded shadow' src="jekyll_240x103.webp" url='https://mslinn.com' %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>wrapper_class='bg_yellow'</code></legend>
+  <legend><code>size='150px' url='https://mslinn.com' wrapper_class='bg_yellow'</code></legend>
   {% img
     caption='A caption is required for <code>wrapper_class</code> to be applied to.'
     size='150px'
@@ -151,7 +156,7 @@ title: Img Test
 
 <h2 id="styles" class="clear">Styles</h2>
 <fieldset class="blackBorder">
-  <legend><code>padding: 1em</code> / <code>bg_yellow rounded</code></legend>
+  <legend><code>class='bg_yellow rounded' style='padding: 1em;'</code></legend>
   {% img
     class='bg_yellow rounded'
     src="jekyll_240x103.webp"
@@ -161,9 +166,9 @@ title: Img Test
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>padding: 1em;</code> / center / <code>bg_yellow rounded</code></legend>
+  <legend><code>align='center' class='bg_yellow rounded' style='padding: 1em;'</code></legend>
   {% img
-    align="center"
+    align='center'
     class='bg_yellow rounded'
     src="jekyll_240x103.webp"
     style='padding: 1em;'
@@ -172,9 +177,9 @@ title: Img Test
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>padding: 1em;</code> / right / nofollow / empty class</legend>
+  <legend><code>align='right' class='' nofollow style='padding: 1em;'</code></legend>
   {% img
-    align="right"
+    align='right'
     class=''
     nofollow
     src="jekyll_240x103.webp"
