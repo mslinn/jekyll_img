@@ -16,7 +16,7 @@ module Jekyll
   class Img < JekyllSupport::JekyllTag
     def render_impl
       props = ImgProperties.new
-      props.align         = @helper.parameter_specified? 'align'
+      props.align         = @helper.parameter_specified?('align') || 'inline'
       props.alt           = @helper.parameter_specified? 'alt'
       props.caption       = @helper.parameter_specified? 'caption'
       props.classes       = @helper.parameter_specified? 'class'

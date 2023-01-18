@@ -12,11 +12,6 @@ title: Img Test
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend><code>size='10%'</code></legend>
-  {% img src="jekyll_240x103.webp" size='10%' %}
-</fieldset>
-
-<fieldset class="blackBorder">
   <legend><code>size='initial'</code></legend>
   {% img src="jekyll_240x103.webp" size="initial" %}
 </fieldset>
@@ -37,6 +32,21 @@ title: Img Test
 </fieldset>
 
 <fieldset class="blackBorder">
+  <legend><code>size='eighthsize'</code></legend>
+  {% img src="jekyll_240x103.webp" size="eighthsize" %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend><code>size='15em'</code></legend>
+  {% img src="jekyll_240x103.webp" size='15em' %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend><code>size='10%'</code></legend>
+  {% img src="jekyll_240x103.webp" size='10%' %}
+</fieldset>
+
+<fieldset class="blackBorder">
   <legend><code>align='left'</code> / <code>size='quartersize'</code></legend>
   {% img align="left" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
@@ -49,6 +59,21 @@ title: Img Test
 <fieldset class="blackBorder">
   <legend><code>align='right'</code> / <code>size='quartersize'</code></legend>
   {% img align="right" src="jekyll_240x103.webp" size="quartersize" %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend><code>align='right'</code> / <code>size='eighthsize'</code></legend>
+  {% img align="right" src="jekyll_240x103.webp" size="eighthsize" %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend><code>align='right'</code> / <code>size='15em'</code></legend>
+  {% img align="right" src="jekyll_240x103.webp" size='15em' %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend><code>align='right'</code> / <code>size='10%'</code></legend>
+  {% img align="right" src="jekyll_240x103.webp" size='10%' %}
 </fieldset>
 
 
@@ -173,6 +198,7 @@ title: Img Test
     class="imgItem rounded shadow"
     src="jekyll_240x103.webp"
     url="https://www.mslinn.com"
+    wrapper_class="imgItem"
   %}
   {% img
     caption="This is a long, long, long, long, long, long caption"

@@ -20,7 +20,7 @@ class ImgBuilder
   private
 
   def generate_wrapper
-    classes = "imgWrapper #{@props.attr_wrapper_align_class} #{@props.attr_size_class} #{@props.wrapper_class}".squish
+    classes = "imgWrapper #{@props.align} #{@props.attr_size_class} #{@props.wrapper_class}".squish
     result = <<~END_HTML
       <div class='#{classes}' style='#{@props.attr_width_style}'>
         #{"<figure>\n" if @props.caption}
@@ -59,7 +59,6 @@ class ImgBuilder
   # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
   def generate_img
     img_classes = @props.classes || 'rounded shadow'
-    img_classes += " #{@props.attr_size_class}" unless @props.caption
     <<~END_IMG
       <picture#{@props.attr_id} class='imgPicture'>
         <source srcset="#{@props.src}" type="image/webp">

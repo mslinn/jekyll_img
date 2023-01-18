@@ -149,10 +149,20 @@ pre {
 }
 
 
+#imgContainer {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 2em;
+  width: 100%;
+}
+
 /* Styles referenced by the jekyll_img plugin */
 
 .center {
   display: block;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
 }
@@ -175,16 +185,19 @@ pre {
 
 /* Marker class, indicates a caption was specified */
 .imgWrapper {
-  display: inline-block;
-  margin: 0.5em;
+  display: flex;
   vertical-align: top;
+}
+
+.imgWrapper figure {
+  margin: 0;
 }
 
 /* Center captions within div.imgWrapper */
 .imgFigCaption {
-  display: inline-block;
   text-align: center;
-  width: 100%;
+  min-width: 100%;
+  width: min-content;
 }
 
 /* Marker class applied to <img> tag */
