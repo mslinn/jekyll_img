@@ -12,6 +12,7 @@ module ImgModule
 end
 
 module Jekyll
+  # Plugin implementation
   class Img < JekyllSupport::JekyllTag
     def render_impl
       props = ImgProperties.new

@@ -14,29 +14,28 @@ class ImgBuilder
 
   def to_s
     @props.compute_dependant_properties
-    maybe_generate_figure
+    generate_wrapper
   end
 
   private
 
-  # rubocop:disable Style/MultilineIfModifier
-  def maybe_generate_figure
+  def generate_wrapper
+    classes = "imgWrapper #{@props.attr_wrapper_align_class} #{@props.attr_size_class} #{@props.wrapper_class}".squish
     result = <<~END_HTML
-      #{"<div class='imgWrapper #{@props.wrapper_class} #{@props.attr_wrapper_align_class} #{@props.attr_size_class}' style='#{@props.attr_width_caption}'>
-          <figure>" if @props.caption}
+      <div class='#{classes}' style='#{@props.attr_width_style}'>
+        #{"<figure>\n" if @props.caption}
           #{ if @props.url
                "<a href='#{@props.url}'#{@props.attr_target}#{@props.attr_nofollow} class='imgImgUrl'>#{generate_img}</a>"
              else
                generate_img
              end
           }
-          #{generate_figure_caption if @props.caption}
-        #{'</figure>
-      </div>' if @props.caption}
+          #{generate_figure_caption}
+        #{"</figure>\n" if @props.caption}
+      </div>
     END_HTML
     result.strip
   end
-  # rubocop:enable Style/MultilineIfModifier
 
   def generate_figure_caption
     return nil unless @props.caption
@@ -59,15 +58,14 @@ class ImgBuilder
 
   # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
   def generate_img
-    # Classes for <img> tag:
-    classes = "#{@props.attr_img_classes} #{@props.attr_img_align_class} #{@props.classes}".squish
-    classes += " #{@props.attr_size_class}" unless @props.caption
+    img_classes = @props.classes || 'rounded shadow'
+    img_classes += " #{@props.attr_size_class}" unless @props.caption
     <<~END_IMG
       <picture#{@props.attr_id} class='imgPicture'>
         <source srcset="#{@props.src}" type="image/webp">
         <source srcset="#{@props.src_png}" type="image/png">
         <img src="#{@props.src_png}" #{@props.attr_title}
-          class="imgImg #{classes}"
+          class="imgImg #{img_classes.squish}"
           #{@props.attr_style_img}
           #{@props.attr_alt} />
       </picture>

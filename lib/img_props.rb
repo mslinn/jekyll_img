@@ -12,13 +12,13 @@ class ImgProperties
     "alt='#{@alt}'" if @alt
   end
 
+  def attr_id
+    " id='#{@id}'" if @id
+  end
+
   # <img> tag assets, except alignment classes (inline, left, center, right)
   def attr_img_classes
     @classes || 'rounded shadow'
-  end
-
-  def attr_id
-    " id='#{@id}'" if @id
   end
 
   def attr_nofollow
@@ -49,12 +49,8 @@ class ImgProperties
     "title='#{@title}'" if @title && !@title.empty?
   end
 
-  def attr_width_caption
-    "width: #{@size};" if size_unit_specified? && @caption
-  end
-
-  def attr_width_img
-    "width: #{@size};" if size_unit_specified? && !@caption
+  def attr_width_style
+    "width: #{@size};" if size_unit_specified?
   end
 
   def compute_dependant_properties
@@ -78,10 +74,6 @@ class ImgProperties
   end
 
   private
-
-  def attr_img_align_class
-    @align || 'inline'
-  end
 
   def setup_src
     @src = @src.to_s.strip

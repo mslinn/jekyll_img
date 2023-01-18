@@ -26,12 +26,10 @@ class ImgProperitesTest
       expect(props.attr_style_img).to     be nil
       expect(props.attr_target).to        eq(" target='_blank'")
       expect(props.attr_title).to         be nil
-      expect(props.attr_width_caption).to be nil
-      expect(props.attr_width_img).to     be nil
+      expect(props.attr_width_style).to   be nil
 
-      props.send(:setup_align)
-      expect(props.attr_img_align_class).to     eq('inline')
-      expect(props.attr_wrapper_align_class).to be nil
+      props.compute_dependant_properties
+      expect(props.attr_wrapper_align_class).to eq('inline')
     end
 
     it 'raises exception if src was not specified' do
@@ -73,19 +71,16 @@ class ImgProperitesTest
       props.size = '100px'
       expect(props.attr_size_class).to be nil
       expect(props.attr_style_img).to eq("style='max-width: 100px;'")
-      expect(props.attr_width_caption).to be nil
-      expect(props.attr_width_img).to eq('width: 100px;')
+      expect(props.attr_width_style).to eq('width: 100px;')
 
       props.size = '10%'
       expect(props.attr_size_class).to be nil
       expect(props.attr_style_img).to eq("style='max-width: 10%;'")
-      expect(props.attr_width_caption).to be nil
-      expect(props.attr_width_img).to eq('width: 10%;')
+      expect(props.attr_width_style).to eq('width: 10%;')
 
       props.size = 'fullsize'
       expect(props.attr_size_class).to eq('fullsize')
-      expect(props.attr_width_caption).to be nil
-      expect(props.attr_width_img).to be nil
+      expect(props.attr_width_style).to be nil
 
       props.style = 'width: 30rem;'
       expect(props.attr_style_img).to eq("style='width: 30rem;'")
@@ -99,20 +94,19 @@ class ImgProperitesTest
       props.size = '100px'
       props.caption = 'A caption'
       expect(props.attr_size_class).to be nil
-      expect(props.attr_width_caption).to eq('width: 100px;')
-      expect(props.attr_width_img).to be nil
+      expect(props.attr_width_style).to eq('width: 100px;')
     end
 
     it 'generates proper alignment attributes' do
       props = ImgProperties.new
 
       props.align = 'inline'
-      props.send(:setup_align)
-      expect(props.attr_img_align_class).to eq('inline')
+      props.compute_dependant_properties
+      expect(props.attr_wrapper_align_class).to eq('inline')
 
       props.align = 'center'
-      props.send(:setup_align)
-      expect(props.attr_img_align_class).to eq('center')
+      props.compute_dependant_properties
+      expect(props.attr_wrapper_align_class).to eq('center')
     end
   end
 end
