@@ -22,7 +22,7 @@ class ImgBuilder
   def generate_wrapper
     classes = "imgWrapper #{@props.align} #{@props.attr_size_class} #{@props.wrapper_class}".squish
     result = <<~END_HTML
-      <div class='#{classes}' style='#{@props.attr_width_style}'>
+      <div class='#{classes}' style='#{@props.attr_width_style} #{@props.wrapper_style}'>
         #{"<figure>\n" if @props.caption}
           #{ if @props.url
                "<a href='#{@props.url}'#{@props.attr_target}#{@props.attr_nofollow} class='imgImgUrl'>#{generate_img}</a>"

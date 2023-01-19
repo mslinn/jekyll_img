@@ -104,6 +104,10 @@ pre {
   margin-bottom: 2em;
 }
 
+.clear {
+  clear: both;
+}
+
 .copyright {
   border-top: thin black solid;
   clear: both;
@@ -216,7 +220,10 @@ pre {
   padding: 0;
 }
 
-.imgPicture { }           /* Marker class, applies to <picture> element */
+.imgPicture {             /* Marker class, applies to <picture> element */
+  height: auto;
+  width: 100%;
+}
 
 .imgPicture > img { }     /* placeholder */
 

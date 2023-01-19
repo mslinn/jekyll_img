@@ -189,46 +189,82 @@ title: Usage Examples
 </fieldset>
 
 
-<h2 id="flow">Flow-like</h2>
+<h2 id="wrapper_styles" class="clear">Wrapper Styles</h2>
+<fieldset class="blackBorder">
+  <legend><code>align &amp; wrapper_style</code></legend>
+  {% img
+    align="left"
+    size="12em"
+    src="/assets/images/jekyll.webp"
+    wrapper_style="margin-right: 1em; margin-left: 3em;"
+  %}
+  {% img
+    align="right"
+    size="12em"
+    src="/assets/images/jekyll.webp"
+    wrapper_style="margin-left: 1em; margin-right: 3em;"
+  %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend><code>align, caption &amp; wrapper_style</code></legend>
+  {% img
+    align="left"
+    caption="This is a caption"
+    size="12em"
+    src="/assets/images/jekyll.webp"
+    wrapper_style="margin-right: 1em; margin-left: 3em;"
+  %}
+  {% img
+    align="right"
+    caption="This is a caption"
+    size="12em"
+    src="/assets/images/jekyll.webp"
+    wrapper_style="margin-left: 1em; margin-right: 3em;"
+  %}
+</fieldset>
+
+
+<h2 id="flow" class="clear">Flow-like</h2>
 <div id="imgContainer">
   {% img
     caption="Jekyll and Hyde never met, but saw each other in mirrors"
-    class="imgItem rounded shadow"
+    class="rounded shadow"
     src="jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
   %}
   {% img
     caption="This is a long, long, long, long, long, long caption"
-    class="imgItem rounded shadow"
+    class="rounded shadow"
     src="jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
   %}
   {% img
     caption="This is a long, long, long, long, long, long caption"
-    class="imgItem rounded shadow"
+    class="rounded shadow"
     src="jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
   %}
   {% img
     caption="Jekyll and Hyde never met, but saw each other in mirrors"
-    class="imgItem rounded shadow"
+    class="rounded shadow"
     src="jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
   %}
   {% img
     caption="This is a long, long, long, long, long, long caption"
-    class="imgItem rounded shadow"
+    class="rounded shadow"
     src="jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
   %}
   {% img
     caption="Jekyll and Hyde never met, but saw each other in mirrors"
-    class="imgItem rounded shadow"
+    class="rounded shadow"
     src="jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
