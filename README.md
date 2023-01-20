@@ -7,6 +7,12 @@ and provides support for captions and URLs.
 
 See [demo/index.html](demo/index.html) for examples.
 
+Run the demo website by typing:
+```shell
+$ demo/_bin/debug -r
+```
+... and point your web browser to http://localhost:4444
+
 
 ## Usage
     {% img [Options] src='path' %}
