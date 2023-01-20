@@ -20,7 +20,7 @@ class ImgBuilder
   private
 
   def generate_wrapper
-    classes = "imgWrapper #{@props.align} #{@props.attr_size_class} #{@props.wrapper_class}".squish
+    classes = "imgWrapper #{@props.img_display} #{@props.align} #{@props.attr_size_class} #{@props.wrapper_class}".squish
     result = <<~END_HTML
       <div class='#{classes}' style='#{@props.attr_width_style} #{@props.wrapper_style}'>
         #{"<figure>\n" if @props.caption}
@@ -63,10 +63,12 @@ class ImgBuilder
       <picture#{@props.attr_id} class='imgPicture'>
         <source srcset="#{@props.src}" type="image/webp">
         <source srcset="#{@props.src_png}" type="image/png">
-        <img src="#{@props.src_png}" #{@props.attr_title}
+        <img #{@props.attr_alt}
           class="imgImg #{img_classes.squish}"
+          src="#{@props.src_png}"
           #{@props.attr_style_img}
-          #{@props.attr_alt} />
+          #{@props.attr_title}
+        />
       </picture>
     END_IMG
   end

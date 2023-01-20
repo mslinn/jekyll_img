@@ -177,7 +177,6 @@ pre {
   width: 12.5%;
 }
 
-
 .fullsize {
   height: auto;
   width: 100%;
@@ -188,14 +187,8 @@ pre {
   width: 50%;
 }
 
-/* Marker class, indicates a caption was specified */
-.imgWrapper {
-  display: flex;
-  vertical-align: top;
-}
-
-.imgWrapper figure {
-  margin: 0;
+.imgBlock {
+  display: block;
 }
 
 /* Center captions within div.imgWrapper */
@@ -215,6 +208,10 @@ pre {
 
 .imgFigCaption > a { }    /* Only applies to URLs in captions */
 
+.imgFlex {
+  display: flex;
+}
+
 .imgOuterDiv > figure {
   margin: 0;
   padding: 0;
@@ -226,6 +223,15 @@ pre {
 }
 
 .imgPicture > img { }     /* placeholder */
+
+/* Marker class, indicates a caption was specified */
+.imgWrapper {
+  vertical-align: top;
+}
+
+.imgWrapper figure {
+  margin: 0;
+}
 
 .inline {
   display: inline-block;

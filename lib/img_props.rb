@@ -3,7 +3,7 @@
 # attr_ methods can be called after compute_dependant_properties
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
-  attr_accessor :align, :alt, :attr_wrapper_align_class, :caption, :classes, :id, :nofollow, \
+  attr_accessor :align, :alt, :attr_wrapper_align_class, :caption, :classes, :id, :img_display, :nofollow, \
                 :src, :size, :style, :target, :title, :url, :wrapper_class, :wrapper_style
 
   SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
@@ -56,6 +56,8 @@ class ImgProperties
     setup_src
 
     @target ||= '_blank'
+
+    @img_display = @caption && @size ? 'imgBlock' : 'imgFlex'
 
     @alt   ||= @caption || @title
     @title ||= @caption || @alt # rubocop:disable Naming/MemoizedInstanceVariableName
