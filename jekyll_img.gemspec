@@ -7,7 +7,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.authors = ['Mike Slinn']
   spec.email = ['mslinn@mslinn.com']
   spec.files = Dir['.rubocop.yml', 'LICENSE.*', 'Rakefile', '{lib,spec}/**/*', '*.gemspec', '*.md']
-  spec.homepage = 'https://www.mslinn.com/blog/2020/10/03/jekyll-plugins.html#quote'
+  spec.homepage = 'https://mslinn.com/jekyll/3000-jekyll-plugins.html#jekyll_img'
   spec.license = 'MIT'
   spec.metadata = {
     'allowed_push_host' => 'https://rubygems.org',
@@ -29,14 +29,8 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.version = JekyllImgVersion::VERSION
 
   spec.add_dependency 'jekyll', '>= 3.5.0'
-  spec.add_dependency 'jekyll_plugin_support', '>= 0.3.0'
+  spec.add_dependency 'jekyll_plugin_support', '>= 0.3.1'
 
-  # spec.add_development_dependency 'debase'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rspec-match_ignoring_whitespace'
-  spec.add_development_dependency 'rubocop'
-  # spec.add_development_dependency 'rubocop-jekyll'
-  spec.add_development_dependency 'rubocop-rake'
-  spec.add_development_dependency 'rubocop-rspec'
-  spec.add_development_dependency 'ruby-debug-ide'
 end
