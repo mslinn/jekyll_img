@@ -8,7 +8,7 @@ gem "bundler", require: false
 gem 'jekyll_plugin_support', '~> 0.4.0'
 
 gem 'debase', "0.2.5.beta2", require: false
-gem "rake", "~> 13.0", require: false
+gem "rake", require: false
 gem 'reek', require: false
 gem 'rspec', require: false
 gem "rubocop",  require: false

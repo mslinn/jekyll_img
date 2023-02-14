@@ -26,7 +26,7 @@ class ImgProperties
   end
 
   def attr_size_class
-    return nil if @size.nil? || size_unit_specified?
+    return nil if @size == false || @size.nil? || size_unit_specified?
 
     abort "'#{@size}' is not a recognized size; must be one of #{SIZES.join(', ')}, or an explicit unit." \
       unless SIZES.include?(@size)
@@ -86,7 +86,7 @@ class ImgProperties
   UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze
 
   def size_unit_specified?
-    return false if @size.to_s.strip.empty?
+    return false if @size == false || @size.to_s.strip.empty?
 
     @size.end_with?(*UNITS)
   end
