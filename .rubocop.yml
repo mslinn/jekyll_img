@@ -1,3 +1,13 @@
+require:
+  # - rubocop-jekyll
+  - rubocop-md
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+
+# inherit_gem:
+#  rubocop-jekyll: .rubocop.yml
+
 AllCops:
   Exclude:
       - vendor/**/*
@@ -7,14 +17,30 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 2.6
 
-Layout/HashAlignment:
+Gemspec/DeprecatedAttributeAssignment:
   Enabled: false
+
+Gemspec/RequireMFA:
+  Enabled: false
+
+Layout/InitialIndentation:
+  Exclude:
+    - README.md
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+  Exclude:
+    - jekyll_img.gemspec
 
 Layout/LineLength:
   Max: 150
 
 Layout/MultilineMethodCallIndentation:
   Enabled: false
+
+Lint/RedundantCopDisableDirective:
+  Exclude:
+    - jekyll_img.gemspec
 
 Metrics/AbcSize:
   Max: 40
@@ -34,8 +60,37 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 10
 
+Naming/FileName:
+  Exclude:
+    - Rakefile
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Style/CommandLiteral:
+  Enabled: false
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/TrailingCommaInHashLiteral:
+Style/StringConcatenation:
+  Exclude:
+    - spec/**/*
+
+Style/StringLiterals:
   Enabled: false
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma

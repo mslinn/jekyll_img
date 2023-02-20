@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'jekyll'
 require 'jekyll_plugin_logger'
 require 'rspec/match_ignoring_whitespace'
@@ -32,7 +30,7 @@ class TestParseContext < Liquid::ParseContext
     @line_number = 123
 
     @registers = Registers.new(
-      { },
+      {},
       SiteMock.new
     )
   end
@@ -57,7 +55,7 @@ class MyTest
 
     it 'has no cite or url' do
       helper.reinitialize('src="./blah.webp"')
-      quote = Jekyll::Img.send(
+      quote = described_class.send(
         :new,
         'img',
         helper.markup.dup,

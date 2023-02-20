@@ -1,11 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'ffi'
-gem 'jekyll', '~> 4.2.2'
+gem 'jekyll', '~> 4.3.2'
 gem 'nokogumbo', '=2.0.3'
 gem 'ptools'
-gem 'sprockets'
-gem 'webrick'
 
 group :jekyll_plugins do
   gem 'classifier-reborn'
@@ -14,14 +12,8 @@ group :jekyll_plugins do
   gem 'jekyll-environment-variables'
   gem 'jekyll_href'
   gem 'jekyll_img', path: '../'
-  gem 'jekyll_plugin_logger'
-  gem 'jekyll_plugin_support'
   gem 'jekyll-tagging'
 end
 
 gem 'debase', '0.2.5.beta2', require: false
-gem 'debase-ruby_core_source', '~> 0.10.15', require: false
-# gem "rake", "~> 13.0", require: false
-# gem 'rspec', require: false
-gem 'rubocop', '= 1.18.0', require: false
 gem 'ruby-debug-ide', require: false

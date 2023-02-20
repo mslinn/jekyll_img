@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# shellcheck disable=SC2086
-# shellcheck disable=SC2048
+# shellcheck disable=SC2086,SC2048
 
 # dispatcher-port and dispatcher-port are arbitrarily chosen to prevent conflicts with other instances.
 

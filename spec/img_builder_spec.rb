@@ -4,11 +4,11 @@ require_relative '../lib/img_props'
 
 # Test ImgProperties
 class ImgPropertiesTest
-  RSpec.describe ImgBuilder do # rubocop:disable Metrics/BlockLength
+  RSpec.describe ImgBuilder do
     it 'generates a default img' do
       props = ImgProperties.new
       props.src = 'blah.webp'
-      builder = ImgBuilder.new(props)
+      builder = described_class.new(props)
       picture = <<~END_IMG
         <div class='imgWrapper imgFlex' style=' '>
           <picture class='imgPicture'>
@@ -22,7 +22,7 @@ class ImgPropertiesTest
         </div>
       END_IMG
 
-      expect(builder.send(:generate_figure_caption)).to be nil
+      expect(builder.send(:generate_figure_caption)).to be_nil
       expect(builder.send(:generate_wrapper)).to        match_ignoring_whitespace(picture)
     end
 
@@ -31,7 +31,7 @@ class ImgPropertiesTest
       props.caption = 'This is a caption'
       props.size = '123px'
       props.src = 'blah.webp'
-      builder = ImgBuilder.new(props)
+      builder = described_class.new(props)
 
       caption = <<~END_CAPTION
         <figcaption class='imgFigCaption '>

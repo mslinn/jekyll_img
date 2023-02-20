@@ -14,6 +14,8 @@ end
 module Jekyll
   # Plugin implementation
   class Img < JekyllSupport::JekyllTag
+    include JekyllImgVersion
+
     def render_impl
       props = ImgProperties.new
       props.align         = @helper.parameter_specified?('align') || 'inline'
@@ -34,8 +36,7 @@ module Jekyll
       @builder = ImgBuilder.new(props)
       @builder.to_s
     end
+
+    JekyllPluginHelper.register(self, ImgModule::PLUGIN_NAME)
   end
 end
-
-PluginMetaLogger.instance.info { "Loaded #{ImgModule::PLUGIN_NAME} v0.1.0 plugin." }
-Liquid::Template.register_tag(ImgModule::PLUGIN_NAME, Jekyll::Img)
