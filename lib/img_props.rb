@@ -1,10 +1,13 @@
+class ImgError < StandardError; end
+
 # Properties from user
 # All methods are idempotent.
 # attr_ methods can be called after compute_dependant_properties
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
-  attr_accessor :align, :alt, :attr_wrapper_align_class, :caption, :classes, :id, :img_display, :nofollow, \
-                :src, :size, :style, :target, :title, :url, :wrapper_class, :wrapper_style
+  attr_accessor :align, :alt, :attr_wrapper_align_class, :caption, :classes, :continue_on_error, \
+                :id, :img_display, :nofollow, :src, :size, :style, :target, :title, \
+                :url, :wrapper_class, :wrapper_style
 
   SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
 
@@ -28,8 +31,10 @@ class ImgProperties
   def attr_size_class
     return nil if @size == false || @size.nil? || size_unit_specified?
 
-    abort "'#{@size}' is not a recognized size; must be one of #{SIZES.join(', ')}, or an explicit unit." \
-      unless SIZES.include?(@size)
+    unless SIZES.include?(@size)
+      msg = "'#{@size}' is not a recognized size; must be one of #{SIZES.join(', ')}, or an explicit unit."
+      raise ImgError, msg
+    end
     @size
   end
 
@@ -60,11 +65,11 @@ class ImgProperties
     @img_display = @caption && @size ? 'imgBlock' : 'imgFlex'
 
     @alt   ||= @caption || @title
-    @title ||= @caption || @alt # rubocop:disable Naming/MemoizedInstanceVariableName
+    @title ||= @caption || @alt
   end
 
   def src_png
-    abort 'src parameter was not specified' if @src.to_s.empty?
+    raise ImgError, "The 'src' parameter was not specified" if @src.to_s.empty?
 
     @src.gsub('.webp', '.png')
   end
@@ -78,7 +83,7 @@ class ImgProperties
 
   def setup_src
     @src = @src.to_s.strip
-    abort 'src parameter was not specified' if @src.empty?
+    raise ImgError, "The 'src' parameter was not specified", [] if @src.empty?
 
     @src = "/assets/images/#{@src}" unless ImgProperties.local_path?(@src) || url?(@src)
   end

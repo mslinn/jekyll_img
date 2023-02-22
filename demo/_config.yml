@@ -24,6 +24,8 @@ exclude:  # Wildcards are not supported yet https://github.com/jekyll/jekyll-wat
   - README.md
 href:
   nomatch: fatal
+img:
+  continue_on_error: true
 ignore_theme_config: true
 jekyll_bootstrap5_tabs:
   - pretty: true

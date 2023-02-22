@@ -44,6 +44,16 @@ $ demo/_bin/debug -r
 CSS classes referenced by the `jekyll_img` plugin are at the bottom of [demo/assets/css/style.css](demo/assets/css/style.css). CSS marker classes are included, so CSS selectors can be used for additional styling.
 
 
+## Configuration
+By default, any errors cause Jekyll to abort.
+You can allow Jekyll to continue by setting the following in `_config.yml`:
+
+```yaml
+img:
+  continue_on_error: true
+```
+
+
 ## Design
 The most significant design issue was the decision that image size and formatting should not change
 whether it had a caption.
