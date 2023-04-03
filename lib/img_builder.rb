@@ -32,6 +32,10 @@ class ImgBuilder
           }
           #{generate_figure_caption}
         #{"</figure>\n" if @props.caption}
+        @props.attribute = #{@props.attribute}
+        @props.attribution = #{@props.attribution}
+        <hr>
+        #{@props.attribute if @props.attribution}
       </div>
     END_HTML
     result.strip

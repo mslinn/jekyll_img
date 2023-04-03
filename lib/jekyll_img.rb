@@ -1,5 +1,5 @@
 require 'jekyll_plugin_support'
-require 'jekyll_plugin_support_helper'
+require 'jekyll_plugin_helper'
 require_relative 'img_builder'
 require_relative 'img_props'
 require_relative 'jekyll_img/version'
@@ -21,6 +21,8 @@ module Jekyll
       @continue_on_error = config['continue_on_error'] == true if config
 
       props = ImgProperties.new
+      props.attribute         = @helper.attribute
+      props.attribution       = @helper.attribution
       props.align             = @helper.parameter_specified?('align') || 'inline'
       props.alt               = @helper.parameter_specified? 'alt'
       props.caption           = @helper.parameter_specified? 'caption'
