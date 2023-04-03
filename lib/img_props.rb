@@ -5,8 +5,8 @@ class ImgError < StandardError; end
 # attr_ methods can be called after compute_dependant_properties
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
-  attr_accessor :align, :alt, :attr_wrapper_align_class, :attribute, :attribution, :caption, :classes, :continue_on_error, \
-                :id, :img_display, :nofollow, :src, :size, :style, :target, :title, \
+  attr_accessor :align, :alt, :attr_wrapper_align_class, :attribute, :attribution, :caption, :classes, :continue_on_error,
+                :id, :img_display, :nofollow, :src, :size, :style, :target, :title,
                 :url, :wrapper_class, :wrapper_style
 
   SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
