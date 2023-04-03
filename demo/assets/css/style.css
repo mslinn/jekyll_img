@@ -163,6 +163,22 @@ pre {
   width: 100%;
 }
 
+
+/* Start of jekyll_plugin_support css */
+
+.jps_attribute {
+  display: flex;
+}
+
+.jps_attribute div {
+  flex-grow: 1;
+  text-align: center;
+  width: 0;
+}
+
+/* End of jekyll_plugin_support css */
+
+
 /* Styles referenced by the jekyll_img plugin */
 
 .center {
@@ -235,15 +251,6 @@ pre {
 
 .inline {
   display: inline-block;
-}
-
-.jps_attribute {
-  display: flex;
-}
-
-.jps_attribute div {
-  flex-grow: 1;
-  width: 0;
 }
 
 .left {
