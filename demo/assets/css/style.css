@@ -237,6 +237,15 @@ pre {
   display: inline-block;
 }
 
+.jps_attribute {
+  display: flex;
+}
+
+.jps_attribute div {
+  flex-grow: 1;
+  width: 0;
+}
+
 .left {
   float: left;
   margin-right: 1em;
