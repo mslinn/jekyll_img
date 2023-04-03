@@ -19,6 +19,7 @@ $ demo/_bin/debug -r
 
 `Options` are:
 
+ - `attribution` See [`jekyll_plugin_support`](https://github.com/mslinn/jekyll_plugin_support#subclass-attribution).
  - `align="left|inline|right|center"` Default value is `inline`
  - `alt="Alt text"` Default value is the `caption` text, if provided
  - `caption="A caption"` No default value
