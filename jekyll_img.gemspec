@@ -1,6 +1,6 @@
 require_relative 'lib/jekyll_img/version'
 
-Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
+Gem::Specification.new do |spec|
   github = 'https://github.com/mslinn/jekyll_img'
 
   spec.bindir = 'exe'
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   END_MESSAGE
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 2.6.0'
-  spec.summary = 'Provides a Jekyll filter that creates formatted quotes.'
+  spec.summary = 'Provides a Jekyll tag that generates images.'
   spec.test_files = spec.files.grep %r{^(test|spec|features)/}
   spec.version = JekyllImgVersion::VERSION
 

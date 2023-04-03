@@ -55,13 +55,13 @@ class MyTest
 
     it 'has no cite or url' do
       helper.reinitialize('src="./blah.webp"')
-      quote = described_class.send(
+      img = described_class.send(
         :new,
         'img',
         helper.markup.dup,
         parse_context
       )
-      result = quote.send(:render_impl, helper.markup)
+      result = img.send(:render_impl, helper.markup)
       expect(result).to match_ignoring_whitespace <<-END_RESULT
         <img src="./blah.webp">
       END_RESULT

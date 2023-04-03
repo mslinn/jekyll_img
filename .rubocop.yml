@@ -29,8 +29,7 @@ Layout/InitialIndentation:
 
 Layout/HashAlignment:
   EnforcedColonStyle: table
-  Exclude:
-    - jekyll_img.gemspec
+  EnforcedHashRocketStyle: table
 
 Layout/LineLength:
   Max: 150
