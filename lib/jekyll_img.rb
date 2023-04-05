@@ -17,6 +17,8 @@ module Jekyll
     include JekyllImgVersion
 
     def render_impl # rubocop:disable Metrics/AbcSize
+      @helper.gem_file __FILE__ # This enables plugin attribution
+
       config = @config['img']
       @continue_on_error = config['continue_on_error'] == true if config
 
