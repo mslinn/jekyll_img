@@ -216,7 +216,6 @@ pre {
 
 /* Marker class applied to <img> tag */
 .imgImg {
-  margin-bottom: 1em;
   margin-top: 0.5em;
 }
 
@@ -242,6 +241,7 @@ pre {
 
 /* Marker class, indicates a caption was specified */
 .imgWrapper {
+  margin-bottom: 1em;
   vertical-align: top;
 }
 
