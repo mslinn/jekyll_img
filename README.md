@@ -2,8 +2,8 @@
 [![Gem Version](https://badge.fury.io/rb/jekyll_img.svg)](https://badge.fury.io/rb/jekyll_img)
 ===========
 
-`Jekyll_img` is a Jekyll plugin that displays images,
-and provides support for captions and URLs.
+`Jekyll_img` is a Jekyll plugin that embeds images in HTML documents, with alignment options,
+flexible resizing, default styling, overridable styling, an optional caption, and an optional URL.
 
 See [demo/index.html](demo/index.html) for examples.
 
@@ -78,7 +78,7 @@ The wrapper allows for a simple, consistent approach regardless of whether a cap
 The wrapper width is identical to the displayed image width.
 Within the wrapper `<div />`, the embedded `<img />` is displayed with `width=100%`.
 If a caption is required, the generated `<figure />` only makes the space taken by the generated HTML longer;
-the image width and height is not affected.
+the image&rsquo;s width and height are not affected.
 
 The wrapper will not exceed the width of the tag that encloses it if the `size` parameter has values `eighthsize`, `fullsize`, `halfsize`, `initial` or `quartersize`.
 
@@ -97,12 +97,6 @@ Add this line to your Jekyll project's Gemfile, within the `jekyll_plugins` grou
 group :jekyll_plugins do
   gem 'jekyll_img'
 end
-```
-
-Also add it to `_config.yml`:
-```yaml
-plugins:
-  - jekyll_img
 ```
 
 And then execute:
