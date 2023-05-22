@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['Mike Slinn']
   spec.email = ['mslinn@mslinn.com']
   spec.files = Dir['.rubocop.yml', 'LICENSE.*', 'Rakefile', '{lib,spec}/**/*', '*.gemspec', '*.md']
-  spec.homepage = 'https://mslinn.com/jekyll/3000-jekyll-plugins.html#jekyll_img'
+  spec.homepage = 'https://www.mslinn.com/jekyll_plugins/jekyll_img.html'
   spec.license = 'MIT'
   spec.metadata = {
     'allowed_push_host' => 'https://rubygems.org',
