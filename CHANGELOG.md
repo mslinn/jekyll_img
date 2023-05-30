@@ -1,3 +1,6 @@
+## 0.1.5 / 2023-05-30
+  * Updated dependencies
+
 ## 0.1.4 / 2023-04-02
   * Added [`attribution` support](https://github.com/mslinn/jekyll_plugin_support#subclass-attribution).
   * Fixed `style=' false'` that appeared when the `style` and `wrapper_style` attributes were not provided.
