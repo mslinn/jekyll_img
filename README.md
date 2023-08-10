@@ -1,51 +1,100 @@
-`jekyll_img`
-[![Gem Version](https://badge.fury.io/rb/jekyll_img.svg)](https://badge.fury.io/rb/jekyll_img)
-===========
+# `jekyll_img` [![Gem Version](https://badge.fury.io/rb/jekyll_img.svg)](https://badge.fury.io/rb/jekyll_img)
+
 
 `Jekyll_img` is a Jekyll plugin that embeds images in HTML documents, with alignment options,
 flexible resizing, default styling, overridable styling, an optional caption, and an optional URL.
 
+If you are not using `webp` images in your Jekyll website, this plugin is not for you.
+Please read the next section for details.
+If you have a use case that would benefit from expanding the supported file types,
+please describe your use case on the [issue tracker](https://github.com/mslinn/jekyll_img/issues/5).
+
 See [demo/index.html](demo/index.html) for examples.
 
+
+## Image Fallback
+
+This plugin provides support for the
+[`webp`](https://developers.google.com/speed/webp) image format,
+with a fallback to `png` format by using the HTML
+[`picture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) element.
+
+This means that 2 versions of every image are required: a `webp` version, and a `png` version.
+
+You specify the desired image with a `webp` filetype,
+and the plugin generates a `picture` element that contains a primary
+`source` sub-element that specifies the given image URL,
+and a secondary `img` sub-element with a [`png`](https://en.wikipedia.org/wiki/PNG) filetype.
+
+For example, this invocation:
+
+```html
+{% img src="blah.webp" %}
+```
+
+Would conceptually generate the following
+(to support the other options, the generated HTML can be a lot more complex):
+
+```html
+<picture>
+  <source srcset="blah.webp" />
+  <img src="blah.png"  />
+</picture>
+```
+
+The above would fetch and display `blah.webp` if the web browser supported `webp` format,
+otherwise it would fetch and display `blah.png`.
+
+
+## Demo
+
 Run the demo website by typing:
+
 ```shell
 $ demo/_bin/debug -r
 ```
+
 ... and point your web browser to http://localhost:4444
 
 
 ## Usage
-    {% img [Options] src='path' %}
+
+```html
+{% img [Options] src='path' %}
+```
 
 `Options` are:
 
- - `attribution` See [`jekyll_plugin_support`](https://github.com/mslinn/jekyll_plugin_support#subclass-attribution).
- - `align="left|inline|right|center"` Default value is `inline`
- - `alt="Alt text"` Default value is the `caption` text, if provided
- - `caption="A caption"` No default value
- - `classes="class1 class2 classN"` Extra &lt;img&gt; classes; default is `rounded shadow`
- - `id="someId"` No default value
- - `nofollow`  Generates `rel='nofollow'`; only applicable when `url` is specified
- - `size='eighthsize|fullsize|halfsize|initial|quartersize|XXXYY|XXX%'`
+- `attribution` See [`jekyll_plugin_support`](https://github.com/mslinn/jekyll_plugin_support#subclass-attribution).
+- `align="left|inline|right|center"` Default value is `inline`
+- `alt="Alt text"` Default value is the `caption` text, if provided
+- `caption="A caption"` No default value
+- `classes="class1 class2 classN"` Extra &lt;img&gt; classes; default is `rounded shadow`
+- `id="someId"` No default value
+- `nofollow`  Generates `rel='nofollow'`; only applicable when `url` is specified
+- `size='eighthsize|fullsize|halfsize|initial|quartersize|XXXYY|XXX%'`
    Defines width of image.
-   - `initial` is the default behavior.
-   - `eighthsize`, `fullsize`, `halfsize`, and `quartersize` are relative to the enclosing tag's width.
-   - CSS units can also be used, for those cases `XXX` is a float and `YY` is `unit` (see below)
- - `style='css goes here'` CSS style for &lt;img&gt;; no default
- - `target='none|whatever'` Only applicable when `url` is specified; default value is `_blank`
- - `title="A title"` Default value is `caption` text, if provided
- - `url='https://domain.com'` No default value
- - `wrapper_class='class1 class2 classN'` Extra CSS classes for wrapper &lt;div&gt;; no default value
- - `wrapper_style='background-color: black;'` CSS style for wrapper &lt;div&gt;; no default value
+  - `initial` is the default behavior.
+  - `eighthsize`, `fullsize`, `halfsize`, and `quartersize` are relative to the enclosing tag's width.
+  - CSS units can also be used, for those cases `XXX` is a float and `YY` is `unit` (see below)
+- `style='css goes here'` CSS style for &lt;img&gt;; no default
+- `target='none|whatever'` Only applicable when `url` is specified; default value is `_blank`
+- `title="A title"` Default value is `caption` text, if provided
+- `url='https://domain.com'` No default value
+- `wrapper_class='class1 class2 classN'` Extra CSS classes for wrapper &lt;div&gt;; no default value
+- `wrapper_style='background-color: black;'` CSS style for wrapper &lt;div&gt;; no default value
 
 [`unit`](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#numbers_lengths_and_percentages) is one of: `Q`, `ch`, `cm`, `em`, `dvh`, `dvw`, `ex`, `in`, `lh`,
 `lvh`, `lvw`, `mm`, `pc`, `px`, `pt`, `rem`, `rlh`, `svh`, `svw`, `vb`,
 `vh`, `vi`, `vmax`, `vmin`, or `vw`.
 
-CSS classes referenced by the `jekyll_img` plugin are at the bottom of [demo/assets/css/style.css](demo/assets/css/style.css). CSS marker classes are included, so CSS selectors can be used for additional styling.
+CSS classes referenced by the `jekyll_img` plugin are at the bottom of
+[`demo/assets/css/style.css`](demo/assets/css/style.css).
+CSS marker classes are included, so CSS selectors can be used for additional styling.
 
 
 ## Configuration
+
 By default, any errors cause Jekyll to abort.
 You can allow Jekyll to continue by setting the following in `_config.yml`:
 
@@ -56,6 +105,7 @@ img:
 
 
 ## Design
+
 The most significant design issue was the decision that image size and formatting should not change
 whether it had a caption.
 HTML captions exist within a `<figure />` element, which also surrounds the image.
@@ -71,6 +121,7 @@ Handling all possible situations of these two scenarios would significantly rais
 
 
 ### Wrapper &lt;div /&gt;
+
 To make the plugin code more manageable,
 the plugin always encloses the generated HTML & CSS within a wrapper `<div />`.
 The wrapper allows for a simple, consistent approach regardless of whether a caption is generated or not.
@@ -101,21 +152,26 @@ end
 
 And then execute:
 
-    $ bundle install
+```shell
+$ bundle
+```
 
 
 ## Additional Information
+
 More information is available on
 [Mike Slinn&rsquo;s website](https://www.mslinn.com/blog/2020/10/03/jekyll-plugins.html).
 
 
 ## Development
+
 After checking out the repo, run `bin/setup` to install dependencies.
 
 You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 
 To build and install this gem onto your local machine, run:
+
 ```shell
 $ bundle exec rake install
 jekyll_img 0.1.0 built to pkg/jekyll_img-0.1.0.gem.
@@ -123,6 +179,7 @@ jekyll_img (0.1.0) installed.
 ```
 
 Examine the newly built gem:
+
 ```shell
 $ gem info jekyll_img
 
@@ -139,28 +196,37 @@ jekyll_img (0.1.0)
 ```
 
 ### Testing
+
 Examine the output by running:
+
 ```shell
 $ demo/_bin/debug -r
 ```
+
 ... and pointing your web browser to http://localhost:4444/
 
 ### Unit Tests
+
 Either run `rspec` from Visual Studio Code's *Run and Debug* environment
 (<kbd>Ctrl</kbd>-<kbd>shift</kbd>-<kbd>D</kbd>) and view the *Debug Console* output,
 or run it from the command line:
+
 ```shell
 $ rspec
 ```
 
 ### Build and Push to RubyGems
+
 To release a new version,
-  1. Update the version number in `version.rb`.
-  2. Commit all changes to git; if you don't the next step might fail with an unexplainable error message.
-  3. Run the following:
-     ```shell
-     $ bundle exec rake release
-     ```
+
+1. Update the version number in `version.rb`.
+2. Commit all changes to git; if you don't the next step might fail with an unexplainable error message.
+3. Run the following:
+
+   ```shell
+   $ bundle exec rake release
+   ```
+
      The above creates a git tag for the version, commits the created tag,
      and pushes the new `.gem` file to [RubyGems.org](https://rubygems.org).
 
