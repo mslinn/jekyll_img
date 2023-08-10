@@ -85,6 +85,9 @@ class ImgProperties
     @src = @src.to_s.strip
     raise ImgError, "The 'src' parameter was not specified", [] if @src.empty?
 
+    filetype = File.extname(URI(@src).path)
+    @src += '.webp' if filetype.empty?
+
     @src = "/assets/images/#{@src}" unless ImgProperties.local_path?(@src) || url?(@src)
   end
 

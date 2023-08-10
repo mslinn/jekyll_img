@@ -21,14 +21,15 @@ with a fallback to `png` format by using the HTML
 
 This means that 2 versions of every image are required: a `webp` version, and a `png` version.
 
-You specify the desired image with a `webp` filetype,
+You specify the desired image with a `webp` filetype (or no filetype),
 and the plugin generates a `picture` element that contains a primary
 `source` sub-element that specifies the given image URL,
 and a secondary `img` sub-element with a [`png`](https://en.wikipedia.org/wiki/PNG) filetype.
 
-For example, this invocation:
+For example, these two invocations yield the same result:
 
 ```html
+{% img src="blah" %}
 {% img src="blah.webp" %}
 ```
 
@@ -37,8 +38,9 @@ Would conceptually generate the following
 
 ```html
 <picture>
-  <source srcset="blah.webp" />
-  <img src="blah.png"  />
+  <source srcset="blah.webp" type="image/webp" />
+  <source srcset="blah.png" type="image/png" />
+  <img src="blah.png" />
 </picture>
 ```
 
