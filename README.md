@@ -86,7 +86,8 @@ $ demo/_bin/debug -r
 - `wrapper_class='class1 class2 classN'` Extra CSS classes for wrapper &lt;div&gt;; no default value
 - `wrapper_style='background-color: black;'` CSS style for wrapper &lt;div&gt;; no default value
 
-[`unit`](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#numbers_lengths_and_percentages) is one of: `Q`, `ch`, `cm`, `em`, `dvh`, `dvw`, `ex`, `in`, `lh`,
+[`unit`](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#numbers_lengths_and_percentages)
+is one of: `Q`, `ch`, `cm`, `em`, `dvh`, `dvw`, `ex`, `in`, `lh`,
 `lvh`, `lvw`, `mm`, `pc`, `px`, `pt`, `rem`, `rlh`, `svh`, `svw`, `vb`,
 `vh`, `vi`, `vmax`, `vmin`, or `vw`.
 
@@ -119,7 +120,8 @@ CSS behavior differs for `<figure />` and `<img />`.
 For example, centering, floating right and left.
 That means the CSS and where it would need to be applied are completely different for
 naked `<img />` and `<figure />` tags.
-Handling all possible situations of these two scenarios would significantly raise the complexity of the plugin code. I know, because I went down that rabbit hole.
+Handling all possible situations of these two scenarios would significantly raise the complexity of the plugin code.
+I know, because I went down that rabbit hole.
 
 
 ### Wrapper &lt;div /&gt;
@@ -133,9 +135,12 @@ Within the wrapper `<div />`, the embedded `<img />` is displayed with `width=10
 If a caption is required, the generated `<figure />` only makes the space taken by the generated HTML longer;
 the image&rsquo;s width and height are not affected.
 
-The wrapper will not exceed the width of the tag that encloses it if the `size` parameter has values `eighthsize`, `fullsize`, `halfsize`, `initial` or `quartersize`.
+The wrapper will not exceed the width of the tag that encloses it if the `size` parameter has values
+`eighthsize`, `fullsize`, `halfsize`, `initial` or `quartersize`.
 
-The wrapper's width can be defined independently of its enclosing tag by using [CSS units](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#numbers_lengths_and_percentages) for the `size` parameter:
+The wrapper's width can be defined independently of its enclosing tag by using
+[CSS units](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#numbers_lengths_and_percentages)
+for the `size` parameter:
 `Q`, `ch`, `cm`, `em`, `dvh`, `dvw`, `ex`, `in`, `lh`,
 `lvh`, `lvw`, `mm`, `pc`, `px`, `pt`, `rem`, `rlh`, `svh`, `svw`, `vb`,
 `vh`, `vi`, `vmax`, `vmin`, or `vw`.
