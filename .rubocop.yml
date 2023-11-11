@@ -11,13 +11,15 @@ require:
 AllCops:
   Exclude:
       - vendor/**/*
-      - exe/**/*
+      - binstub/**/*
       - Gemfile*
       - Rakefile
   NewCops: enable
-  TargetRubyVersion: 2.6
 
 Gemspec/DeprecatedAttributeAssignment:
+  Enabled: false
+
+Gemspec/RequiredRubyVersion:
   Enabled: false
 
 Gemspec/RequireMFA:

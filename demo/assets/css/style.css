@@ -95,6 +95,34 @@ pre {
   width: 690px;
 }
 
+.alert, .suggestion {
+  background-color: lightyellow;
+  border: 3pt solid gray;
+  color: black;
+  margin-bottom: 1.5em;
+  padding: 10px 1em 0.75em 1em;
+}
+
+.alert > h2, .suggestion > h2 {
+  margin-top: 0;
+}
+
+.alert > :last-child, .suggestion > :last-child {
+  margin-bottom: 0;
+}
+
+.attention {
+  border: thick red solid;
+  border-radius: 6px;
+  box-shadow: 5px 5px 6px #999;
+  margin: 1em 0 1.5em 0;
+  padding: 1em 1em 0 1em;
+}
+
+.pullQuoteFull, .alert > :last-child.pullQuoteFull {
+  margin-bottom: 1em;
+}
+
 .bg_yellow {
   background-color: yellow;
 }
@@ -271,14 +299,14 @@ pre {
 .rounded {
   border: 1px solid;
   border-radius: 7px;
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
+moz-border-radius: 7px;
+webkit-border-radius: 7px;
 }
 
 .shadow {
-  -moz-box-shadow: 5px 5px 6px #999;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999')";
-  -webkit-box-shadow: 5px 5px 6px #999;
+moz-box-shadow: 5px 5px 6px #999;
+ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999999')";
+webkit-box-shadow: 5px 5px 6px #999;
   border: thin gray solid;
   box-shadow: 5px 5px 6px #999;
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color='#999999');

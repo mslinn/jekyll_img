@@ -18,6 +18,7 @@
 .yardoc
 .yardoc/
 /spec/reports/
+Gemfile.lock
 Notepad++/
 RUNNING_PID
 __MACOSX
@@ -25,14 +26,13 @@ _site/
 _yardoc/
 coverage/
 doc/
-exe/
+binstub/
 jekyll/doc/
 node_modules/
 out/
 pkg/
 project/
+spec/status_persistence.txt
 target/
 tmp/
 ~*
-Gemfile.lock
-spec/status_persistence.txt
