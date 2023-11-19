@@ -12,6 +12,8 @@ module ImgModule
 end
 
 module Jekyll
+  ImgError = JekyllSupport.define_error
+
   # Plugin implementation
   class Img < JekyllSupport::JekyllTag
     include JekyllImgVersion
@@ -46,7 +48,7 @@ module Jekyll
     rescue ImgError => e # jekyll_plugin_support handles StandardError
       e.shorten_backtrace
       msg = format_error_message e.message
-      @logger.error "#{e.class} raised #{msg}"
+      @logger.error { "#{e.class} raised #{msg}" }
       raise e if @die_on_custom_error
 
       "<div class='custom_error'>#{e.class} raised in #{self.class};\n#{msg}</div>"

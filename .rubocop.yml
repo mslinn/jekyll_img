@@ -44,7 +44,7 @@ Lint/RedundantCopDisableDirective:
     - jekyll_img.gemspec
 
 Metrics/AbcSize:
-  Max: 55
+  Max: 60
 
 Metrics/BlockLength:
   Max: 30
