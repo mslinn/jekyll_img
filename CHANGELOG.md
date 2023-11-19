@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.7 / 2023-11-15
+
+* Improved an error message
+
+
 ## 0.1.6 / 2023-08-10
 
 * `.webp` file type is assumed and no longer needs to be specified.

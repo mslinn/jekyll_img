@@ -16,7 +16,7 @@ module Jekyll
   class Img < JekyllSupport::JekyllTag
     include JekyllImgVersion
 
-    def render_impl # rubocop:disable Metrics/AbcSize
+    def render_impl
       @helper.gem_file __FILE__ # This enables plugin attribution
 
       config = @config['img']
@@ -43,14 +43,13 @@ module Jekyll
 
       @builder = ImgBuilder.new(props)
       @builder.to_s
-    rescue ImgError => e
-      msg = <<~END_ERR
-        #{e.message} on line #{@line_number} (after front matter) of #{@page['path']}.
-        The offending argument string was: #{@argument_string}
-      END_ERR
-      raise ImgError, msg.red, [] unless @continue_on_error
+    rescue ImgError => e # jekyll_plugin_support handles StandardError
+      e.shorten_backtrace
+      msg = format_error_message e.message
+      @logger.error "#{e.class} raised #{msg}"
+      raise e if @die_on_custom_error
 
-      @logger.warn msg
+      "<div class='custom_error'>#{e.class} raised in #{self.class};\n#{msg}</div>"
     end
 
     JekyllPluginHelper.register(self, ImgModule::PLUGIN_NAME)

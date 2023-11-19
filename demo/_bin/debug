@@ -36,6 +36,14 @@ done
 DIR=$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )
 cd "$DIR/.." || exit
 
+GIT_ROOT="$( git rev-parse --show-toplevel )"
+cd "${GIT_ROOT}/demo" || exit
+
+export BUNDLE_WITH=development
+rm -f Gemfile.lock
+bundle
+bundle exec jekyll clean # Ensure all hooks get called
+
 run="serve \
     --livereload_port 25721 \
     --force_polling \
@@ -46,14 +54,6 @@ run="serve \
     --livereload \
     --drafts \
     --unpublished"
-
-GIT_ROOT="$( git rev-parse --show-toplevel )"
-cd "${GIT_ROOT}/demo" || exit
-
-export BUNDLE_WITH=development
-rm -f Gemfile.lock
-bundle
-bundle exec jekyll clean # Ensure all hooks get called
 
 if [ "$RUN_FREE" ]; then
   bundle exec jekyll $run
