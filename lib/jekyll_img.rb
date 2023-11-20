@@ -1,5 +1,6 @@
 require 'jekyll_plugin_support'
 require 'jekyll_plugin_helper'
+require 'pry'
 require_relative 'img_builder'
 require_relative 'img_props'
 require_relative 'jekyll_img/version'
@@ -46,6 +47,7 @@ module Jekyll
       @builder = ImgBuilder.new(props)
       @builder.to_s
     rescue ImgError => e # jekyll_plugin_support handles StandardError
+      binding.pry
       e.shorten_backtrace
       msg = format_error_message e.message
       @logger.error { "#{e.class} raised #{msg}" }
