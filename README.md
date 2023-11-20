@@ -33,7 +33,7 @@ For example, these two invocations yield the same result:
 {% img src="blah.webp" %}
 ```
 
-Would conceptually generate the following
+The above generates the following
 (to support the other options, the generated HTML can be a lot more complex):
 
 ```html
@@ -91,19 +91,21 @@ is one of: `Q`, `ch`, `cm`, `em`, `dvh`, `dvw`, `ex`, `in`, `lh`,
 `lvh`, `lvw`, `mm`, `pc`, `px`, `pt`, `rem`, `rlh`, `svh`, `svw`, `vb`,
 `vh`, `vi`, `vmax`, `vmin`, or `vw`.
 
-CSS classes referenced by the `jekyll_img` plugin are at the bottom of
-[`demo/assets/css/style.css`](demo/assets/css/style.css).
+CSS classes referenced by the `jekyll_img` plugin are in
+[`demo/assets/css/jekyll_img.css`](demo/assets/css/jekyll_img.css) and
+[`demo/assets/css/jekyll_plugin_support.css`](demo/assets/css/jekyll_plugin_support.css).
 CSS marker classes are included, so CSS selectors can be used for additional styling.
 
 
 ## Configuration
 
-By default, any errors cause Jekyll to abort.
-You can allow Jekyll to continue by setting the following in `_config.yml`:
+By default, errors cause Jekyll to abort.
+You can allow Jekyll to halt by setting the following in `_config.yml`:
 
 ```yaml
 jekyll_img:
   die_on_img_error: true
+  pry_on_img_error: true
 ```
 
 
@@ -201,6 +203,17 @@ jekyll_img (0.1.0)
 
     Generates Jekyll logger with colored output.
 ```
+
+
+### Debugging
+
+You can cause `pry` to open when an `ImgError` is raised by setting the following in `_config.yml`:
+
+```yaml
+jekyll_img:
+  pry_on_img_error: true
+```
+
 
 ### Testing
 

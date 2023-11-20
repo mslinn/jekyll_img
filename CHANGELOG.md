@@ -2,13 +2,19 @@
 
 ## 0.2.0 / 2023-11-20
 
-* Improved a messages.
-* renamed `img` section in `_config.yml` to `jekyll_img`.
-* renamed `continue_on_error` to `die_on_img_error`, reversed the meaning.
-* added `pry_on_img_error`, which causes the `pry` debugger to be invoked when an `ImgError` is raised.
+* The [demo/](demo/) webapp has been upgraded to the latest features.
+* Improved error messages.
+* Renamed the `img` section of `_config.yml` to `jekyll_img`.
+* Renamed `continue_on_error` to `die_on_img_error` and reversed the meaning.
 * Now dependant on `jekyll_plugin_support` v0.8.0 or later, which had several breaking changes.
 * CSS for this plugin is now defined in `demo/assets/css/jekyll_img.css`.
+* Added a `pry_on_img_error` setting, which causes the `pry` debugger to be invoked when an `ImgError` is raised.
+  `pry` is now opened when an `ImgError` is raised if `_config.yml` contains:
 
+  ```yaml
+  jekyll_img:
+    pry_on_img_error: true
+  ```
 
 ## 0.1.6 / 2023-08-10
 
