@@ -102,8 +102,8 @@ By default, any errors cause Jekyll to abort.
 You can allow Jekyll to continue by setting the following in `_config.yml`:
 
 ```yaml
-img:
-  continue_on_error: true
+jekyll_img:
+  die_on_img_error: true
 ```
 
 

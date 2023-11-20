@@ -1,0 +1,115 @@
+.center {
+  display: block;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eighthsize {
+  height: auto;
+  width: 12.5%;
+}
+
+.fullsize {
+  height: auto;
+  width: 100%;
+}
+
+.halfsize {
+  height: auto;
+  width: 50%;
+}
+
+.imgBlock {
+  display: block;
+}
+
+/* Center captions within div.imgWrapper */
+.imgFigCaption {
+  text-align: center;
+  min-width: 100%;
+  width: min-content;
+}
+
+/* Marker class applied to <img> tag */
+.imgImg {
+  margin-top: 0.5em;
+}
+
+.imgImgUrl { }            /* Marker class, indicates a URL was specified */
+
+.imgFigCaption > a { }    /* Only applies to URLs in captions */
+
+.imgFlex {
+  display: flex;
+}
+
+.imgOuterDiv > figure {
+  margin: 0;
+  padding: 0;
+}
+
+.imgPicture {             /* Marker class, applies to <picture> element */
+  height: auto;
+  width: 100%;
+}
+
+.imgPicture > img { }     /* placeholder */
+
+/* Marker class, indicates a caption was specified */
+.imgWrapper {
+  margin-bottom: 1em;
+  vertical-align: top;
+}
+
+.imgWrapper figure {
+  margin: 0;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.jekyll_img_error {
+  background-color: rgb(248, 149, 149);
+  border-radius: 4pt;
+  border: rgb(155, 141, 141) 2px solid;
+  color: black;
+  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  font-stretch: semi-condensed;
+  font-size: 9pt;
+  line-height: 150%;
+  padding: 2pt 4pt 2pt 4pt;
+}
+
+.jekyll_img_error code {
+  color: lightgray;
+  font-size: 10pt;
+}
+
+.left {
+  float: left;
+  margin-right: 1em;
+}
+
+.quartersize {
+  height: auto;
+  width: 25%;
+}
+
+.right {
+  float: right;
+  margin-left: 1em;
+}
+
+.rounded {
+  border: 1px solid;
+  border-radius: 7px;
+}
+
+.shadow {
+  border: thin gray solid;
+  box-shadow: 5px 5px 6px #999;
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=6, Direction=135, Color='#999999');
+  margin-bottom: 10px;
+}

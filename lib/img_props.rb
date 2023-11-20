@@ -3,8 +3,8 @@
 # attr_ methods can be called after compute_dependant_properties
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
-  attr_accessor :align, :alt, :attr_wrapper_align_class, :attribute, :attribution, :caption, :classes, :continue_on_error,
-                :id, :img_display, :nofollow, :src, :size, :style, :target, :title,
+  attr_accessor :align, :alt, :attr_wrapper_align_class, :attribute, :attribution, :caption, :classes, :die_on_img_error,
+                :id, :img_display, :local_src, :nofollow, :src, :size, :style, :target, :title,
                 :url, :wrapper_class, :wrapper_style
 
   SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
@@ -31,7 +31,7 @@ class ImgProperties
 
     unless SIZES.include?(@size)
       msg = "'#{@size}' is not a recognized size; must be one of #{SIZES.join(', ')}, or an explicit unit."
-      raise ImgError, msg
+      raise Jekyll::ImgError, msg
     end
     @size
   end
@@ -67,7 +67,7 @@ class ImgProperties
   end
 
   def src_png
-    raise ImgError, "The 'src' parameter was not specified" if @src.to_s.empty?
+    raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.to_s.empty?
 
     @src.gsub('.webp', '.png')
   end
@@ -81,12 +81,16 @@ class ImgProperties
 
   def setup_src
     @src = @src.to_s.strip
-    raise ImgError, "The 'src' parameter was not specified", [] if @src.empty?
+    raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.empty?
 
     filetype = File.extname(URI(@src).path)
     @src += '.webp' if filetype.empty?
 
     @src = "/assets/images/#{@src}" unless ImgProperties.local_path?(@src) || url?(@src)
+    return unless ImgProperties.local_path?(@src)
+
+    src = @src.start_with?('/') ? ".#{@src}" : @src
+    raise Jekyll::ImgError, "#{@src} does not exist" unless File.exist?(src)
   end
 
   UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze

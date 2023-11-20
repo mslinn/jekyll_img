@@ -24,11 +24,12 @@ exclude:  # Wildcards are not supported yet https://github.com/jekyll/jekyll-wat
   - README.md
 href:
   nomatch: fatal
-img:
-  continue_on_error: true
 ignore_theme_config: true
 jekyll_bootstrap5_tabs:
   - pretty: true
+jekyll_img:
+  die_on_img_error: false
+  pry_on_img_error: true
 liquid:
   error_mode: strict
   # strict_filters: true
@@ -42,7 +43,7 @@ plugin_loggers:
   PostHooks: warn
   SiteHooks: warn
 permalink: "/blog/:year/:month/:day/:title:output_ext"
-plugin-vars:
+liquid_vars:
   github: 'https://github.com'
   django-github: 'https://github.com/django/django/blob/3.1.7'
   django-oscar-github: 'https://github.com/django-oscar/django-oscar/blob/3.0.2'

@@ -22,8 +22,8 @@ module Jekyll
     def render_impl
       @helper.gem_file __FILE__ # This enables plugin attribution
 
-      config = @config['img']
-      @continue_on_error = config['continue_on_error'] == true if config
+      @die_on_img_error = @tag_config['die_on_img_error'] == true if @tag_config
+      @pry_on_img_error = @tag_config['pry_on_img_error'] == true if @tag_config
 
       props = ImgProperties.new
       props.attribute         = @helper.attribute
@@ -32,7 +32,7 @@ module Jekyll
       props.alt               = @helper.parameter_specified? 'alt'
       props.caption           = @helper.parameter_specified? 'caption'
       props.classes           = @helper.parameter_specified? 'class'
-      props.continue_on_error = @continue_on_error
+      props.die_on_img_error  = @die_on_img_error
       props.id                = @helper.parameter_specified? 'id'
       props.nofollow          = @helper.parameter_specified? 'nofollow'
       props.size              = @helper.parameter_specified?('size') || @helper.parameter_specified?('_size')
@@ -47,13 +47,13 @@ module Jekyll
       @builder = ImgBuilder.new(props)
       @builder.to_s
     rescue ImgError => e # jekyll_plugin_support handles StandardError
-      binding.pry
       e.shorten_backtrace
       msg = format_error_message e.message
       @logger.error { "#{e.class} raised #{msg}" }
-      raise e if @die_on_custom_error
+      binding.pry if @pry_on_img_error # rubocop:disable Lint/Debugger
+      raise e if @die_on_img_error
 
-      "<div class='custom_error'>#{e.class} raised in #{self.class};\n#{msg}</div>"
+      "<div class='jekyll_img_error'>#{e.class} raised in #{@tag_name} tag\n#{msg}</div>"
     end
 
     JekyllPluginHelper.register(self, ImgModule::PLUGIN_NAME)

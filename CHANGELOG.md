@@ -1,8 +1,13 @@
 # Change Log
 
-## 0.1.7 / 2023-11-15
+## 0.2.0 / 2023-11-20
 
-* Improved an error message
+* Improved a messages.
+* renamed `img` section in `_config.yml` to `jekyll_img`.
+* renamed `continue_on_error` to `die_on_img_error`, reversed the meaning.
+* added `pry_on_img_error`, which causes the `pry` debugger to be invoked when an `ImgError` is raised.
+* Now dependant on `jekyll_plugin_support` v0.8.0 or later, which had several breaking changes.
+* CSS for this plugin is now defined in `demo/assets/css/jekyll_img.css`.
 
 
 ## 0.1.6 / 2023-08-10

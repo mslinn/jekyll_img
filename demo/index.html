@@ -10,15 +10,16 @@ title: Usage Examples
 </p>
 
 
-<h2 id="unsupportedFiletype">Unsupported Filetype</h2>
+<h2 id="notFound">File Not Found</h2>
 <fieldset class="blackBorder">
-  <legend>Unsupported filetype</legend>
-  {% img src="diagram_s3fifo.svg" %}
+  <legend>A red error message should shown</legend>
+  {% img src="ghost.webp" %}
+  <p>
+    The error will only be shown if the image is a local file.
+    The existance of remote files (specified by an <code>http</code> or <code>https</code> prefix)
+    cannot be tested efficiently.
+  </p>
 </fieldset>
-<div class="alert rounded shadow">
-  The above should display a broken image.<br>
-  {% href https://github.com/mslinn/jekyll_img/issues/9 Issue #9: maybe an error image with a message might be better %}.
-</div>
 
 <h2 id="defaultFiletype">Default Filetype</h2>
 <fieldset class="blackBorder">
