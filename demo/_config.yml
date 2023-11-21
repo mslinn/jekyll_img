@@ -38,6 +38,7 @@ plugin_loggers:
   PluginMetaLogger: info
   CleanHook: warn
   DocumentHooks: warn
+  Img: info
   MyBlock: warn
   PageHooks: warn
   PostHooks: warn
