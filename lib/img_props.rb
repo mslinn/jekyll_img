@@ -87,10 +87,10 @@ class ImgProperties
     @src += '.webp' if filetype.empty?
 
     @src = "/assets/images/#{@src}" unless ImgProperties.local_path?(@src) || url?(@src)
-    return unless ImgProperties.local_path?(@src)
+    # return unless ImgProperties.local_path?(@src)
 
-    src = @src.start_with?('/') ? ".#{@src}" : @src
-    raise Jekyll::ImgError, "#{@src} does not exist" unless File.exist?(src)
+    # src = @src.start_with?('/') ? ".#{@src}" : @src
+    # raise Jekyll::ImgError, "#{@src} does not exist" unless File.exist?(src)
   end
 
   UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze

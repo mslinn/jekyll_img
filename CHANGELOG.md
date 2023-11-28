@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.2.1 / 2023-11-28
+
+* Took care of the inevitable blunder when making too many changes
+
+
 ## 0.2.0 / 2023-11-20
 
 * The [demo/](demo/) webapp has been upgraded to the latest features.
@@ -15,6 +20,7 @@
   jekyll_img:
     pry_on_img_error: true
   ```
+
 
 ## 0.1.6 / 2023-08-10
 

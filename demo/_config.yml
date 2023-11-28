@@ -8,6 +8,12 @@ compress_html:
     envs: [development]
   profile: false
   startings: [html, head, body]
+collections:
+  demo:
+    output: true
+    relative_directory: _demo
+    sort_by: order
+collections_dir: collections
 domain: bogus.jekylldemo.com
 email: bogus@jekylldemo.com
 exclude:  # Wildcards are not supported yet https://github.com/jekyll/jekyll-watch/pull/93

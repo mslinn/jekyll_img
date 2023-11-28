@@ -12,13 +12,20 @@ title: Usage Examples
 
 <h2 id="notFound">File Not Found</h2>
 <fieldset class="blackBorder">
-  <legend>A red error message should shown</legend>
+  <legend>A broken image should be shown</legend>
   {% img src="ghost.webp" %}
-  <p>
-    The error will only be shown if the image is a local file.
-    The existance of remote files (specified by an <code>http</code> or <code>https</code> prefix)
-    cannot be tested efficiently.
-  </p>
+</fieldset>
+
+<h2 id="defaultFiletype">Absolute Path</h2>
+<fieldset class="blackBorder">
+  <legend>No filetype and no other parameters specified</legend>
+  {% img src="/assets/images/jekyll_240x103.webp" %}
+</fieldset>
+
+<h2 id="defaultFiletype">Relative Path (starts with ./)</h2>
+<fieldset class="blackBorder">
+  <legend>No filetype and no other parameters specified</legend>
+  {% img src="./demo/images/jekyll_240x103.webp" %}
 </fieldset>
 
 <h2 id="defaultFiletype">Default Filetype</h2>
@@ -46,12 +53,12 @@ title: Usage Examples
 
 <fieldset class="blackBorder">
   <legend><code>size='fullsize'</code></legend>
-  {% img src="jekyll_240x103.webp" size="fullsize" %}
+  {% img src="jekyll.webp" size="fullsize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>size='halfsize'</code></legend>
-  {% img src="jekyll_240x103.webp" size="halfsize" %}
+  {% img src="jekyll.webp" size="halfsize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
