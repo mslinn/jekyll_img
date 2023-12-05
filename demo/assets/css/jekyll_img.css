@@ -99,6 +99,9 @@
 
 .right {
   float: right;
+}
+
+.right .imgImg, .right {
   margin-left: 1em;
 }
 
