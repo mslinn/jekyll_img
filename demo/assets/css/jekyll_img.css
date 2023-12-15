@@ -66,6 +66,10 @@
   margin: 0;
 }
 
+li > .imgWrapper {
+  margin-left: 1em;
+}
+
 .inline {
   display: inline-block;
 }

@@ -207,11 +207,13 @@ jekyll_img (0.1.0)
 
 ### Debugging
 
-You can cause `pry` to open when an `ImgError` is raised by setting the following in `_config.yml`:
+You can cause `pry` to open when an `ImgError` is raised by setting `pry_on_img_error` in `_config.yml`.
+`Pry_on_img_error` has priority `die_on_img_error`.
 
 ```yaml
 jekyll_img:
-  pry_on_img_error: true
+  die_on_img_error: false # Default value is false
+  pry_on_img_error: true # Default value is false
 ```
 
 
