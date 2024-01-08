@@ -74,7 +74,7 @@ class ImgBuilder
         <source srcset="#{@props.src_any 'pjp'}" type="image/jpeg">
         <source srcset="#{@props.src_any 'gif'}" type="image/gif">
         <source srcset="#{@props.src_any 'tif'}" type="image/tiff">
-        <source srcset="#{@props.src_any 'iff'}" type="image/tiff">
+        <source srcset="#{@props.src_any 'tiff'}" type="image/tiff">
         <source srcset="#{@props.src_any 'bmp'}" type="image/bmp">
         <source srcset="#{@props.src_any 'ico'}" type="image/x-icon">
         <source srcset="#{@props.src_any 'cur'}" type="image/x-icon">

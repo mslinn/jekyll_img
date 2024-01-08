@@ -6,7 +6,11 @@ flexible resizing, default styling, overridable styling, an optional caption, an
 
 Muliple image formats are supported for each image.
 The user&rsquo;s web browser determines the formats which it will accept.
-The most desirable formats that the web browser supports are prioritize3d.
+The most desirable formats that the web browser supports are prioritized.
+
+I explain why the `webp` image format is important in
+[Converting All Images in a Website to `webp` Format](https://mslinn.com/blog/2020/08/15/converting-all-images-to-webp-format.html).
+That article also provides 2 bash scripts for converting existing images to and from <code>webp</code> format.
 
 For example, if an image is encloded in `webp`, `png` and `gif` filetypes,
 and the user&rsquo;s web browser is relatively recent,
@@ -22,17 +26,16 @@ See [demo/index.html](demo/index.html) for examples.
 
 ## Image Fallback
 
-This plugin provides support for the
-[`webp`](https://developers.google.com/speed/webp) image format,
-with a fallback to `png` format by using the HTML
+This plugin provides support for many image formats,
+fallbacks to less performant formats by using the HTML
 [`picture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) element.
 
-This means that 2 versions of every image are required: a `webp` version, and a `png` version.
+This means that at least one version of every image are required.
 
 You could specify the desired image with a `webp` filetype, or you could specify no filetype.
 The plugin would generate a `picture` element that contains a primary
 `source` sub-element that specifies the given image URL,
-and a secondary `img` sub-element with a [`png`](https://en.wikipedia.org/wiki/PNG) filetype.
+and secondary `img` sub-element with all other supported filetypes.
 
 For example, these two invocations yield the same result:
 
@@ -46,8 +49,21 @@ The above generates the following
 
 ```html
 <picture>
+  <source srcset="blah.svg" type="image/svg" />
   <source srcset="blah.webp" type="image/webp" />
-  <source srcset="blah.png" type="image/png" />
+  <source srcset="blah.apng" type="image/apng">
+  <source srcset="blah.png" type="image/png">
+  <source srcset="blah.jpg" type="image/jpeg">
+  <source srcset="blah.jpeg" type="image/jpeg">
+  <source srcset="blah.jfif" type="image/jpeg">
+  <source srcset="blah.pjpeg" type="image/jpeg">
+  <source srcset="blah.pjp" type="image/jpeg">
+  <source srcset="blah.gif" type="image/gif">
+  <source srcset="blah.tif" type="image/tiff">
+  <source srcset="blah.tiff" type="image/tiff">
+  <source srcset="blah.bmp" type="image/bmp">
+  <source srcset="blah.ico" type="image/x-icon">
+  <source srcset="blah.cur" type="image/x-icon">
   <img src="blah.png" />
 </picture>
 ```
