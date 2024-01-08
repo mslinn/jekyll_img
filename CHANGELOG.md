@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.2.2 / 2024-01-08
+
+* Added support for all image types except `avif`.
+
+
 ## 0.2.1 / 2023-11-28
 
 * Took care of the inevitable blunder when making too many changes

@@ -4,10 +4,18 @@
 `Jekyll_img` is a Jekyll plugin that embeds images in HTML documents, with alignment options,
 flexible resizing, default styling, overridable styling, an optional caption, and an optional URL.
 
-If you are not using `webp` images in your Jekyll website, this plugin is not for you.
+Muliple image formats are supported for each image.
+The user&rsquo;s web browser determines the formats which it will accept.
+The most desirable formats that the web browser supports are prioritize3d.
+
+For example, if an image is encloded in `webp`, `png` and `gif` filetypes,
+and the user&rsquo;s web browser is relatively recent,
+then `webp` format will give the fastest transmission and look best.
+Older browsers, which might not support `webp` format,
+would give best results for `png` format.
+Really old web browsers would only support the `gif` file type.
+
 Please read the next section for details.
-If you have a use case that would benefit from expanding the supported file types,
-please describe your use case on the [issue tracker](https://github.com/mslinn/jekyll_img/issues/5).
 
 See [demo/index.html](demo/index.html) for examples.
 
@@ -21,8 +29,8 @@ with a fallback to `png` format by using the HTML
 
 This means that 2 versions of every image are required: a `webp` version, and a `png` version.
 
-You specify the desired image with a `webp` filetype (or no filetype),
-and the plugin generates a `picture` element that contains a primary
+You could specify the desired image with a `webp` filetype, or you could specify no filetype.
+The plugin would generate a `picture` element that contains a primary
 `source` sub-element that specifies the given image URL,
 and a secondary `img` sub-element with a [`png`](https://en.wikipedia.org/wiki/PNG) filetype.
 
@@ -46,6 +54,27 @@ The above generates the following
 
 The above would fetch and display `blah.webp` if the web browser supported `webp` format,
 otherwise it would fetch and display `blah.png`.
+
+
+## Supported Filetypes
+
+The following are listed in order of priority.
+See [MDN](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types) for more information.
+
+| Filetype                              | MIME type       |
+| ------------------------------------- | --------------- |
+| `svg`                                 | `image/svg+xml` |
+| `avif`                                | `image/avif`    |
+| `webp`                                | `image/webp`    |
+| `apng`                                | `image/apng`    |
+| `png`                                 | `image/png`     |
+| `jpg`, `jpeg`, `jfif`, `pjpeg`, `pjp` | `image/jpeg`    |
+| `gif`                                 | `image/gif`     |
+| `tif`, `tiff`                         | `image/tiff`    |
+| `bmp`                                 | `image/bmp`     |
+| `ico`, `cur`                          | `image/x-icon`  |
+
+Because `avif` is problematic as of 2024-01-08 on Firefox, Chrome and Safari, it is not supported yet.
 
 
 ## Demo

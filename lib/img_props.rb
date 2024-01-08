@@ -66,6 +66,12 @@ class ImgProperties
     @title ||= @caption || @alt
   end
 
+  def src_any(filetype)
+    raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.to_s.empty?
+
+    @src.gsub('.webp', ".#{filetype}")
+  end
+
   def src_png
     raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.to_s.empty?
 

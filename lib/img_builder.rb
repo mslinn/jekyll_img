@@ -62,8 +62,22 @@ class ImgBuilder
     img_classes = @props.classes || 'rounded shadow'
     <<~END_IMG
       <picture#{@props.attr_id} class='imgPicture'>
+        <source srcset="#{@props.src_any 'svg'}" type="image/svg">
+        <!---<source srcset="#{@props.src_any 'avif'}" type="image/avif">-->
         <source srcset="#{@props.src}" type="image/webp">
-        <source srcset="#{@props.src_png}" type="image/png">
+        <source srcset="#{@props.src_any 'apng'}" type="image/apng">
+        <source srcset="#{@props.src_any 'png'}" type="image/png">
+        <source srcset="#{@props.src_any 'jpg'}" type="image/jpeg">
+        <source srcset="#{@props.src_any 'jpeg'}" type="image/jpeg">
+        <source srcset="#{@props.src_any 'jfif'}" type="image/jpeg">
+        <source srcset="#{@props.src_any 'pjpeg'}" type="image/jpeg">
+        <source srcset="#{@props.src_any 'pjp'}" type="image/jpeg">
+        <source srcset="#{@props.src_any 'gif'}" type="image/gif">
+        <source srcset="#{@props.src_any 'tif'}" type="image/tiff">
+        <source srcset="#{@props.src_any 'iff'}" type="image/tiff">
+        <source srcset="#{@props.src_any 'bmp'}" type="image/bmp">
+        <source srcset="#{@props.src_any 'ico'}" type="image/x-icon">
+        <source srcset="#{@props.src_any 'cur'}" type="image/x-icon">
         <img #{@props.attr_alt}
           class="imgImg #{img_classes.squish}"
           src="#{@props.src_png}"
