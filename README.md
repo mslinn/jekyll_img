@@ -68,7 +68,8 @@ The above generates the following
 </picture>
 ```
 
-The above would fetch and display `blah.webp` if the web browser supported `webp` format,
+If both `blah.webp` and `blah.png` were available,
+the above would fetch and display `blah.webp` if the web browser supported `webp` format,
 otherwise it would fetch and display `blah.png`.
 
 
