@@ -1,8 +1,13 @@
 .center {
   display: block;
   justify-content: center;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+td.center {
+  display: table-cell;
 }
 
 .eighthsize {
