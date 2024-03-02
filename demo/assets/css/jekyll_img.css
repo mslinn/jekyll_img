@@ -41,6 +41,10 @@ td.center {
   margin-top: 0.5em;
 }
 
+.imgWrapper > figure > figcaption {
+  margin-top: 0;
+}
+
 .imgImgUrl { }            /* Marker class, indicates a URL was specified */
 
 .imgFigCaption > a { }    /* Only applies to URLs in captions */
