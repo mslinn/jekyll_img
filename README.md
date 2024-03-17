@@ -2,7 +2,8 @@
 
 
 `Jekyll_img` is a Jekyll plugin that embeds images in HTML documents, with alignment options,
-flexible resizing, default styling, overridable styling, an optional caption, and an optional URL.
+flexible resizing, default styling, overridable styling, an optional caption, an optional URL,
+and optional fullscreen zoom on mouseover.
 
 Muliple image formats are supported for each image.
 The user&rsquo;s web browser determines the formats which it will accept.
@@ -131,6 +132,7 @@ $ demo/_bin/debug -r
 - `url='https://domain.com'` No default value
 - `wrapper_class='class1 class2 classN'` Extra CSS classes for wrapper &lt;div&gt;; no default value
 - `wrapper_style='background-color: black;'` CSS style for wrapper &lt;div&gt;; no default value
+- `zoom` Fullscreen zoom on mouseover; presse escape or click outside image to dismiss
 
 [`unit`](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#numbers_lengths_and_percentages)
 is one of: `Q`, `ch`, `cm`, `em`, `dvh`, `dvw`, `ex`, `in`, `lh`,

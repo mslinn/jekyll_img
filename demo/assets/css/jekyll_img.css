@@ -31,8 +31,9 @@ td.center {
 
 /* Center captions within div.imgWrapper */
 .imgFigCaption {
-  text-align: center;
+  hyphens: none;
   min-width: 100%;
+  text-align: center;
   width: min-content;
 }
 
