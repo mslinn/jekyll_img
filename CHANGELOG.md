@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.2.3 / 2024-04-27
+
+* Depends on jekyll_plugin_support v0.8.5
+
+
 ## 0.2.2 / 2024-01-08
 
 * Added support for all image types except `avif`.

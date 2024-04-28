@@ -3,7 +3,6 @@ require_relative 'lib/jekyll_img/version'
 Gem::Specification.new do |spec|
   github = 'https://github.com/mslinn/jekyll_img'
 
-  spec.bindir = 'exe'
   spec.authors = ['Mike Slinn']
   spec.email = ['mslinn@mslinn.com']
   spec.files = Dir['.rubocop.yml', 'LICENSE.*', 'Rakefile', '{lib,spec}/**/*', '*.gemspec', '*.md']
@@ -29,5 +28,5 @@ Gem::Specification.new do |spec|
   spec.version = JekyllImgVersion::VERSION
 
   spec.add_dependency 'jekyll', '>= 3.5.0'
-  spec.add_dependency 'jekyll_plugin_support', '>= 0.8.0'
+  spec.add_dependency 'jekyll_plugin_support', '>= 0.8.5'
 end
