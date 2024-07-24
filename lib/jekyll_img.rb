@@ -13,10 +13,10 @@ module ImgModule
 end
 
 module Jekyll
-  ImgError = JekyllSupport.define_error
+  ImgError = ::JekyllSupport.define_error
 
   # Plugin implementation
-  class Img < JekyllSupport::JekyllTag
+  class Img < ::JekyllSupport::JekyllTag
     include JekyllImgVersion
 
     def render_impl
@@ -56,6 +56,6 @@ module Jekyll
       "<div class='jekyll_img_error'>#{e.class} raised in #{@tag_name} tag\n#{msg}</div>"
     end
 
-    JekyllPluginHelper.register(self, ImgModule::PLUGIN_NAME)
+    ::JekyllSupport::JekyllPluginHelper.register(self, ImgModule::PLUGIN_NAME)
   end
 end
