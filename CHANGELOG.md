@@ -2,7 +2,7 @@
 
 ## 0.2.4 / 2024-07-23
 
-* Depends on jekyll_plugin_support v0.8.7
+* Depends on jekyll_plugin_support v1.0.0
 
 
 ## 0.2.3 / 2024-04-27
