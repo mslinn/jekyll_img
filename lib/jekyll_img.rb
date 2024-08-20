@@ -47,13 +47,11 @@ module Jekyll
       @builder = ImgBuilder.new(props)
       @builder.to_s
     rescue ImgError => e # jekyll_plugin_support handles StandardError
-      e.shorten_backtrace
-      msg = format_error_message e.message
-      @logger.error { "#{e.class} raised #{msg}" }
+      @logger.error { e.logger_message }
       binding.pry if @pry_on_img_error # rubocop:disable Lint/Debugger
-      raise e if @die_on_img_error
+      exit! 1 if @die_on_img_error
 
-      "<div class='jekyll_img_error'>#{e.class} raised in #{@tag_name} tag\n#{msg}</div>"
+      e.html_message
     end
 
     ::JekyllSupport::JekyllPluginHelper.register(self, ImgModule::PLUGIN_NAME)

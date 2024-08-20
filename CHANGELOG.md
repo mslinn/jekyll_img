@@ -1,5 +1,19 @@
 # Change Log
 
+## 0.2.5 / 2024-07-23
+
+* Depends on jekyll_plugin_support v1.0.2
+* Error handling improved
+* Corrected `README.md#Configuration` and fixed demo `_config.yml`
+  so they correctly specify error handling for this plugin:
+
+  ```ruby
+  img:
+    die_on_img_error: false
+    pry_on_img_error: false
+  ```
+
+
 ## 0.2.4 / 2024-07-23
 
 * Depends on jekyll_plugin_support v1.0.0

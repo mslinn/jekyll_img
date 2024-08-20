@@ -5,10 +5,18 @@ last_modified_at: 2023-01-14
 layout: default
 title: Usage Examples
 ---
-<p>
-  All of these examples have a <code>src</code> parameter.
-</p>
+<h2 id="noSrc">Src Not Specified</h2>
+<fieldset class="blackBorder">
+  <legend>An error message should result</legend>
+  {% img %}
+  {% img src="" %}
+  {% img src="   " %}
+</fieldset>
 
+
+<p class="alert rounded shadow">
+  All of the following examples have a <code>src</code> parameter.
+</p>
 
 <h2 id="notFound">File Not Found</h2>
 <fieldset class="blackBorder">

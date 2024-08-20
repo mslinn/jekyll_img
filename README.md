@@ -151,7 +151,7 @@ By default, errors cause Jekyll to abort.
 You can allow Jekyll to halt by setting the following in `_config.yml`:
 
 ```yaml
-jekyll_img:
+img:
   die_on_img_error: true
   pry_on_img_error: true
 ```

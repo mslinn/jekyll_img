@@ -67,8 +67,6 @@ class ImgProperties
   end
 
   def src_any(filetype)
-    raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.to_s.empty?
-
     @src.gsub('.webp', ".#{filetype}")
   end
 
@@ -86,8 +84,12 @@ class ImgProperties
   private
 
   def setup_src
+    raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.nil?
+
+    raise Jekyll::ImgError, "The 'src' parameter was empty" if @src.empty?
+
     @src = @src.to_s.strip
-    raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.empty?
+    raise Jekyll::ImgError, "The 'src' parameter only contained whitespace" if @src.empty?
 
     filetype = File.extname(URI(@src).path)
     @src += '.webp' if filetype.empty?

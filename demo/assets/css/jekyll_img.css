@@ -84,7 +84,7 @@ li > .imgWrapper {
   display: inline-block;
 }
 
-.jekyll_img_error {
+.img_error {
   background-color: rgb(248, 149, 149);
   border-radius: 4pt;
   border: rgb(155, 141, 141) 2px solid;
@@ -96,7 +96,7 @@ li > .imgWrapper {
   padding: 2pt 4pt 2pt 4pt;
 }
 
-.jekyll_img_error code {
+.img_error code {
   color: lightgray;
   font-size: 10pt;
 }

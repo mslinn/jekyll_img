@@ -31,11 +31,11 @@ exclude:  # Wildcards are not supported yet https://github.com/jekyll/jekyll-wat
 href:
   nomatch: fatal
 ignore_theme_config: true
+img:
+  die_on_img_error: false
+  pry_on_img_error: false
 jekyll_bootstrap5_tabs:
   - pretty: true
-jekyll_img:
-  die_on_img_error: false
-  pry_on_img_error: true
 liquid:
   error_mode: strict
   # strict_filters: true
