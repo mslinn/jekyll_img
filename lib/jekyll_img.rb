@@ -9,11 +9,11 @@ require_relative 'jekyll_img/version'
 # @license SPDX-License-Identifier: Apache-2.0
 
 module ImgModule
-  PLUGIN_NAME = 'img'.freeze
+  PLUGIN_NAME = 'img'.freeze unless const_defined?(:PLUGIN_NAME)
 end
 
 module Jekyll
-  ImgError = ::JekyllSupport.define_error
+  ImgError = ::JekyllSupport.define_error unless const_defined?(:ImgError)
 
   # Plugin implementation
   class Img < ::JekyllSupport::JekyllTag
@@ -54,6 +54,6 @@ module Jekyll
       e.html_message
     end
 
-    ::JekyllSupport::JekyllPluginHelper.register(self, ImgModule::PLUGIN_NAME)
+    ::JekyllSupport::JekyllPluginHelper.register(self, ImgModule::PLUGIN_NAME) unless $PROGRAM_NAME.end_with?('/rspec')
   end
 end

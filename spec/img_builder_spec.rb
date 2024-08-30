@@ -5,17 +5,27 @@ require_relative '../lib/img_props'
 # Test ImgProperties
 class ImgPropertiesTest
   RSpec.describe ImgBuilder do
+    Dir.chdir("demo")
+
+    it 'generates sources' do
+      props = ImgProperties.new
+      props.src = 'jekyll.webp'
+      builder = described_class.new(props)
+      actual = builder.send(:generate_sources, ['png'], 'image/png')
+      expect(actual).to contain_exactly('<source srcset="/assets/images/jekyll.png" type="image/png">')
+    end
+
     it 'generates a default img' do
       props = ImgProperties.new
-      props.src = 'blah.webp'
+      props.src = 'jekyll.webp'
       builder = described_class.new(props)
       picture = <<~END_IMG
         <div class='imgWrapper imgFlex' style=' '>
           <picture class='imgPicture'>
-            <source srcset="/assets/images/blah.webp" type="image/webp">
-            <source srcset="/assets/images/blah.png" type="image/png">
+            <source srcset="/assets/images/jekyll.webp" type="image/webp">
+            <source srcset="/assets/images/jekyll.png" type="image/png">
             <img class="imgImg rounded shadow"
-              src="/assets/images/blah.png"
+              src="/assets/images/jekyll.png"
               style='width: 100%; '
             />
           </picture>
@@ -30,7 +40,7 @@ class ImgPropertiesTest
       props = ImgProperties.new
       props.caption = 'This is a caption'
       props.size = '123px'
-      props.src = 'blah.webp'
+      props.src = 'jekyll.webp'
       builder = described_class.new(props)
 
       caption = <<~END_CAPTION
@@ -43,11 +53,11 @@ class ImgPropertiesTest
         <div class='imgWrapper imgBlock' style='width: 123px; '>
           <figure>
             <picture class='imgPicture'>
-              <source srcset="/assets/images/blah.webp" type="image/webp">
-              <source srcset="/assets/images/blah.png" type="image/png">
+              <source srcset="/assets/images/jekyll.webp" type="image/webp">
+              <source srcset="/assets/images/jekyll.png" type="image/png">
               <img alt='This is a caption'
                 class="imgImg rounded shadow"
-                src="/assets/images/blah.png"
+                src="/assets/images/jekyll.png"
                 style='width: 100%; '
                 title='This is a caption'
               />

@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.2.6 / 2024-08-30
+
+* Optimized the generated HTML.
+  For example, `srcset` elements are now only generated for images that actually exit locally.
+  For remote images, only an `img` element is generated for the specified filetype.
+  The tests can be found in `demo/img_test.html`.
+
+
 ## 0.2.5 / 2024-07-23
 
 * Depends on jekyll_plugin_support v1.0.2

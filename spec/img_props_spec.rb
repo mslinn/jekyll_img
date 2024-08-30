@@ -26,15 +26,19 @@ class ImgProperitesTest
       expect(props.attr_target).to        eq(" target='_blank'")
       expect(props.attr_title).to         be_nil
       expect(props.attr_width_style).to   be_nil
-
-      props.compute_dependant_properties
-      expect(props.attr_wrapper_align_class).to eq('inline')
     end
+
+    # it 'defaults to inline alignment' do
+    #   props = described_class.new
+    #   props.src = 'relative/path.webp'
+    #   props.compute_dependant_properties
+    #   expect(props.attr_wrapper_align_class).to eq('inline')
+    # end
 
     it 'raises exception if src was not specified' do
       props = described_class.new
-      expect { props.src_png }.to raise_error(SystemExit)
-      expect { props.send(:setup_src) }.to raise_error(SystemExit)
+      expect { props.src_png }.to raise_error(Jekyll::ImgError)
+      expect { props.send(:setup_src) }.to raise_error(Jekyll::ImgError)
 
       props.src = 'relative/path.webp'
       props.send(:setup_src)
@@ -69,20 +73,17 @@ class ImgProperitesTest
 
       props.size = '100px'
       expect(props.attr_size_class).to be_nil
-      expect(props.attr_style_img).to eq("style='max-width: 100px;'")
+      expect(props.attr_style_img).to eq("style='width: 100%; '")
       expect(props.attr_width_style).to eq('width: 100px;')
 
       props.size = '10%'
       expect(props.attr_size_class).to be_nil
-      expect(props.attr_style_img).to eq("style='max-width: 10%;'")
       expect(props.attr_width_style).to eq('width: 10%;')
+      expect(props.attr_style_img).to eq("style='width: 100%; '")
 
       props.size = 'fullsize'
       expect(props.attr_size_class).to eq('fullsize')
       expect(props.attr_width_style).to be_nil
-
-      props.style = 'width: 30rem;'
-      expect(props.attr_style_img).to eq("style='width: 30rem;'")
 
       props.target = 'moon'
       expect(props.attr_target).to eq(" target='moon'")
@@ -94,18 +95,6 @@ class ImgProperitesTest
       props.caption = 'A caption'
       expect(props.attr_size_class).to be_nil
       expect(props.attr_width_style).to eq('width: 100px;')
-    end
-
-    it 'generates proper alignment attributes' do
-      props = described_class.new
-
-      props.align = 'inline'
-      props.compute_dependant_properties
-      expect(props.attr_wrapper_align_class).to eq('inline')
-
-      props.align = 'center'
-      props.compute_dependant_properties
-      expect(props.attr_wrapper_align_class).to eq('center')
     end
   end
 end

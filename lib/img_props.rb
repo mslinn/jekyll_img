@@ -1,3 +1,5 @@
+require 'uri'
+
 # Properties from user
 # All methods are idempotent.
 # attr_ methods can be called after compute_dependant_properties

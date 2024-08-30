@@ -1,0 +1,188 @@
+---
+description: HTML img tests
+date: 2024-08-30
+last_modified_at: 2024-08-30
+layout: default
+title: HTML img tests
+---
+<!-- #region intro -->
+<p>
+  The HTML documentation left me wondering about edge cases,
+  so I created this page to find out how various browsers implement image support.
+</p>
+<p>
+  It seems that the only way <code>source</code> fallback will work is if the server sends out an <code>image/whatever</code> mimetype,
+  and the browser realizes that it does not support that subtype of the <code>image</code> type.
+  If a different general category (type) of mimetype is sent, for example, <code>text</code>,
+  the browser renders a broken image and there is no fallback.
+</p>
+<!-- endregion -->
+
+
+<!-- #region Tests -->
+<h2 id="tests">Tests</h2>
+
+<!-- #region Simple <img/> element -->
+<h3 id="img">Simple &lt;img/&gt; Element</h3>
+<p>
+  <code>&lt;img src=&quot;/demo/assets/images/jekyll_webp_240x103.webp&quot;&gt;</code>
+</p>
+<img src="/assets/images/jekyll_webp_240x103.webp">
+<!-- endregion -->
+
+
+<!-- #region Picture without src element -->
+<h3 id="pwse">Picture without src element</h3>
+<pre>
+&lt;picture&gt;
+  &lt;source srcset=&quot;/assets/images/jekyll_png_240x103.png&quot; /&gt;
+  &lt;source srcset=&quot;/assets/images/jekyll_webp_240x103.webp&quot; /&gt;
+&lt;/picture&gt;
+</pre>
+<picture>
+  <source srcset="/assets/images/jekyll_png_240x103.png" />
+  <source srcset="/assets/images/jekyll_webp_240x103.webp" />
+</picture>
+<p>
+  <i>No image is shown.</i>
+</p>
+<!-- endregion -->
+
+
+<!-- #region Picture with src element and a source element -->
+<h3 id="pwse">Picture with src element and a source element</h3>
+<pre>
+&lt;picture&gt;
+  &lt;source srcset=&quot;/assets/images/jekyll_png_240x103.png&quot; /&gt;
+  &lt;img src=&quot;/assets/images/jekyll_webp_240x103.webp&quot; /&gt;
+&lt;/picture&gt;
+</pre>
+<picture>
+  <source srcset="/assets/images/jekyll_png_240x103.png" />
+  <img src="/assets/images/jekyll_webp_240x103.webp" />
+</picture>
+<!-- endregion -->
+
+
+<!-- #region Picture with src element and two source srcset elements -->
+<h3 id="pwse" class="bg_yellow">Picture with src element and two source srcset elements</h3>
+<p class="bg_yellow">
+  This is what needs to be implemented by <code>jekyll_img</code> v0.2.6.
+</p>
+<p>
+  For browsers that support the <code>picture</code> element, the <code>img src</code> file is not used,
+  instead the first supported or applicable <code>source srcset</code> is used.
+  Nonetheless, for very old browsers it is a good idea to specify an image type for <code>img src</code> that was widely supported by browsers in March 2016;
+  the best choice is <code>png</code>, followed by <code>jpg</code>.
+</p>
+<pre>
+&lt;picture&gt;
+  &lt;source srcset=&quot;/assets/images/jekyll_webp_240x103.webp&quot; /&gt;
+  &lt;source srcset=&quot;/assets/images/jekyll_png_240x103.png&quot; /&gt;
+  &lt;img src=&quot;/assets/images/jekyll_240x103.gif&quot; /&gt;
+&lt;/picture&gt;
+</pre>
+<picture>
+  <source srcset="/assets/images/jekyll_webp_240x103.webp" />
+  <source srcset="/assets/images/jekyll_png_240x103.png" />
+  <img src="/assets/images/jekyll_240x103.gif" />
+</picture>
+
+
+<p>
+  Modern browsers are happy to render the following <code>picture</code> element even if no <code>img src</code> attribute is provided.
+  Some browsers earlier than March 2016 will not be happy with this, and will render a broken image:
+</p>
+<pre>
+&lt;picture&gt;
+  &lt;source srcset=&quot;/assets/images/jekyll_webp_240x103.webp&quot; /&gt;
+  &lt;source srcset=&quot;/assets/images/jekyll_png_240x103.png&quot; /&gt;
+  &lt;img /&gt;
+&lt;/picture&gt;
+</pre>
+<picture>
+  <source srcset="/assets/images/jekyll_webp_240x103.webp" />
+  <source srcset="/assets/images/jekyll_png_240x103.png" />
+  <img />
+</picture>
+
+<p>
+  Order matters:
+</p>
+<pre>
+&lt;picture&gt;
+  &lt;source srcset=&quot;/assets/images/jekyll_png_240x103.png&quot; /&gt;
+  &lt;source srcset=&quot;/assets/images/jekyll_webp_240x103.webp&quot; /&gt;
+  &lt;img /&gt;
+&lt;/picture&gt;
+</pre>
+<picture>
+  <source srcset="/assets/images/jekyll_png_240x103.png" />
+  <source srcset="/assets/images/jekyll_webp_240x103.webp" />
+  <img />
+</picture>
+<!-- endregion -->
+
+
+<!-- #region Picture with 4 source src elements -->
+<h2 id="pw3sse">Picture With 4 source src Elements</h2>
+<p>
+  The <code>img src</code> attribute points to a text file with an invalid <code>txt</code> filetype.
+  Unfortunately, the expected fallback does not happen and the image is broken.
+</p>
+<picture>
+  <source type="image/webp" src="/assets/images/jekyll_webp_240x103.webp" />
+  <source type="image/png"  src="/assets/images/jekyll_png_240x103.png"  />
+  <source type="image/jpg"  src="/assets/images/jekyll_240x103.jpg"  />
+  <source type="image/gif"  src="/assets/images/jekyll_240x103.gif"  />
+  <img src="/assets/images/jekyll_240x103.txt" />
+</picture>
+<!-- endregion -->
+
+
+<!-- #region img With onerror Handler -->
+<h2 id="pw3sse">img With onerror Handler</h2>
+<p>
+  This <code>img src</code> attribute points to a text file with a <code>txt</code> filetype, which will be served with mimetype <code>text/plain</code>;
+  clearly a <code>text</code> type is not an <code>image</code> type.
+  The <code>onerror</code> attribute specifies a JavaScript error handler that specifies a <code>webp</code> file
+  as a fallback.
+</p>
+<pre>
+&lt;img
+  src=&quot;/assets/images/jekyll_240x103.txt&quot;
+  onerror=&quot;this.src=&#39;/assets/images/jekyll_webp_240x103.webp&#39;&quot;
+/&gt;
+</pre>
+<img
+  src="/assets/images/jekyll_240x103.txt"
+  onerror="this.src='/assets/images/jekyll_webp_240x103.webp'"
+/>
+<!-- endregion -->
+<!-- endregion -->
+
+
+<!-- #region References -->
+<h2 id="refs">References</h2>
+<ul>
+  <li>
+    {% href label='GitHub issues for ResponsiveImagesCG/picture-element' url='https://github.com/ResponsiveImagesCG/picture-element/issues?q=is%3Aopen' %}
+  </li>
+  <li>
+    {% href label='MDN Image file type and format guide' url='https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#gif_graphics_interchange_format' %}
+  </li>
+  <li>
+    {% href label='MDN The Picture element' url='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture' %}
+  </li>
+  <li>
+    {% href label='Responsive Images Done Right: A Guide To And srcset'
+              url='https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/' %}
+  </li>
+  <li>
+    {% href label='The picture element' url='https://web.dev/learn/design/picture-element' %}
+  </li>
+  <li>
+    {% href https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#image_loading_errors HTML <code>onerror</code> attribute %}
+  </li>
+</ul>
+<!-- endregion -->

@@ -32,39 +32,29 @@ fallbacks to less performant formats by using the HTML
 [`picture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) element.
 
 This means that at least one version of every image are required.
+Supported filetypes are:
+`svg`, `webp`, `apng`, `png`, `jpg`, `jpeg`, `jfif`, `pjpeg`, `pjp`, `gif`, `tif`, `tiff`, `bmp`, `ico` and `cur`.
 
 You could specify the desired image with a `webp` filetype, or you could specify no filetype.
 The plugin would generate a `picture` element that contains a primary
 `source` sub-element that specifies the given image URL,
 and secondary `img` sub-element with all other supported filetypes.
 
-For example, these two invocations yield the same result:
+For example, these two invocations yield the same result, if `blah.webp` exists on the Jekyll website:
 
 ```html
 {% img src="blah" %}
 {% img src="blah.webp" %}
 ```
 
-The above generates the following
+If `blah.webp` and `blah.png` exist on the Jekyll website,
+the above generates the following
 (to support the other options, the generated HTML can be a lot more complex):
 
 ```html
 <picture>
-  <source srcset="blah.svg" type="image/svg" />
   <source srcset="blah.webp" type="image/webp" />
-  <source srcset="blah.apng" type="image/apng">
   <source srcset="blah.png" type="image/png">
-  <source srcset="blah.jpg" type="image/jpeg">
-  <source srcset="blah.jpeg" type="image/jpeg">
-  <source srcset="blah.jfif" type="image/jpeg">
-  <source srcset="blah.pjpeg" type="image/jpeg">
-  <source srcset="blah.pjp" type="image/jpeg">
-  <source srcset="blah.gif" type="image/gif">
-  <source srcset="blah.tif" type="image/tiff">
-  <source srcset="blah.tiff" type="image/tiff">
-  <source srcset="blah.bmp" type="image/bmp">
-  <source srcset="blah.ico" type="image/x-icon">
-  <source srcset="blah.cur" type="image/x-icon">
   <img src="blah.png" />
 </picture>
 ```
@@ -72,6 +62,7 @@ The above generates the following
 If both `blah.webp` and `blah.png` were available,
 the above would fetch and display `blah.webp` if the web browser supported `webp` format,
 otherwise it would fetch and display `blah.png`.
+If the browser did not support the `picture` element, the `img src` attribute would be used to specify the image.
 
 
 ## Supported Filetypes

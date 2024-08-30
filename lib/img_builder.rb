@@ -35,7 +35,7 @@ class ImgBuilder
         #{@props.attribute if @props.attribution}
       </div>
     END_HTML
-    result.strip
+    result.strip.gsub(/^\s*$\n/, '')
   end
 
   def generate_figure_caption
@@ -57,27 +57,41 @@ class ImgBuilder
     END_CAPTION
   end
 
+  # @return Array[String] containing HTML source elements
+  def generate_sources(filetypes, mimetype)
+    result = filetypes.map do |ftype|
+      filename = @props.src_any ftype
+      next unless filename.start_with?('http') || File.exist?("./#{filename}")
+
+      <<~END_HTML
+        <source srcset="#{filename}" type="#{mimetype}">
+      END_HTML
+    end
+    result&.compact&.map(&:strip)
+  end
+
+  def generate_compact_sources
+    [
+      generate_sources(%w[svg], 'image/svg'),
+      generate_sources(%w[webp], 'image/webp'),
+      generate_sources(%w[png], 'image/png'),
+      generate_sources(%w[apng], 'image/apng'),
+      generate_sources(%w[jpg jpeg jfif pjpeg pjp], 'image/jpeg'),
+      generate_sources(%w[gif], 'image/gif'),
+      generate_sources(%w[tif tiff], 'image/tiff'),
+      generate_sources(%w[bmp], 'image/bmp'),
+      generate_sources(%w[cur ico], 'image/x-icon')
+    ].compact.join("\n").strip.gsub(/^$\n/, '')
+  end
+
   # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
   def generate_img
     img_classes = @props.classes || 'rounded shadow'
-    <<~END_IMG
+    # avif is not well supported yet
+    # <source srcset="#{@props.src_any 'avif'}" type="image/avif">
+    result = <<~END_IMG
       <picture#{@props.attr_id} class='imgPicture'>
-        <source srcset="#{@props.src_any 'svg'}" type="image/svg">
-        <!---<source srcset="#{@props.src_any 'avif'}" type="image/avif">-->
-        <source srcset="#{@props.src}" type="image/webp">
-        <source srcset="#{@props.src_any 'apng'}" type="image/apng">
-        <source srcset="#{@props.src_any 'png'}" type="image/png">
-        <source srcset="#{@props.src_any 'jpg'}" type="image/jpeg">
-        <source srcset="#{@props.src_any 'jpeg'}" type="image/jpeg">
-        <source srcset="#{@props.src_any 'jfif'}" type="image/jpeg">
-        <source srcset="#{@props.src_any 'pjpeg'}" type="image/jpeg">
-        <source srcset="#{@props.src_any 'pjp'}" type="image/jpeg">
-        <source srcset="#{@props.src_any 'gif'}" type="image/gif">
-        <source srcset="#{@props.src_any 'tif'}" type="image/tiff">
-        <source srcset="#{@props.src_any 'tiff'}" type="image/tiff">
-        <source srcset="#{@props.src_any 'bmp'}" type="image/bmp">
-        <source srcset="#{@props.src_any 'ico'}" type="image/x-icon">
-        <source srcset="#{@props.src_any 'cur'}" type="image/x-icon">
+        #{generate_compact_sources}
         <img #{@props.attr_alt}
           class="imgImg #{img_classes.squish}"
           src="#{@props.src_png}"
@@ -86,5 +100,6 @@ class ImgBuilder
         />
       </picture>
     END_IMG
+    result.strip
   end
 end
