@@ -25,9 +25,9 @@ class ImgBuilder
       <div class='#{classes}' style='#{@props.attr_width_style} #{@props.wrapper_style}'>
         #{"<figure>\n" if @props.caption}
           #{ if @props.url
-               "<a href='#{@props.url}'#{@props.attr_target}#{@props.attr_nofollow} class='imgImgUrl'>#{generate_img}</a>"
+               "<a href='#{@props.url}'#{@props.attr_target}#{@props.attr_nofollow} class='imgImgUrl'>#{generate_image}</a>"
              else
-               generate_img
+               generate_image
              end
           }
           #{generate_figure_caption}
@@ -85,21 +85,29 @@ class ImgBuilder
   end
 
   # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
-  def generate_img
-    img_classes = @props.classes || 'rounded shadow'
+  def generate_image
+    return generate_img if @props.src.start_with? 'http'
+
     # avif is not well supported yet
     # <source srcset="#{@props.src_any 'avif'}" type="image/avif">
     result = <<~END_IMG
       <picture#{@props.attr_id} class='imgPicture'>
         #{generate_compact_sources}
-        <img #{@props.attr_alt}
-          class="imgImg #{img_classes.squish}"
-          src="#{@props.src_png}"
-          #{@props.attr_style_img}
-          #{@props.attr_title}
-        />
+        #{generate_img}
       </picture>
     END_IMG
     result.strip
+  end
+
+  def generate_img
+    img_classes = @props.classes || 'rounded shadow'
+    <<~END_IMG
+      <img #{@props.attr_alt}
+        class="imgImg #{img_classes.squish}"
+        src="#{@props.src_png}"
+        #{@props.attr_style_img}
+        #{@props.attr_title}
+      />
+    END_IMG
   end
 end

@@ -1,9 +1,11 @@
 require 'jekyll'
 require 'jekyll_plugin_logger'
+require 'helper/jekyll_plugin_helper'
+require 'jekyll_plugin_support'
 require 'rspec/match_ignoring_whitespace'
 require_relative '../lib/jekyll_img'
 
-Registers = Struct.new(:page, :site)
+Registers = Struct.new(:page, :site) unless defined? :Registers
 
 # Mock for Collections
 class Collections
@@ -46,10 +48,11 @@ class MyTest
     let(:parse_context) { TestParseContext.new }
 
     let(:helper) do
-      JekyllPluginHelper.new(
+      ::JekyllSupport::JekyllPluginHelper.new(
         'img',
         'src="./blah.webp"',
-        logger
+        logger,
+        false
       )
     end
 
@@ -61,7 +64,7 @@ class MyTest
         helper.markup.dup,
         parse_context
       )
-      result = img.send(:render_impl, helper.markup)
+      result = img.send(:render_impl)
       expect(result).to match_ignoring_whitespace <<-END_RESULT
         <img src="./blah.webp">
       END_RESULT

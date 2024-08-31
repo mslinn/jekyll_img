@@ -189,7 +189,7 @@ pre {
 }
 
 #imgContainer {
-  display: inline-f1x;
+  display: inline-flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;

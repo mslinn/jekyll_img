@@ -115,8 +115,12 @@ li > .imgWrapper {
   float: right;
 }
 
-.right .imgImg, .right {
+.right {
   margin-left: 1em;
+}
+
+.right .imgImg {
+  margin-left: 0;
 }
 
 .rounded {

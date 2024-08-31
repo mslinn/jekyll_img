@@ -1,5 +1,11 @@
 example_id                      | status | run_time        |
 ------------------------------- | ------ | --------------- |
-./spec/img_builder_spec.rb[1:1] | passed | 0.00195 seconds |
-./spec/img_builder_spec.rb[1:2] | passed | 0.00839 seconds |
-./spec/img_builder_spec.rb[1:3] | passed | 0.0054 seconds  |
+./spec/img_builder_spec.rb[1:1] | passed | 0.00182 seconds |
+./spec/img_builder_spec.rb[1:2] | passed | 0.00618 seconds |
+./spec/img_builder_spec.rb[1:3] | passed | 0.00579 seconds |
+./spec/img_props_spec.rb[1:1]   | passed | 0.00075 seconds |
+./spec/img_props_spec.rb[1:2]   | passed | 0.00004 seconds |
+./spec/img_props_spec.rb[1:3]   | passed | 0.00066 seconds |
+./spec/img_props_spec.rb[1:4]   | passed | 0.00108 seconds |
+./spec/img_props_spec.rb[1:5]   | passed | 0.00008 seconds |
+./spec/jekyll_img_spec.rb[1:1]  | failed | 0.00086 seconds |
