@@ -10,6 +10,7 @@ class ImgProperties
                 :url, :wrapper_class, :wrapper_style
 
   SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
+  UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze
 
   def attr_alt
     "alt='#{@alt}'" if @alt
@@ -69,13 +70,7 @@ class ImgProperties
   end
 
   def src_any(filetype)
-    @src.gsub('.webp', ".#{filetype}")
-  end
-
-  def src_png
-    raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.to_s.empty?
-
-    @src.gsub('.webp', '.png')
+    @src.gsub(/\..*?$/, ".#{filetype}")
   end
 
   def self.local_path?(src)
@@ -85,6 +80,7 @@ class ImgProperties
 
   private
 
+  # TODO: rewrite this using Source class
   def setup_src
     raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.nil?
 
@@ -102,8 +98,6 @@ class ImgProperties
     # src = @src.start_with?('/') ? ".#{@src}" : @src
     # raise Jekyll::ImgError, "#{@src} does not exist" unless File.exist?(src)
   end
-
-  UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze
 
   def size_unit_specified?
     return false if @size == false || @size.to_s.strip.empty?

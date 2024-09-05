@@ -5,6 +5,7 @@ last_modified_at: 2023-01-14
 layout: default
 title: Usage Examples
 ---
+<!-- #region Src Not Specified -->
 <h2 id="noSrc">Src Not Specified</h2>
 <fieldset class="blackBorder">
   <legend>Three error messages should result</legend>
@@ -18,10 +19,25 @@ title: Usage Examples
 {% img src='https://mslinn.com/images/mike/DSC01923_square_120x120.webp' %}
 </fieldset>
 
-
 <p class="alert rounded shadow">
   All of the following examples have a <code>src</code> parameter.
 </p>
+<!-- endregion -->
+
+
+<!-- #region Individual Images -->
+<h2 id="ind">Individual Images</h2>
+<fieldset class="blackBorder">
+  <legend>PNG, no WEBP</legend>
+  {% img src="/assets/images/png.png" %}
+</fieldset>
+
+<fieldset class="blackBorder">
+  <legend>WEBP, no PNG</legend>
+  {% img src="/assets/images/webp.webp" %}
+</fieldset>
+<!-- endregion -->
+
 
 <h2 id="notFound">File Not Found</h2>
 <fieldset class="blackBorder">

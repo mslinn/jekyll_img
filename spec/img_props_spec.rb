@@ -37,7 +37,7 @@ class ImgProperitesTest
 
     it 'raises exception if src was not specified' do
       props = described_class.new
-      expect { props.src_png }.to raise_error(Jekyll::ImgError)
+      expect { props.src_fallback }.to raise_error(Jekyll::ImgError)
       expect { props.send(:setup_src) }.to raise_error(Jekyll::ImgError)
 
       props.src = 'relative/path.webp'

@@ -59,9 +59,11 @@ class ImgBuilder
 
   # @return Array[String] containing HTML source elements
   def generate_sources(filetypes, mimetype)
+    return '' if @src.nil? || @src.start_with?('http')
+
     result = filetypes.map do |ftype|
       filename = @props.src_any ftype
-      next unless filename.start_with?('http') || File.exist?("./#{filename}")
+      next unless File.exist?("./#{filename}")
 
       <<~END_HTML
         <source srcset="#{filename}" type="#{mimetype}">
@@ -104,7 +106,7 @@ class ImgBuilder
     <<~END_IMG
       <img #{@props.attr_alt}
         class="imgImg #{img_classes.squish}"
-        src="#{@props.src_png}"
+        src="#{@props.src_fallback}"
         #{@props.attr_style_img}
         #{@props.attr_title}
       />

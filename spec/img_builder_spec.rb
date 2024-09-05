@@ -7,12 +7,20 @@ class ImgPropertiesTest
   RSpec.describe ImgBuilder do
     Dir.chdir("demo")
 
-    it 'generates sources' do
+    it 'generates sources 1' do
       props = ImgProperties.new
       props.src = 'jekyll.webp'
       builder = described_class.new(props)
       actual = builder.send(:generate_sources, ['png'], 'image/png')
       expect(actual).to contain_exactly('<source srcset="/assets/images/jekyll.png" type="image/png">')
+    end
+
+    it 'generates sources 2' do
+      props = ImgProperties.new
+      props.src = 'png.png'
+      builder = described_class.new(props)
+      actual = builder.send(:generate_compact_sources).split("\n")
+      expect(actual.count).to be(1)
     end
 
     it 'generates a default img' do
