@@ -40,8 +40,8 @@ class ImgPropertiesTest
         </div>
       END_IMG
 
-      expect(builder.send(:generate_figure_caption)).to be_nil
-      expect(builder.send(:generate_wrapper)).to        match_ignoring_whitespace(picture)
+      expect(builder.send(:generate_figcaption)).to be_nil
+      expect(builder.send(:generate_wrapper)).to match_ignoring_whitespace(picture)
     end
 
     it 'generates an img with size and caption' do
@@ -75,8 +75,8 @@ class ImgPropertiesTest
         </div>
       END_IMG
 
-      expect(builder.send(:generate_figure_caption)).to match_ignoring_whitespace(caption)
-      expect(builder.send(:generate_wrapper)).to        match_ignoring_whitespace(picture)
+      expect(builder.send(:generate_figcaption)).to match_ignoring_whitespace(caption)
+      expect(builder.send(:generate_wrapper)).to match_ignoring_whitespace(picture)
     end
   end
 end

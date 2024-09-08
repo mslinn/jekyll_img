@@ -1,5 +1,9 @@
-# Like RoR's squish method
 class String
+  def remove_blank_lines
+    strip.gsub(/^\s*$\n/, '')
+  end
+
+  # Like RoR's squish method
   def squish
     strip.gsub(/\s+/, ' ')
   end
@@ -10,95 +14,15 @@ class ImgBuilder
   def initialize(props)
     props.compute_dependant_properties
     @props = props
+    @source = Source.new @props.src
   end
 
-  def to_s
-    @props.compute_dependant_properties
-    generate_wrapper
-  end
-
-  private
-
-  def generate_wrapper
-    classes = "imgWrapper #{@props.img_display} #{@props.align} #{@props.attr_size_class} #{@props.wrapper_class}".squish
-    result = <<~END_HTML
-      <div class='#{classes}' style='#{@props.attr_width_style} #{@props.wrapper_style}'>
-        #{"<figure>\n" if @props.caption}
-          #{ if @props.url
-               "<a href='#{@props.url}'#{@props.attr_target}#{@props.attr_nofollow} class='imgImgUrl'>#{generate_image}</a>"
-             else
-               generate_image
-             end
-          }
-          #{generate_figure_caption}
-        #{"</figure>\n" if @props.caption}
-        #{@props.attribute if @props.attribution}
-      </div>
-    END_HTML
-    result.strip.gsub(/^\s*$\n/, '')
-  end
-
-  def generate_figure_caption
-    return nil unless @props.caption
-
+  def generate_figcaption
     <<~END_CAPTION
       <figcaption class='imgFigCaption #{@props.attr_size_class}'>
-        #{if @props.url
-            <<~END_URL
-              <a href="#{@props.url}" #{@props.attr_target} #{@props.attr_nofollow}>
-                #{@props.caption}
-              </a>
-            END_URL
-          else
-            @props.caption
-          end
-        }
+        #{@props.url ? generate_url_caption : @props.caption}
       </figcaption>
     END_CAPTION
-  end
-
-  # @return Array[String] containing HTML source elements
-  def generate_sources(filetypes, mimetype)
-    return '' if @src.nil? || @src.start_with?('http')
-
-    result = filetypes.map do |ftype|
-      filename = @props.src_any ftype
-      next unless File.exist?("./#{filename}")
-
-      <<~END_HTML
-        <source srcset="#{filename}" type="#{mimetype}">
-      END_HTML
-    end
-    result&.compact&.map(&:strip)
-  end
-
-  def generate_compact_sources
-    [
-      generate_sources(%w[svg], 'image/svg'),
-      generate_sources(%w[webp], 'image/webp'),
-      generate_sources(%w[png], 'image/png'),
-      generate_sources(%w[apng], 'image/apng'),
-      generate_sources(%w[jpg jpeg jfif pjpeg pjp], 'image/jpeg'),
-      generate_sources(%w[gif], 'image/gif'),
-      generate_sources(%w[tif tiff], 'image/tiff'),
-      generate_sources(%w[bmp], 'image/bmp'),
-      generate_sources(%w[cur ico], 'image/x-icon')
-    ].compact.join("\n").strip.gsub(/^$\n/, '')
-  end
-
-  # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
-  def generate_image
-    return generate_img if @props.src.start_with? 'http'
-
-    # avif is not well supported yet
-    # <source srcset="#{@props.src_any 'avif'}" type="image/avif">
-    result = <<~END_IMG
-      <picture#{@props.attr_id} class='imgPicture'>
-        #{generate_compact_sources}
-        #{generate_img}
-      </picture>
-    END_IMG
-    result.strip
   end
 
   def generate_img
@@ -111,5 +35,54 @@ class ImgBuilder
         #{@props.attr_title}
       />
     END_IMG
+  end
+
+  # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
+  def generate_picture
+    return generate_img if @props.src.start_with? 'http'
+
+    # avif is not well supported yet
+    # <source srcset="#{@props.src_any 'avif'}" type="image/avif">
+    result = <<~END_IMG
+      <picture#{@props.attr_id} class='imgPicture'>
+        #{@source.generate}
+        #{generate_img}
+      </picture>
+    END_IMG
+    result.strip
+  end
+
+  def generate_url_caption
+    <<~END_URL
+      <a href="#{@props.url}"#{@props.attr_target}#{@props.attr_nofollow}>
+        #{@props.caption}
+      </a>
+    END_URL
+  end
+
+  def generate_url_wrapper
+    <<~END_HTML
+      <a href='#{@props.url}'#{@props.attr_target}#{@props.attr_nofollow} class='imgImgUrl'>
+        #{generate_picture}
+      </a>
+    END_HTML
+  end
+
+  def generate_wrapper
+    classes = "imgWrapper #{@props.img_display} #{@props.align} #{@props.attr_size_class} #{@props.wrapper_class}".squish
+    <<~END_HTML.remove_blank_lines
+      <div class='#{classes}' style='#{@props.attr_width_style} #{@props.wrapper_style}'>
+        #{"<figure>\n" if @props.caption}
+          #{@props.url ? generate_url_wrapper : generate_picture}
+          #{generate_figcaption @props.caption}
+        #{"</figure>\n" if @props.caption}
+        #{@props.attribute if @props.attribution}
+      </div>
+    END_HTML
+  end
+
+  def to_s
+    @props.compute_dependant_properties
+    generate_wrapper
   end
 end

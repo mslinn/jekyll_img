@@ -9,45 +9,17 @@ class Source
     @path = path
   end
 
-  def mimetype(path)
-    case FileUtils.extname(path)
-    when '.svg'
-      'image/svg'
-    when '.webp'
-      'image/webp'
-    when '.png'
-      'image/png'
-    when '.apng'
-      'image/apng'
-    when %w[.jpg .jpeg .jfif .pjpeg .pjp]
-      'image/jpeg'
-    when '.gif'
-      'image/gif'
-    when %w[.tif .tiff]
-      'image/tiff'
-    when '.bmp'
-      'image/bmp'
-    when %w[cur ico]
-      'image/x-icon'
-      # else
-      # raise Jekyll::ImgError, "#{path} has an unrecognized filetype."
-    end
-  end
-
-  def globbed_path
-    dir = File.dirname @path
-    base = File.basename @path, ".*"
-    "#{dir}/#{base}.*"
-  end
-
   # @return array of source statements for filetypes that exist locally;
   #         return nil if @path points to a remote image
-  def generate_sources
-    return nil if @path.start_with?('http')
+  def generate
+    return nil if @path.nil? || @path.start_with?('http')
 
     result = Dir[globbed_path].map do |filename|
+      mtype = mimetype filename
+      next unless mtype
+
       <<~END_HTML
-        <source srcset="#{filename}" type="#{mimetype filename}">
+        <source srcset="#{filename}" type="#{mtype}">
       END_HTML
     end
     result&.compact&.map(&:strip)
@@ -72,5 +44,38 @@ class Source
       return filename unless ext == '.webp'
     end
     @path
+  end
+
+  private
+
+  def globbed_path
+    dir = File.dirname @path
+    base = File.basename @path, ".*"
+    "#{dir}/#{base}.*"
+  end
+
+  def mimetype(path)
+    case FileUtils.extname(path)
+    when '.svg'
+      'image/svg'
+    when '.webp'
+      'image/webp'
+    when '.png'
+      'image/png'
+    when '.apng'
+      'image/apng'
+    when %w[.jpg .jpeg .jfif .pjpeg .pjp]
+      'image/jpeg'
+    when '.gif'
+      'image/gif'
+    when %w[.tif .tiff]
+      'image/tiff'
+    when '.bmp'
+      'image/bmp'
+    when %w[cur ico]
+      'image/x-icon'
+      # else
+      # raise Jekyll::ImgError, "#{path} has an unrecognized filetype."
+    end
   end
 end
