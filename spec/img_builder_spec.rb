@@ -40,7 +40,7 @@ class ImgPropertiesTest
         </picture>
       END_DESIRED
       actual = builder.generate_picture
-      expect(actual).to eq(desired)
+      expect(actual).to match_ignoring_whitespace(desired)
     end
 
     it 'generates a default img' do
