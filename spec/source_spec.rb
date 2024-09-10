@@ -6,8 +6,8 @@ class ImgPropertiesTest
   RSpec.describe Source do
     source = described_class.new('demo/assets/images/jekyll_240x103.webp')
 
-    it 'generates source fallback' do
-      expect(source.src_fallback).to eq("demo/assets/images/jekyll_240x103.png")
+    it 'globs paths' do
+      expect(source.send(:globbed_path)).to eq("demo/assets/images/jekyll_240x103.*")
     end
 
     it 'generates mimetype' do
@@ -18,8 +18,8 @@ class ImgPropertiesTest
       expect(source.send(:mimetype, 'blah.blah')).to be_nil
     end
 
-    it 'globs paths' do
-      expect(source.send(:globbed_path)).to eq("demo/assets/images/jekyll_240x103.*")
+    it 'generates source fallback' do
+      expect(source.src_fallback).to eq("demo/assets/images/jekyll_240x103.png")
     end
   end
 end
