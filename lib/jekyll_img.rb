@@ -3,6 +3,7 @@ require 'helper/jekyll_plugin_helper'
 require 'pry'
 require_relative 'img_builder'
 require_relative 'img_props'
+require_relative 'source'
 require_relative 'jekyll_img/version'
 
 # @author Copyright 2023 Michael Slinn

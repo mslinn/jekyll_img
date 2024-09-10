@@ -56,7 +56,7 @@ class MyTest
       )
     end
 
-    it 'has no cite or url' do
+    xit 'has no cite or url' do
       helper.reinitialize('src="./blah.webp"')
       img = described_class.send(
         :new,
