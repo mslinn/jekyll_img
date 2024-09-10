@@ -80,9 +80,8 @@ class ImgProperties
 
   private
 
-  # TODO: rewrite this using Source class
   def setup_src
-    raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.nil?
+    raise Jekyll::ImgError, "The 'src' parameter was not specified" if @src.nil? || [true, false].include?(@src)
 
     raise Jekyll::ImgError, "The 'src' parameter was empty" if @src.empty?
 

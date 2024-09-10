@@ -64,10 +64,11 @@ class MyTest
         helper.markup.dup,
         parse_context
       )
-      result = img.send(:render_impl)
-      expect(result).to match_ignoring_whitespace <<-END_RESULT
+      actual = img.render_impl
+      desired = <<~END_DESIRED
         <img src="./blah.webp">
-      END_RESULT
+      END_DESIRED
+      expect(actual).to match_ignoring_whitespace(desired)
     end
   end
 end

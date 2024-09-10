@@ -1,6 +1,6 @@
 require_relative '../lib/img_props'
 
-class ImgProperitesTest
+class ImgPropertiesTest
   RSpec.describe ImgProperties do
     it 'detects relative paths' do
       expect(described_class.local_path?('abcdef')).to be false
@@ -37,7 +37,7 @@ class ImgProperitesTest
 
     it 'raises exception if src was not specified' do
       props = described_class.new
-      expect { props.src_fallback }.to raise_error(Jekyll::ImgError)
+      expect { props.compute_dependant_properties }.to raise_error(Jekyll::ImgError)
       expect { props.send(:setup_src) }.to raise_error(Jekyll::ImgError)
 
       props.src = 'relative/path.webp'

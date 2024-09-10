@@ -1,7 +1,18 @@
 example_id                      | status | run_time        |
 ------------------------------- | ------ | --------------- |
-./spec/img_builder_spec.rb[1:1] | passed | 0.00518 seconds |
+./spec/img_builder_spec.rb[1:1] | passed | 0.00225 seconds |
 ./spec/img_builder_spec.rb[1:2] | passed | 0.00009 seconds |
-./spec/img_builder_spec.rb[1:3] | passed | 0.00121 seconds |
-./spec/img_builder_spec.rb[1:4] | passed | 0.00161 seconds |
-./spec/img_builder_spec.rb[1:5] | passed | 30.03 seconds   |
+./spec/img_builder_spec.rb[1:3] | passed | 0.00135 seconds |
+./spec/img_builder_spec.rb[1:4] | passed | 0.00157 seconds |
+./spec/img_builder_spec.rb[1:5] | passed | 0.00162 seconds |
+./spec/img_props_spec.rb[1:1]   | passed | 0.00411 seconds |
+./spec/img_props_spec.rb[1:2]   | passed | 0.00005 seconds |
+./spec/img_props_spec.rb[1:3]   | passed | 0.00808 seconds |
+./spec/img_props_spec.rb[1:4]   | passed | 0.00711 seconds |
+./spec/img_props_spec.rb[1:5]   | passed | 0.0001 seconds  |
+./spec/jekyll_img_spec.rb[1:1]  | failed | 0.02004 seconds |
+./spec/source_spec.rb[1:1]      | passed | 0.00007 seconds |
+./spec/source_spec.rb[1:2]      | failed | 0.00036 seconds |
+./spec/source_spec.rb[1:3]      | passed | 0.00006 seconds |
+./spec/source_spec.rb[1:4]      | failed | 0.00032 seconds |
+./spec/source_spec.rb[1:5]      | failed | 0.00029 seconds |
