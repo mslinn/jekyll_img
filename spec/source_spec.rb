@@ -11,10 +11,10 @@ class ImgPropertiesTest
     end
 
     it 'generates mimetype' do
-      expect(source.send(:mimetype, 'blah.png')).to eq('image/png')
-      expect(source.send(:mimetype, 'blah.svg')).to eq('image/svg')
+      expect(source.send(:mimetype, 'blah.png')).to  eq('image/png')
+      expect(source.send(:mimetype, 'blah.svg')).to  eq('image/svg')
       expect(source.send(:mimetype, 'blah.webp')).to eq('image/webp')
-      expect(source.send(:mimetype, 'blah.gif')).to eq('image/gif')
+      expect(source.send(:mimetype, 'blah.gif')).to  eq('image/gif')
       expect(source.send(:mimetype, 'blah.blah')).to be_nil
     end
 
