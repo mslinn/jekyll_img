@@ -8,14 +8,14 @@ class ImgPropertiesTest
   RSpec.describe ImgBuilder do
     Dir.chdir("demo")
     props = ImgProperties.new
-    props.src = './assets/images/jekyll.webp'
+    props.src = '/assets/images/jekyll.webp'
     builder = described_class.new(props)
 
     it 'generates sources' do
       actual = builder.source.generate
       desired = [
-        '<source srcset="./assets/images/jekyll.webp" type="image/webp">',
-        '<source srcset="./assets/images/jekyll.png" type="image/png">'
+        '<source srcset="/assets/images/jekyll.webp" type="image/webp">',
+        '<source srcset="/assets/images/jekyll.png" type="image/png">'
       ]
       expect(actual).to match_array(desired)
     end
@@ -31,10 +31,10 @@ class ImgPropertiesTest
     it 'generates a picture' do
       desired = <<~END_DESIRED
         <picture class='imgPicture'>
-          <source srcset="./assets/images/jekyll.webp" type="image/webp">
-          <source srcset="./assets/images/jekyll.png" type="image/png">
+          <source srcset="/assets/images/jekyll.webp" type="image/webp">
+          <source srcset="/assets/images/jekyll.png" type="image/png">
           <img class="imgImg rounded shadow"
-            src="./assets/images/jekyll.png"
+            src="/assets/images/jekyll.png"
             style='width: 100%; '
           />
         </picture>
@@ -47,10 +47,10 @@ class ImgPropertiesTest
       desired = <<~END_IMG
         <div class='imgWrapper imgFlex' style=' '>
           <picture class='imgPicture'>
-            <source srcset="./assets/images/jekyll.webp" type="image/webp">
-            <source srcset="./assets/images/jekyll.png" type="image/png">
+            <source srcset="/assets/images/jekyll.webp" type="image/webp">
+            <source srcset="/assets/images/jekyll.png" type="image/png">
             <img class="imgImg rounded shadow"
-              src="./assets/images/jekyll.png"
+              src="/assets/images/jekyll.png"
               style='width: 100%; '
             />
           </picture>
@@ -76,11 +76,11 @@ class ImgPropertiesTest
         <div class='imgWrapper imgBlock' style='width: 123px; '>
           <figure>
             <picture class='imgPicture'>
-              <source srcset="./assets/images/jekyll.webp" type="image/webp">
-              <source srcset="./assets/images/jekyll.png" type="image/png">
+              <source srcset="/assets/images/jekyll.webp" type="image/webp">
+              <source srcset="/assets/images/jekyll.png" type="image/png">
               <img alt='This is a caption'
                 class="imgImg rounded shadow"
-                src="./assets/images/jekyll.png"
+                src="/assets/images/jekyll.png"
                 style='width: 100%; '
                 title='This is a caption'
               />

@@ -35,19 +35,21 @@ class Source
   def src_fallback
     return @path if @path.start_with? 'http'
 
-    return @path unless @path.end_with? '.webp' # we know @path will be a webp after this
-
-    png = @path.gsub(/\.webp$/, '.png')
+    result = @absolute_path ? @path.delete_prefix('.') : @path
+    png = result.gsub(/\.webp$/, '.png')
     return png if File.exist? png
+    return result unless result.end_with? '.webp' # we know @path will be a webp after this
 
-    files = Dir[globbed_path]
+    files = sorted_files
     return files[0] if files.count == 1
 
     files.each do |filename|
       ext = File.extname filename
-      return filename unless ext == '.webp'
+      unless ext == '.webp'
+        return @absolute_path ? filename.delete_prefix('.') : filename
+      end
     end
-    @path
+    result
   end
 
   private
@@ -88,8 +90,11 @@ class Source
   def sorted_files
     sorted = Dir[globbed_path].sort_by do |path|
       ext = File.extname(path)
+      ext = ext.delete_prefix('.') if @absolute_path
       index = RANKS.index(ext)
-      index || RANKS_LENGTH
+      result = index || RANKS_LENGTH
+      # puts "path=#{path}; ext=#{ext}; index=#{index}; result=#{result}"
+      result
     end
     sorted.map { |x| @absolute_path ? x.delete_prefix('.') : x }
   end
