@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.2.6 / 2024-08-30
+## 0.2.6 / 2024-09-10
 
 * Optimized the generated HTML.
   For example, `srcset` elements are now only generated for images that actually exit locally.
