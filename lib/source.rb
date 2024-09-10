@@ -51,8 +51,10 @@ class Source
 
   private
 
+  # Convert absolute paths (which reference the website root) to relative paths for globbing
   def globbed_path
     dir = File.dirname @path
+    dir = ".#{dir}" if dir.start_with?('/')
     base = File.basename @path, ".*"
     "#{dir}/#{base}.*"
   end
