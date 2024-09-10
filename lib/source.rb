@@ -87,10 +87,10 @@ class Source
 
   def sorted_files
     sorted = Dir[globbed_path].sort_by do |path|
-      ext = File.extname(path).delete_prefix('.')
+      ext = File.extname(path)
       index = RANKS.index(ext)
       index || RANKS_LENGTH
     end
-    sorted.map { |x| x.delete_prefix '.' if @absolute_path }
+    sorted.map { |x| @absolute_path ? x.delete_prefix('.') : x }
   end
 end
