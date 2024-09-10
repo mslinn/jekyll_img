@@ -62,10 +62,8 @@ class ImgPropertiesTest
     end
 
     it 'generates an img wrapper with size and caption' do
-      props = ImgProperties.new
       props.caption = 'This is a caption'
       props.size = '123px'
-      props.src = 'jekyll.webp'
       builder = described_class.new(props)
 
       caption = <<~END_CAPTION
@@ -78,11 +76,11 @@ class ImgPropertiesTest
         <div class='imgWrapper imgBlock' style='width: 123px; '>
           <figure>
             <picture class='imgPicture'>
-              <source srcset="/assets/images/jekyll.webp" type="image/webp">
-              <source srcset="/assets/images/jekyll.png" type="image/png">
+              <source srcset="./assets/images/jekyll.webp" type="image/webp">
+              <source srcset="./assets/images/jekyll.png" type="image/png">
               <img alt='This is a caption'
                 class="imgImg rounded shadow"
-                src="/assets/images/jekyll.png"
+                src="./assets/images/jekyll.png"
                 style='width: 100%; '
                 title='This is a caption'
               />
@@ -92,7 +90,8 @@ class ImgPropertiesTest
         </div>
       END_IMG
 
-      expect(builder.generate_wrapper).to match_ignoring_whitespace(desired)
+      actual = builder.generate_wrapper
+      expect(actual).to match_ignoring_whitespace(desired)
     end
   end
 end

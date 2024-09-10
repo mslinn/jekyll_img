@@ -76,7 +76,7 @@ class ImgBuilder
       <div class='#{classes}' style='#{@props.attr_width_style} #{@props.wrapper_style}'>
         #{"<figure>\n" if @props.caption}
           #{@props.url ? generate_url_wrapper : generate_picture}
-          #{generate_figcaption}
+          #{generate_figcaption if @props.caption}
         #{"</figure>\n" if @props.caption}
         #{@props.attribute if @props.attribution}
       </div>
