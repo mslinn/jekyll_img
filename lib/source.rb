@@ -10,6 +10,7 @@ class Source
     raise Jekyll::ImgError, "The 'src' parameter only contained whitespace" if path.empty?
 
     @path = path
+    @absolute_path = @path.start_with?('/')
   end
 
   # @return array of source statements for filetypes that exist locally;
@@ -85,10 +86,11 @@ class Source
   end
 
   def sorted_files
-    Dir[globbed_path].sort_by do |path|
+    sorted = Dir[globbed_path].sort_by do |path|
       ext = File.extname(path).delete_prefix('.')
       index = RANKS.index(ext)
       index || RANKS_LENGTH
     end
+    sorted.map { |x| x.delete_prefix '.' if @absolute_path }
   end
 end
