@@ -17,5 +17,9 @@ class ImgPropertiesTest
       expect(source.send(:mimetype, 'blah.gif')).to eq('image/gif')
       expect(source.send(:mimetype, 'blah.blah')).to be_nil
     end
+
+    it 'globs paths' do
+      expect(source.send(:globbed_path)).to eq("demo/assets/images/jekyll_240x103.*")
+    end
   end
 end
