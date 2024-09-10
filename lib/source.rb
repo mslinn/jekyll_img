@@ -55,7 +55,7 @@ class Source
   end
 
   def mimetype(path)
-    case FileUtils.extname(path)
+    case File.extname(path)
     when '.svg'
       'image/svg'
     when '.webp'

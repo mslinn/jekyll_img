@@ -4,10 +4,18 @@ require_relative '../lib/source'
 # Test ImgProperties
 class ImgPropertiesTest
   RSpec.describe Source do
+    source = described_class.new('demo/assets/images/jekyll_240x103.webp')
+
     it 'generates source fallback' do
-      source = described_class.new('demo/assets/images/jekyll_240x103.webp')
-      actual = source.src_fallback
-      expect(actual).to eq("demo/assets/images/jekyll_240x103.png")
+      expect(source.src_fallback).to eq("demo/assets/images/jekyll_240x103.png")
+    end
+
+    it 'generates mimetype' do
+      expect(source.send(:mimetype, 'blah.png')).to eq('image/png')
+      expect(source.send(:mimetype, 'blah.svg')).to eq('image/svg')
+      expect(source.send(:mimetype, 'blah.webp')).to eq('image/webp')
+      expect(source.send(:mimetype, 'blah.gif')).to eq('image/gif')
+      expect(source.send(:mimetype, 'blah.blah')).to be_nil
     end
   end
 end
