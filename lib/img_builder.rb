@@ -11,6 +11,8 @@ end
 
 # Constructs HTML img tag from properties
 class ImgBuilder
+  attr_reader :source
+
   def initialize(props)
     props.compute_dependant_properties
     @props = props
@@ -30,7 +32,7 @@ class ImgBuilder
     <<~END_IMG
       <img #{@props.attr_alt}
         class="imgImg #{img_classes.squish}"
-        src="#{@props.src_fallback}"
+        src="#{@source.src_fallback}"
         #{@props.attr_style_img}
         #{@props.attr_title}
       />
@@ -74,7 +76,7 @@ class ImgBuilder
       <div class='#{classes}' style='#{@props.attr_width_style} #{@props.wrapper_style}'>
         #{"<figure>\n" if @props.caption}
           #{@props.url ? generate_url_wrapper : generate_picture}
-          #{generate_figcaption @props.caption}
+          #{generate_figcaption}
         #{"</figure>\n" if @props.caption}
         #{@props.attribute if @props.attribution}
       </div>

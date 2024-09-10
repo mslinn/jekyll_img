@@ -21,5 +21,12 @@ class ImgPropertiesTest
     it 'generates source fallback' do
       expect(source.src_fallback).to eq("demo/assets/images/jekyll_240x103.png")
     end
+
+    it 'generates sources' do
+      actual = source.generate
+      expect(actual).to contain_exactly('<source srcset="demo/assets/images/jekyll_240x103.gif" type="image/gif">',
+                                        '<source srcset="demo/assets/images/jekyll_240x103.png" type="image/png">',
+                                        '<source srcset="demo/assets/images/jekyll_240x103.webp" type="image/webp">')
+    end
   end
 end

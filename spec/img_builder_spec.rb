@@ -1,47 +1,41 @@
 require 'rspec/match_ignoring_whitespace'
 require_relative '../lib/img_builder'
 require_relative '../lib/img_props'
+require_relative '../lib/source'
 
 # Test ImgProperties
 class ImgPropertiesTest
   RSpec.describe ImgBuilder do
     Dir.chdir("demo")
+    props = ImgProperties.new
+    props.src = './assets/images/jekyll.webp'
+    builder = described_class.new(props)
 
     it 'generates sources 1' do
-      props = ImgProperties.new
-      props.src = 'jekyll.webp'
-      builder = described_class.new(props)
-      actual = builder.send(:generate_sources, ['png'], 'image/png')
-      expect(actual).to contain_exactly('<source srcset="/assets/images/jekyll.png" type="image/png">')
+      actual = builder.source.generate
+      expect(actual).to contain_exactly('<source srcset="./assets/images/jekyll.png" type="image/png">',
+                                        '<source srcset="./assets/images/jekyll.webp" type="image/webp">')
     end
 
-    it 'generates sources 2' do
-      props = ImgProperties.new
-      props.src = 'png.png'
-      builder = described_class.new(props)
-      actual = builder.send(:generate_compact_sources).split("\n")
-      expect(actual.count).to be(1)
+    it 'generates a figcaption' do
+      expect(builder.send(:generate_figcaption)).to eq("<figcaption class='imgFigCaption '>\n  \n</figcaption>\n")
     end
 
     it 'generates a default img' do
-      props = ImgProperties.new
-      props.src = 'jekyll.webp'
-      builder = described_class.new(props)
       picture = <<~END_IMG
         <div class='imgWrapper imgFlex' style=' '>
           <picture class='imgPicture'>
-            <source srcset="/assets/images/jekyll.webp" type="image/webp">
-            <source srcset="/assets/images/jekyll.png" type="image/png">
+            <source srcset="./assets/images/jekyll.webp" type="image/webp">
+            <source srcset="./assets/images/jekyll.png" type="image/png">
             <img class="imgImg rounded shadow"
-              src="/assets/images/jekyll.png"
+              src="./assets/images/jekyll.png"
               style='width: 100%; '
             />
           </picture>
         </div>
       END_IMG
 
-      expect(builder.send(:generate_figcaption)).to be_nil
-      expect(builder.send(:generate_wrapper)).to match_ignoring_whitespace(picture)
+      expect(builder.generate_wrapper).to match_ignoring_whitespace(picture)
     end
 
     it 'generates an img with size and caption' do
@@ -75,8 +69,8 @@ class ImgPropertiesTest
         </div>
       END_IMG
 
-      expect(builder.send(:generate_figcaption)).to match_ignoring_whitespace(caption)
-      expect(builder.send(:generate_wrapper)).to match_ignoring_whitespace(picture)
+      expect(builder.generate_figcaption).to match_ignoring_whitespace(caption)
+      expect(builder.generate_wrapper).to match_ignoring_whitespace(picture)
     end
   end
 end
