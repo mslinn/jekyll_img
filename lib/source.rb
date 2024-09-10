@@ -17,7 +17,7 @@ class Source
   def generate
     return nil if @path.nil? || @path.start_with?('http')
 
-    sorted_files.map do |filename|
+    result = sorted_files.map do |filename|
       mtype = mimetype filename
       next unless mtype
 

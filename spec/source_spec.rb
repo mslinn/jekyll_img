@@ -35,13 +35,13 @@ class ImgPropertiesTest
     end
 
     it 'generates sources' do
-      actual = source.generate
+      actual = source.generate.join("\n")
       desired = <<~END_DESIRED
         <source srcset="demo/assets/images/jekyll_240x103.webp" type="image/webp">
         <source srcset="demo/assets/images/jekyll_240x103.png" type="image/png">
         <source srcset="demo/assets/images/jekyll_240x103.gif" type="image/gif">
       END_DESIRED
-      expect(actual).to contain_exactly(desired)
+      expect(actual).to match_ignoring_whitespace(desired)
     end
   end
 end
