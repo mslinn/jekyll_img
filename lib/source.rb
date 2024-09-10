@@ -1,4 +1,7 @@
 class Source
+  RANKS = %w[webp apng png jpg jpeg jfif pjpeg pjp svg gif tif tiff bmp cur ico].freeze
+  RANKS_LENGTH = RANKS.length
+
   def initialize(path)
     raise Jekyll::ImgError, "The 'src' parameter was not specified" if path.nil?
     raise Jekyll::ImgError, "The 'src' parameter was empty" if path.empty?
@@ -14,7 +17,7 @@ class Source
   def generate
     return nil if @path.nil? || @path.start_with?('http')
 
-    result = Dir[globbed_path].map do |filename|
+    sorted_files.map do |filename|
       mtype = mimetype filename
       next unless mtype
 
@@ -76,6 +79,14 @@ class Source
       'image/x-icon'
       # else
       # raise Jekyll::ImgError, "#{path} has an unrecognized filetype."
+    end
+  end
+
+  def sorted_files
+    Dir[globbed_path].sort_by do |path|
+      ext = File.extname(path).delete_prefix('.')
+      index = RANKS.index(ext)
+      index || RANKS_LENGTH
     end
   end
 end

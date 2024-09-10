@@ -11,18 +11,40 @@ class ImgPropertiesTest
     props.src = './assets/images/jekyll.webp'
     builder = described_class.new(props)
 
-    it 'generates sources 1' do
+    it 'generates sources' do
       actual = builder.source.generate
-      expect(actual).to contain_exactly('<source srcset="./assets/images/jekyll.png" type="image/png">',
-                                        '<source srcset="./assets/images/jekyll.webp" type="image/webp">')
+      desired = [
+        '<source srcset="./assets/images/jekyll.webp" type="image/webp">',
+        '<source srcset="./assets/images/jekyll.png" type="image/png">'
+      ]
+      expect(actual).to match_array(desired)
     end
 
     it 'generates a figcaption' do
-      expect(builder.send(:generate_figcaption)).to eq("<figcaption class='imgFigCaption '>\n  \n</figcaption>\n")
+      desired = <<~END_STRING
+        <figcaption class='imgFigCaption '>
+        </figcaption>
+      END_STRING
+      expect(builder.generate_figcaption).to match_ignoring_whitespace(desired)
+    end
+
+    it 'generates a picture' do
+      desired = <<~END_DESIRED
+        <picture class='imgPicture'>
+          <source srcset="./assets/images/jekyll.webp" type="image/webp">
+          <source srcset="./assets/images/jekyll.png" type="image/png">
+          <img class="imgImg rounded shadow"
+            src="./assets/images/jekyll.png"
+            style='width: 100%; '
+          />
+        </picture>
+      END_DESIRED
+      actual = builder.generate_picture
+      expect(actual).to eq(desired)
     end
 
     it 'generates a default img' do
-      picture = <<~END_IMG
+      desired = <<~END_IMG
         <div class='imgWrapper imgFlex' style=' '>
           <picture class='imgPicture'>
             <source srcset="./assets/images/jekyll.webp" type="image/webp">
@@ -35,10 +57,11 @@ class ImgPropertiesTest
         </div>
       END_IMG
 
-      expect(builder.generate_wrapper).to match_ignoring_whitespace(picture)
+      actual = builder.generate_wrapper
+      expect(actual).to match_ignoring_whitespace(desired)
     end
 
-    it 'generates an img with size and caption' do
+    it 'generates an img wrapper with size and caption' do
       props = ImgProperties.new
       props.caption = 'This is a caption'
       props.size = '123px'
@@ -51,7 +74,7 @@ class ImgPropertiesTest
         </figcaption>
       END_CAPTION
 
-      picture = <<~END_IMG
+      desired = <<~END_IMG
         <div class='imgWrapper imgBlock' style='width: 123px; '>
           <figure>
             <picture class='imgPicture'>
@@ -69,8 +92,7 @@ class ImgPropertiesTest
         </div>
       END_IMG
 
-      expect(builder.generate_figcaption).to match_ignoring_whitespace(caption)
-      expect(builder.generate_wrapper).to match_ignoring_whitespace(picture)
+      expect(builder.generate_wrapper).to match_ignoring_whitespace(desired)
     end
   end
 end

@@ -47,7 +47,7 @@ class ImgBuilder
     # <source srcset="#{@props.src_any 'avif'}" type="image/avif">
     result = <<~END_IMG
       <picture#{@props.attr_id} class='imgPicture'>
-        #{@source.generate}
+        #{@source.generate.join("\n  ")}
         #{generate_img}
       </picture>
     END_IMG
