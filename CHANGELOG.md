@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.2.7 / 2024-09-11
+
+* Further tweaking of the generated HTML.
+
+
 ## 0.2.6 / 2024-09-10
 
 * Optimized the generated HTML.
