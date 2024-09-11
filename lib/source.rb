@@ -1,5 +1,5 @@
 class Source
-  RANKS = %w[webp apng png jpg jpeg jfif pjpeg pjp svg gif tif tiff bmp cur ico].freeze
+  RANKS = %w[svg webp apng png jpg jpeg jfif pjpeg pjp gif tif tiff bmp cur ico].freeze
   RANKS_LENGTH = RANKS.length
 
   def initialize(path)

@@ -74,6 +74,33 @@ If the browser did not support the `picture` element,
 the `img src` attribute would be used to specify the image.
 
 
+### Default and Relative Paths
+
+Local images whose path does not start with a slash are assumed to be relative to `/assets/images`.
+Simply specifying the filename of the image will cause it to be fetched from
+`/assets/images/`.
+For example, the following all fetch the same image:
+
+```html
+{% img src="/assets/images/blah.webp" %}
+{% img src="blah.webp" %}
+{% img src="blah" %}
+```
+
+To specify an image in a subdirectory of where the page resides,
+prepend the relative path with a dot (`.`).
+
+For example, if the current page resides in a [Jekyll collection](https://jekyllrb.com/docs/collections/)
+with path `/collections/_av_studio/`,
+and an image resides in the `/collections/_av_studio/images` subdirectory,
+the following would result in the same image being displayed:
+
+```html
+{% img src="/av_studio/images/blah" %}
+{% img src="./images/blah" %}
+```
+
+
 ## Supported Filetypes
 
 The following are listed in order of priority.
