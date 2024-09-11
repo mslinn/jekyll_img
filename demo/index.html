@@ -13,15 +13,24 @@ title: Usage Examples
   {% img src="" %}
   {% img src="   " %}
 </fieldset>
+<!-- endregion -->
 
-<fieldset class="blackBorder">
-  <legend>External image</legend>
+<!-- #region External image -->
+<h2>External image</h2>
 {% img src='https://mslinn.com/images/mike/DSC01923_square_120x120.webp' %}
-</fieldset>
+<!-- endregion -->
 
-<p class="alert rounded shadow">
+<!-- #region Notice -->
+<h2>Notice</h2>
+<p>
   All of the following examples have a <code>src</code> parameter.
+  Each image appears three times, and each of them should appear identical:
 </p>
+<ul>
+  <li>Once specified with an absolute path.</li>
+  <li>Once with a relative path.</li>
+  <li>Once with no path, which should result in the default path (<code>/assets/images/</code>) being assumed.</li>
+</ul>
 <!-- endregion -->
 
 
@@ -30,168 +39,207 @@ title: Usage Examples
 <fieldset class="blackBorder">
   <legend>PNG, no WEBP</legend>
   {% img src="/assets/images/png.png" %}
+  {% img src="./assets/images/png.png" %}
+  {% img src="png.png" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend>WEBP, no PNG</legend>
   {% img src="/assets/images/webp.webp" %}
+  {% img src="./assets/images/webp.webp" %}
+  {% img src="webp.webp" %}
 </fieldset>
 <!-- endregion -->
 
 
 <h2 id="notFound">File Not Found</h2>
 <fieldset class="blackBorder">
-  <legend>A broken image should be shown</legend>
-  {% img src="ghost.webp" %}
+  <legend>Three broken images should be shown</legend>
+  {% img src="/broken.webp" %}
+  {% img src="./broken.webp" %}
+  {% img src="broken.webp" %}
 </fieldset>
 
-<h2 id="defaultFiletype">Absolute Path</h2>
+<h2 id="defaultFiletype">No Filetype</h2>
 <fieldset class="blackBorder">
   <legend>No filetype and no other parameters specified</legend>
   {% img src="/assets/images/jekyll_240x103.webp" %}
-</fieldset>
-
-<h2 id="defaultFiletype">Relative Path (starts with ./)</h2>
-<fieldset class="blackBorder">
-  <legend>No filetype and no other parameters specified</legend>
   {% img src="./assets/images/jekyll_240x103.webp" %}
-</fieldset>
-
-<h2 id="defaultFiletype">Default Path and Filetype</h2>
-<fieldset class="blackBorder">
-  <legend>No path, filetype or other parameters specified</legend>
-  Default path is <code>/assets/images/</code><br>
-  {% img src="jekyll_240x103" %}
+  {% img src="jekyll_240x103.webp" %}
 </fieldset>
 
 <h2 id="attrib">Attribution</h2>
 <fieldset class="blackBorder">
-  <legend>No path or other parameters specified</legend>
+  <legend>No other parameters specified</legend>
+  {% img attribution src="/assets/images/jekyll_240x103.webp" %}
+  {% img attribution src="./assets/images/jekyll_240x103.webp" %}
   {% img attribution src="jekyll_240x103.webp" %}
 </fieldset>
 
+<!-- #region Sizes -->
 <h2 id="sizes">Sizes</h2>
 <fieldset class="blackBorder">
-  <legend>No path or other parameters specified</legend>
-  {% img src="jekyll_240x103.webp" %}
-</fieldset>
-
-<fieldset class="blackBorder">
-  <legend>No path and <code>size='initial'</code></legend>
+  <legend><code>size='initial'</code></legend>
+  {% img src="/assets/images/jekyll_240x103.webp" size="initial" %}
+  {% img src="./assets/images/jekyll_240x103.webp" size="initial" %}
   {% img src="jekyll_240x103.webp" size="initial" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>size='fullsize'</code></legend>
+  {% img src="/assets/images/jekyll.webp" size="fullsize" %}
+  {% img src="./assets/images/jekyll.webp" size="fullsize" %}
   {% img src="jekyll.webp" size="fullsize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>size='halfsize'</code></legend>
+  <legend><code>size='halfsize'</code></legend>
+  {% img src="/assets/images/jekyll.webp" size="halfsize" %}
+  {% img src="./assets/images/jekyll.webp" size="halfsize" %}
   {% img src="jekyll.webp" size="halfsize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>size='quartersize'</code></legend>
+  <legend><code>size='quartersize'</code></legend>
+  {% img src="/assets/images/jekyll_240x103.webp" size="quartersize" %}
+  {% img src="./assets/images/jekyll_240x103.webp" size="quartersize" %}
   {% img src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>size='eighthsize'</code></legend>
+  <legend><code>size='eighthsize'</code></legend>
+  {% img src="/assets/images/jekyll_240x103.webp" size="eighthsize" %}
+  {% img src="./assets/images/jekyll_240x103.webp" size="eighthsize" %}
   {% img src="jekyll_240x103.webp" size="eighthsize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>size='15em'</code></legend>
+  <legend><code>size='15em'</code></legend>
+  {% img src="/assets/images/jekyll_240x103.webp" size='15em' %}
+  {% img src="./assets/images/jekyll_240x103.webp" size='15em' %}
   {% img src="jekyll_240x103.webp" size='15em' %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>size='10%'</code></legend>
+  <legend><code>size='10%'</code></legend>
+  {% img src="/assets/images/jekyll_240x103.webp" size='10%' %}
+  {% img src="./assets/images/jekyll_240x103.webp" size='10%' %}
   {% img src="jekyll_240x103.webp" size='10%' %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>align='left' size='quartersize'</code></legend>
+  <legend><code>align='left' size='quartersize'</code></legend>
+  {% img align="left" src="/assets/images/jekyll_240x103.webp" size="quartersize" %}
+  {% img align="left" src="./assets/images/jekyll_240x103.webp" size="quartersize" %}
   {% img align="left" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>align='center' size='quartersize'</code></legend>
+  <legend><code>align='center' size='quartersize'</code></legend>
+  {% img align="center" src="/assets/images/jekyll_240x103.webp" size="quartersize" %}
+  {% img align="center" src="./assets/images/jekyll_240x103.webp" size="quartersize" %}
   {% img align="center" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>align='right' size='quartersize'</code></legend>
+  <legend><code>align='right' size='quartersize'</code></legend>
+  {% img align="right" src="/assets/images/jekyll_240x103.webp" size="quartersize" %}
+  {% img align="right" src="./assets/images/jekyll_240x103.webp" size="quartersize" %}
   {% img align="right" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>align='right' size='eighthsize'</code></legend>
+  <legend><code>align='right' size='eighthsize'</code></legend>
+  {% img align="right" src="/assets/images/jekyll_240x103.webp" size="eighthsize" %}
+  {% img align="right" src="./assets/images/jekyll_240x103.webp" size="eighthsize" %}
   {% img align="right" src="jekyll_240x103.webp" size="eighthsize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>align='right' size='15em'</code></legend>
+  <legend><code>align='right' size='15em'</code></legend>
+  {% img align="right" src="/assets/images/jekyll_240x103.webp" size='15em' %}
+  {% img align="right" src="./assets/images/jekyll_240x103.webp" size='15em' %}
   {% img align="right" src="jekyll_240x103.webp" size='15em' %}
 </fieldset>
 
 <fieldset class="blackBorder">
-  <legend>No path and <code>align='right' size='10%'</code></legend>
+  <legend><code>align='right' size='10%'</code></legend>
+  {% img align="right" src="/assets/images/jekyll_240x103.webp" size='10%' %}
+  {% img align="right" src="./assets/images/jekyll_240x103.webp" size='10%' %}
   {% img align="right" src="jekyll_240x103.webp" size='10%' %}
 </fieldset>
+<!-- endregion -->
 
 
 <h2 id="captions" class="clear">Captions</h2>
 <fieldset class="blackBorder">
   <legend><code>caption='&mldr;'</code></legend>
+  {% img caption="This is a long, long, long, long, long, long caption" src="/assets/images/jekyll_240x103.webp" %}
+  {% img caption="This is a long, long, long, long, long, long caption" src="./assets/images/jekyll_240x103.webp" %}
   {% img caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>align='left' caption='&mldr;'</code></legend>
+  {% img align="left" caption="This is a long, long, long, long, long, long caption" src="/assets/images/jekyll_240x103.webp" %}
+  {% img align="left" caption="This is a long, long, long, long, long, long caption" src="./assets/images/jekyll_240x103.webp" %}
   {% img align="left" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>align='center' caption='&mldr;'</code></legend>
+  {% img align="center" caption="This is a long, long, long, long, long, long caption" src="/assets/images/jekyll_240x103.webp" %}
+  {% img align="center" caption="This is a long, long, long, long, long, long caption" src="./assets/images/jekyll_240x103.webp" %}
   {% img align="center" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>align='right' caption='&mldr;'</code></legend>
+  {% img align="right" caption="This is a long, long, long, long, long, long caption" src="/assets/images/jekyll_240x103.webp" %}
+  {% img align="right" caption="This is a long, long, long, long, long, long caption" src="./assets/images/jekyll_240x103.webp" %}
   {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>align='right' caption='&mldr;' size='quartersize'</code></legend>
+  {% img align="right" caption="This is a long, long, long, long, long, long caption" src="/assets/images/jekyll_240x103.webp" size="quartersize" %}
+  {% img align="right" caption="This is a long, long, long, long, long, long caption" src="./assets/images/jekyll_240x103.webp" size="quartersize" %}
   {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="quartersize" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>align='left' caption='&mldr;' size='20%'</code></legend>
+  {% img align="left" caption="This is a long, long, long, long, long, long caption" src="/assets/images/jekyll_240x103.webp" size="20%" %}
+  {% img align="left" caption="This is a long, long, long, long, long, long caption" src="./assets/images/jekyll_240x103.webp" size="20%" %}
   {% img align="left" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>align='center' caption='&mldr;' size='20%'</code></legend>
+  {% img align="center" caption="This is a long, long, long, long, long, long caption" src="/assets/images/jekyll_240x103.webp" size="20%" %}
+  {% img align="center" caption="This is a long, long, long, long, long, long caption" src="./assets/images/jekyll_240x103.webp" size="20%" %}
   {% img align="center" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>align='right' caption='&mldr;' size='20%'</code></legend>
+  {% img align="right" caption="This is a long, long, long, long, long, long caption" src="/assets/images/jekyll_240x103.webp" size="20%" %}
+  {% img align="right" caption="This is a long, long, long, long, long, long caption" src="./assets/images/jekyll_240x103.webp" size="20%" %}
   {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
 </fieldset>
-
 
 <h2 id="urls" class="clear">URLs</h2>
 <fieldset class="blackBorder">
   <legend><code>url='https://www.mslinn.com'</code></legend>
+  {% img src="/assets/images/jekyll_240x103.webp" url='https://www.mslinn.com' %}
+  {% img src="./assets/images/jekyll_240x103.webp" url='https://www.mslinn.com' %}
   {% img src="jekyll_240x103.webp" url='https://www.mslinn.com' %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>caption='This is a caption' url='https://mslinn.com'</code></legend>
+  {% img caption="This is a caption" src="/assets/images/jekyll_240x103.webp" url='https://mslinn.com' %}
+  {% img caption="This is a caption" src="./assets/images/jekyll_240x103.webp" url='https://mslinn.com' %}
   {% img caption="This is a caption" src="jekyll_240x103.webp" url='https://mslinn.com' %}
 </fieldset>
 
@@ -199,11 +247,27 @@ title: Usage Examples
 <h2 id="classes" class="clear">Classes</h2>
 <fieldset class="blackBorder">
   <legend><code>class='rounded bg_yellow shadow' url='https://mslinn.com'</code></legend>
+  {% img class='bg_yellow rounded shadow' src="/assets/images/jekyll_240x103.webp" url='https://mslinn.com' %}
+  {% img class='bg_yellow rounded shadow' src="./assets/images/jekyll_240x103.webp" url='https://mslinn.com' %}
   {% img class='bg_yellow rounded shadow' src="jekyll_240x103.webp" url='https://mslinn.com' %}
 </fieldset>
 
 <fieldset class="blackBorder">
   <legend><code>size='150px' url='https://mslinn.com' wrapper_class='bg_yellow'</code></legend>
+  {% img
+    caption='A caption is required for <code>wrapper_class</code> to be applied to.'
+    size='150px'
+    src="/assets/images/jekyll_240x103.webp"
+    url='https://www.mslinn.com'
+    wrapper_class="bg_yellow"
+  %}
+  {% img
+    caption='A caption is required for <code>wrapper_class</code> to be applied to.'
+    size='150px'
+    src="./assets/images/jekyll_240x103.webp"
+    url='https://www.mslinn.com'
+    wrapper_class="bg_yellow"
+  %}
   {% img
     caption='A caption is required for <code>wrapper_class</code> to be applied to.'
     size='150px'
@@ -219,6 +283,18 @@ title: Usage Examples
   <legend><code>class='bg_yellow rounded' style='padding: 1em;'</code></legend>
   {% img
     class='bg_yellow rounded'
+    src="/assets/images/jekyll_240x103.webp"
+    style='padding: 1em;'
+    url='https://www.mslinn.com'
+  %}
+  {% img
+    class='bg_yellow rounded'
+    src="./assets/images/jekyll_240x103.webp"
+    style='padding: 1em;'
+    url='https://www.mslinn.com'
+  %}
+  {% img
+    class='bg_yellow rounded'
     src="jekyll_240x103.webp"
     style='padding: 1em;'
     url='https://www.mslinn.com'
@@ -230,6 +306,20 @@ title: Usage Examples
   {% img
     align='center'
     class='bg_yellow rounded'
+    src="/assets/images/jekyll_240x103.webp"
+    style='padding: 1em;'
+    url='https://www.mslinn.com'
+  %}
+  {% img
+    align='center'
+    class='bg_yellow rounded'
+    src="./assets/images/jekyll_240x103.webp"
+    style='padding: 1em;'
+    url='https://www.mslinn.com'
+  %}
+  {% img
+    align='center'
+    class='bg_yellow rounded'
     src="jekyll_240x103.webp"
     style='padding: 1em;'
     url='https://www.mslinn.com'
@@ -238,6 +328,22 @@ title: Usage Examples
 
 <fieldset class="blackBorder">
   <legend><code>align='right' class='' nofollow style='padding: 1em;'</code></legend>
+  {% img
+    align='right'
+    class=''
+    nofollow
+    src="/assets/images/jekyll_240x103.webp"
+    style='padding: 1em;'
+    url='https://www.mslinn.com'
+  %}
+  {% img
+    align='right'
+    class=''
+    nofollow
+    src="./assets/images/jekyll_240x103.webp"
+    style='padding: 1em;'
+    url='https://www.mslinn.com'
+  %}
   {% img
     align='right'
     class=''
@@ -255,13 +361,13 @@ title: Usage Examples
   {% img
     align="left"
     size="12em"
-    src="/assets/images/jekyll.webp"
+    src="jekyll.webp"
     wrapper_style="margin-right: 1em; margin-left: 3em;"
   %}
   {% img
     align="right"
     size="12em"
-    src="/assets/images/jekyll.webp"
+    src="./assets/images/jekyll.webp"
     wrapper_style="margin-left: 1em; margin-right: 3em;"
   %}
 </fieldset>
@@ -272,7 +378,7 @@ title: Usage Examples
     align="left"
     caption="This is a caption"
     size="12em"
-    src="/assets/images/jekyll.webp"
+    src="jekyll.webp"
     wrapper_style="margin-right: 1em; margin-left: 3em;"
   %}
   {% img
@@ -290,14 +396,14 @@ title: Usage Examples
   {% img
     caption="Jekyll and Hyde never met, but saw each other in mirrors"
     class="rounded shadow"
-    src="jekyll_240x103.webp"
+    src="/assets/images/jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
   %}
   {% img
     caption="This is a long, long, long, long, long, long caption"
     class="rounded shadow"
-    src="jekyll_240x103.webp"
+    src="./assets/images/jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
   %}
@@ -311,14 +417,14 @@ title: Usage Examples
   {% img
     caption="Jekyll and Hyde never met, but saw each other in mirrors"
     class="rounded shadow"
-    src="jekyll_240x103.webp"
+    src="/assets/images/jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
   %}
   {% img
     caption="This is a long, long, long, long, long, long caption"
     class="rounded shadow"
-    src="jekyll_240x103.webp"
+    src="./assets/images/jekyll_240x103.webp"
     url="https://www.mslinn.com"
     wrapper_class="imgItem"
   %}
