@@ -226,7 +226,7 @@ Using CSS units means that large enough values could cause the image to exceed t
 
 ## Installation
 
-Add this line to your Jekyll project's Gemfile, within the `jekyll_plugins` group:
+Add this line to your Jekyll project's `Gemfile`, within the `jekyll_plugins` group:
 
 ```ruby
 group :jekyll_plugins do
