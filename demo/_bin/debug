@@ -45,10 +45,10 @@ bundle
 bundle exec jekyll clean # Ensure all hooks get called
 
 run="serve \
-    --livereload_port 25721 \
+    --livereload_port 35731 \
     --force_polling \
     --host 0.0.0.0 \
-    --port 4444 \
+    --port 4011 \
     --future \
     --incremental \
     --livereload \
