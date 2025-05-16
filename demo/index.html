@@ -15,10 +15,12 @@ title: Usage Examples
 </fieldset>
 <!-- endregion -->
 
+
 <!-- #region External image -->
 <h2>External image</h2>
 {% img src='https://mslinn.com/images/mike/DSC01923_square_120x120.webp' %}
 <!-- endregion -->
+
 
 <!-- #region Notice -->
 <h2>Notice</h2>
@@ -52,6 +54,7 @@ title: Usage Examples
 <!-- endregion -->
 
 
+<!-- #region File Not Found -->
 <h2 id="notFound">File Not Found</h2>
 <fieldset class="blackBorder">
   <legend>Three broken images should be shown</legend>
@@ -59,7 +62,10 @@ title: Usage Examples
   {% img src="./broken.webp" %}
   {% img src="broken.webp" %}
 </fieldset>
+<!-- endregion -->
 
+
+<!-- #region No Filetype -->
 <h2 id="defaultFiletype">No Filetype</h2>
 <fieldset class="blackBorder">
   <legend>No filetype and no other parameters specified</legend>
@@ -75,6 +81,8 @@ title: Usage Examples
   {% img attribution src="./assets/images/jekyll_240x103.webp" %}
   {% img attribution src="jekyll_240x103.webp" %}
 </fieldset>
+<!-- endregion -->
+
 
 <!-- #region Sizes -->
 <h2 id="sizes">Sizes</h2>
@@ -171,6 +179,7 @@ title: Usage Examples
 <!-- endregion -->
 
 
+<!-- #region Captions -->
 <h2 id="captions" class="clear">Captions</h2>
 <fieldset class="blackBorder">
   <legend><code>caption='&mldr;'</code></legend>
@@ -227,7 +236,10 @@ title: Usage Examples
   {% img align="right" caption="This is a long, long, long, long, long, long caption" src="./assets/images/jekyll_240x103.webp" size="20%" %}
   {% img align="right" caption="This is a long, long, long, long, long, long caption" src="jekyll_240x103.webp" size="20%" %}
 </fieldset>
+<!-- endregion -->
 
+
+<!-- #region URLs -->
 <h2 id="urls" class="clear">URLs</h2>
 <fieldset class="blackBorder">
   <legend><code>url='https://www.mslinn.com'</code></legend>
@@ -276,8 +288,10 @@ title: Usage Examples
     wrapper_class="bg_yellow"
   %}
 </fieldset>
+<!-- endregion -->
 
 
+<!-- #region Styles -->
 <h2 id="styles" class="clear">Styles</h2>
 <fieldset class="blackBorder">
   <legend><code>class='bg_yellow rounded' style='padding: 1em;'</code></legend>
@@ -353,8 +367,10 @@ title: Usage Examples
     url='https://www.mslinn.com'
   %}
 </fieldset>
+<!-- endregion -->
 
 
+<!-- #region Wrapper Styles -->
 <h2 id="wrapper_styles" class="clear">Wrapper Styles</h2>
 <fieldset class="blackBorder">
   <legend><code>align &amp; wrapper_style</code></legend>
@@ -389,8 +405,10 @@ title: Usage Examples
     wrapper_style="margin-left: 1em; margin-right: 3em;"
   %}
 </fieldset>
+<!-- endregion -->
 
 
+<!-- #region Flow-like -->
 <h2 id="flow" class="clear">Flow-like</h2>
 <div id="imgContainer">
   {% img
@@ -436,3 +454,53 @@ title: Usage Examples
     wrapper_class="imgItem"
   %}
 </div>
+<!-- endregion -->
+
+
+<!-- #region Lazy Loading -->
+<h2 id="lazy">Lazy Loading</h2>
+{% img lazy
+  caption="A warning about size should be generated"
+  size="240px"
+  src="jekyll_240x103.webp"
+%}<br>
+{% img lazy src="jekyll_240x103.webp?x=1" style="height:103px; width:240px" %}<br>
+{% img lazy src="jekyll_240x103.webp?x=2" style="height:103px; width:240px" %}<br>
+{% img lazy src="jekyll_240x103.webp?x=3" style="height:103px; width:240px" %}<br>
+{% img lazy src="jekyll_240x103.webp?x=4" style="height:103px; width:240px" %}<br>
+{% img lazy src="jekyll_240x103.webp?x=5" style="height:103px; width:240px" %}<br>
+{% img lazy src="jekyll_240x103.webp?x=6" style="height:103px; width:240px" %}<br>
+{% img lazy src="jekyll_240x103.webp?x=7" style="height:103px; width:240px" %}<br>
+{% img lazy src="jekyll_240x103.webp?x=8" style="height:103px; width:240px" %}<br>
+{% img lazy src="jekyll_240x103.webp?x=9" style="height:103px; width:240px" %}<br>
+{% img lazy src="jekyll_240x103.webp?x=10" style="height:103px; width:240px" %}
+<!-- endregion -->
+
+
+<!-- #region High Priority -->
+<h2 id="priority">High Priority</h2>
+{% img priority
+  size="240px"
+  src="jekyll_240x103.webp"
+%}
+<!-- endregion -->
+
+
+<!-- #region High Priority Lazy Loading -->
+<h2 id="lazyhigh">High Priority Lazy Loading</h2>
+{% img lazy priority
+  caption="A warning about size should be generated"
+  size="240px"
+  src="jekyll_240x103.webp"
+%}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=1" style="height:103px; width:240px" %}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=2" style="height:103px; width:240px" %}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=3" style="height:103px; width:240px" %}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=4" style="height:103px; width:240px" %}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=5" style="height:103px; width:240px" %}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=6" style="height:103px; width:240px" %}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=7" style="height:103px; width:240px" %}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=8" style="height:103px; width:240px" %}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=9" style="height:103px; width:240px" %}<br>
+{% img lazy priority src="jekyll_240x103.webp?y=10" style="height:103px; width:240px" %}
+<!-- endregion -->

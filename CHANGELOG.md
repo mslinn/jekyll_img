@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.2.8 / 2025-05-16
+
+* An image can now be lazily loaded by providing the `lazy` keyword.
+* An image can now be fetched with high priority by providing the `priority` keyword.
+
+
 ## 0.2.7 / 2024-09-11
 
 * Further tweaking of the generated HTML.

@@ -11,11 +11,12 @@ end
 
 # Constructs HTML img tag from properties
 class ImgBuilder
-  attr_reader :source
+  attr_reader :img, :props, :source
 
-  def initialize(props)
-    props.compute_dependant_properties
+  def initialize(img, props)
+    @img = img
     @props = props
+    @props.compute_dependant_properties
     @source = Source.new @props.src
   end
 
@@ -35,12 +36,24 @@ class ImgBuilder
         src="#{@source.src_fallback}"
         #{@props.attr_style_img}
         #{@props.attr_title}
+        #{@props.lazy}
+        #{@props.priority}
       />
     END_IMG
   end
 
   # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
   def generate_picture
+    if @props.lazy && @props.size
+      @img.logger.info do
+        <<~END_MSG.squish
+          Warning: lazy loading was specified, but the size attribute was specified for the href tag
+          on line #{@img.line_number} (after front matter) of #{@img.page['path']}.
+          Specify dimensions via style or class attributes instead.
+        END_MSG
+      end
+    end
+
     return generate_img if @props.src.start_with? 'http'
 
     # avif is not well supported yet

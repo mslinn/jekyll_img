@@ -35,7 +35,9 @@ module Jekyll
       props.classes           = @helper.parameter_specified? 'class'
       props.die_on_img_error  = @die_on_img_error
       props.id                = @helper.parameter_specified? 'id'
+      props.lazy              = ' loading="lazy"' if @helper.parameter_specified?('lazy')
       props.nofollow          = @helper.parameter_specified? 'nofollow'
+      props.priority          = ' fetchpriority="high"' if @helper.parameter_specified?('priority')
       props.size              = @helper.parameter_specified?('size') || @helper.parameter_specified?('_size')
       props.src               = @helper.parameter_specified? 'src'
       props.style             = @helper.parameter_specified? 'style'
@@ -45,7 +47,7 @@ module Jekyll
       props.wrapper_class     = @helper.parameter_specified? 'wrapper_class'
       props.wrapper_style     = @helper.parameter_specified? 'wrapper_style'
 
-      @builder = ImgBuilder.new(props)
+      @builder = ImgBuilder.new(self, props)
       @builder.to_s
     rescue ImgError => e # jekyll_plugin_support handles StandardError
       @logger.error { e.logger_message }

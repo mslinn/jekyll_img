@@ -100,6 +100,101 @@ the following would result in the same image being displayed:
 {% img src="./images/blah" %}
 ```
 
+### Lazy Loading
+
+An image can be lazily loaded by providing the `lazy` keyword.
+This feature relies upon the lazy loading capability built into all modern browsers and does not rely upon JavaScript.
+
+From [Browser-level image lazy loading for the web](https://web.dev/articles/browser-level-image-lazy-loading#dimension-attributes)
+on `web.dev`:
+
+> While the browser loads an image, it doesn't immediately know the image's dimensions,
+> unless they're explicitly specified.
+> To let the browser reserve enough space on a page for images, and avoid disruptive layout shifts,
+> we recommend adding width and height attributes to all  tags.
+>
+> &lt;img src="image.png" loading="lazy" alt="…" width="200" height="200">
+Alternatively, specify their values directly in an inline style:
+>
+> &lt;img src="image.png" loading="lazy" alt="…" style="height:200px; width:200px;">
+
+This would translate to:
+
+```html
+{% img lazy
+  src="blah.webp"
+  style="height:200px; width:200px"
+%}
+```
+
+Note that the image must be fetched in order for HTML `img` attributes `height='auto'` and `width='auto'` to work.
+Thus lazy loading is incompatible with a dimension whose value is specified as `auto`.
+This means that, for lazily loaded images,
+`height` and `width` must have values that are computable without loading the image.
+Because the Jekyll `img` tag's `size` attribute only specifies the `width` attribute,
+and sets `height` to `auto`, it should not be used with the `lazy` keyword.
+
+The following examples of implicit and explicit `auto` dimensions will all give problems:
+
+```html
+{% img lazy
+  size="200px"
+  src="blah.webp"
+%}
+
+{% img lazy
+  src="blah.webp"
+  style="height:auto; width:200px"
+%}
+
+{% img lazy
+  src="blah.webp"
+  style="height:200px; width:auto"
+%}
+
+{% img lazy
+  src="blah.webp"
+  style="height:200px"
+%}
+
+{% img lazy
+  src="blah.webp"
+  style="width:200px"
+%}
+```
+
+
+### High Priority Loading
+
+An image can be fetched with high priority by providing the `priority` keyword.
+
+Sample usage:
+
+```html
+{% img priority src="blah.webp" style="height:200px; width:200px" %}
+```
+
+From [Browser-level image lazy loading for the web](https://web.dev/articles/browser-level-image-lazy-loading#loading-priority)
+on `web.dev`:
+
+> If you want to increase the fetch priority of an important image, use fetchpriority="high".
+>
+> An image with loading="lazy" and fetchpriority="high" is still delayed while it's off-screen,
+> and then fetched with a high priority when it's almost within the viewport.
+> This combination isn't really necessary because the browser would likely load that image with high priority anyway.
+
+
+Note that the image must be fetched in order for `img` attributes `height='auto'` and `width='auto'` to work.
+This means that `height` and `width` must have values that are computable without loading the image.
+Because the `img` tag's `size` attribute only specifies the `width` attribute, and sets `height` to `auto`,
+it should not be used.
+
+Sample usage combining lazy loading:
+
+```html
+{% img lazy priority src="blah.webp" style="height:200px; width:200px" %}
+```
+
 
 ## Supported Filetypes
 

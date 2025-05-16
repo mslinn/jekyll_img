@@ -29,5 +29,6 @@ Gem::Specification.new do |spec|
   spec.version               = JekyllImgVersion::VERSION
 
   spec.add_dependency 'jekyll', '>= 3.5.0'
-  spec.add_dependency 'jekyll_plugin_support', '>= 1.0.3'
+  spec.add_dependency 'jekyll_draft', '>= 3.0.0'
+  spec.add_dependency 'jekyll_plugin_support', '>= 3.0.0'
 end

@@ -6,7 +6,7 @@ require 'uri'
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
   attr_accessor :align, :alt, :attr_wrapper_align_class, :attribute, :attribution, :caption, :classes, :die_on_img_error,
-                :id, :img_display, :local_src, :nofollow, :src, :size, :style, :target, :title,
+                :id, :img_display, :lazy, :local_src, :nofollow, :priority, :src, :size, :style, :target, :title,
                 :url, :wrapper_class, :wrapper_style
 
   SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
