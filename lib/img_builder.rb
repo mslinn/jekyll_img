@@ -45,7 +45,7 @@ class ImgBuilder
   # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
   def generate_picture
     if @props.lazy && @props.size
-      @img.logger.info do
+      @img.logger.warn do
         <<~END_MSG.squish
           Warning: lazy loading was specified, but the size attribute was specified for the href tag
           on line #{@img.line_number} (after front matter) of #{@img.page['path']}.

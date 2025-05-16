@@ -138,6 +138,7 @@ The following examples of implicit and explicit `auto` dimensions will all give 
 
 ```html
 {% img lazy
+  caption="A warning will be written to the logger"
   size="200px"
   src="blah.webp"
 %}
