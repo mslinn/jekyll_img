@@ -172,28 +172,34 @@ An image can be fetched with high priority by providing the `priority` keyword.
 Sample usage:
 
 ```html
-{% img priority src="blah.webp" style="height:200px; width:200px" %}
+{% img priority src="blah.webp" %}
 ```
+
+The above generates an HTML `img` tag with a `fetchpriority='high'` attribute.
 
 From [Browser-level image lazy loading for the web](https://web.dev/articles/browser-level-image-lazy-loading#loading-priority)
 on `web.dev`:
 
-> If you want to increase the fetch priority of an important image, use fetchpriority="high".
+> If you want to increase the fetch priority of an important image, use `fetchpriority="high"`.
 >
-> An image with loading="lazy" and fetchpriority="high" is still delayed while it's off-screen,
+> An image with `loading="lazy"` and `fetchpriority="high"` is still delayed while it's off-screen,
 > and then fetched with a high priority when it's almost within the viewport.
 > This combination isn't really necessary because the browser would likely load that image with high priority anyway.
 
 
 Note that the image must be fetched in order for `img` attributes `height='auto'` and `width='auto'` to work.
-This means that `height` and `width` must have values that are computable without loading the image.
+This means that `height` and `width` must have values that are computable without loading
+the image or lazy loading will not work properly.
 Because the `img` tag's `size` attribute only specifies the `width` attribute, and sets `height` to `auto`,
 it should not be used.
 
-Sample usage combining lazy loading and high priority loading:
+Sample usage combining lazy and high priority loading:
 
 ```html
-{% img lazy priority src="blah.webp" style="height:200px; width:200px" %}
+{% img lazy priority
+  src="blah.webp"
+  style="height:200px; width:200px"
+%}
 ```
 
 
