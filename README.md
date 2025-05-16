@@ -190,7 +190,7 @@ This means that `height` and `width` must have values that are computable withou
 Because the `img` tag's `size` attribute only specifies the `width` attribute, and sets `height` to `auto`,
 it should not be used.
 
-Sample usage combining lazy loading:
+Sample usage combining lazy loading and high priority loading:
 
 ```html
 {% img lazy priority src="blah.webp" style="height:200px; width:200px" %}
