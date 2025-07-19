@@ -6,6 +6,7 @@
 * `width` option added as an alias for `size`.
   This requires new CSS classes to be defined:
   `max_eighthsize`, `max_fullsize`, `max_halfsize`, and `max_quartersize`.
+* More CSS classes defined and more tests added to the Demo app to support `max-width`.
 
 ## 0.2.8 / 2025-05-16
 
