@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.2.9 / 2025-05-19
+
+* `max-width` option added.
+* `width` option added as an alias for `size`.
+  This requires new CSS classes to be defined:
+  `max_eighthsize`, `max_fullsize`, `max_halfsize`, and `max_quartersize`.
+
 ## 0.2.8 / 2025-05-16
 
 * An image can now be lazily loaded by providing the `lazy` keyword.

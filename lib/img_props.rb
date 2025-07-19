@@ -6,8 +6,8 @@ require 'uri'
 # All methods except compute_dependant_properties can be called in any order
 class ImgProperties
   attr_accessor :align, :alt, :attr_wrapper_align_class, :attribute, :attribution, :caption, :classes, :die_on_img_error,
-                :id, :img_display, :lazy, :local_src, :nofollow, :priority, :src, :size, :style, :target, :title,
-                :url, :wrapper_class, :wrapper_style
+                :id, :img_display, :lazy, :local_src, :max_width, :nofollow, :priority, :src, :size, :style,
+                :target, :title, :url, :wrapper_class, :wrapper_style
 
   SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
   UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze
@@ -27,6 +27,16 @@ class ImgProperties
 
   def attr_nofollow
     " rel='nofollow'" if @nofollow
+  end
+
+  def attr_max_width_class
+    return nil if @max_width == false || @max_width.nil? || max_width_unit_specified?
+
+    unless SIZES.include?(@max_width)
+      msg = "'#{@max_width}' is not a recognized size; must be one of #{SIZES.join(', ')}, or an explicit unit."
+      raise Jekyll::ImgError, msg
+    end
+    "max_#{@max_width}"
   end
 
   def attr_size_class
@@ -52,6 +62,10 @@ class ImgProperties
 
   def attr_title
     "title='#{@title}'" if @title && !@title.empty?
+  end
+
+  def attr_max_width_style
+    "max-width: #{@max_width};" if max_width_unit_specified?
   end
 
   def attr_width_style
@@ -98,10 +112,18 @@ class ImgProperties
     # raise Jekyll::ImgError, "#{@src} does not exist" unless File.exist?(src)
   end
 
-  def size_unit_specified?
-    return false if @size == false || @size.to_s.strip.empty?
+  def max_width_unit_specified?
+    max_width_not_specified = @max_width == false || @max_width.to_s.strip.empty?
+    return false if max_width_not_specified
 
-    @size.end_with?(*UNITS)
+    @max_width&.end_with?(*UNITS)
+  end
+
+  def size_unit_specified?
+    size_not_specified = @size == false || @size.to_s.strip.empty?
+    return false if size_not_specified
+
+    @size&.end_with?(*UNITS)
   end
 
   def url?(src)

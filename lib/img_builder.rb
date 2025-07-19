@@ -44,10 +44,10 @@ class ImgBuilder
 
   # See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture
   def generate_picture
-    if @props.lazy && @props.size
+    if @props.lazy && (@props.size || @props.max_width)
       @img.logger.warn do
         <<~END_MSG.squish
-          Warning: lazy loading was specified, but the size attribute was specified for the href tag
+          Warning: lazy loading was specified, but the size or max_width attribute was specified for the href tag
           on line #{@img.line_number} (after front matter) of #{@img.page['path']}.
           Specify dimensions via style or class attributes instead.
         END_MSG
@@ -84,9 +84,9 @@ class ImgBuilder
   end
 
   def generate_wrapper
-    classes = "imgWrapper #{@props.img_display} #{@props.align} #{@props.attr_size_class} #{@props.wrapper_class}".squish
+    classes = "imgWrapper #{@props.img_display} #{@props.align} #{@props.attr_size_class} #{@props.attr_max_width_class} #{@props.wrapper_class}".squish
     <<~END_HTML.remove_blank_lines
-      <div class='#{classes}' style='#{@props.attr_width_style} #{@props.wrapper_style}'>
+      <div class='#{classes}' style='#{@props.attr_width_style} #{@props.attr_max_width_style} #{@props.wrapper_style}'>
         #{"<figure>\n" if @props.caption}
           #{@props.url ? generate_url_wrapper : generate_picture}
           #{generate_figcaption if @props.caption}

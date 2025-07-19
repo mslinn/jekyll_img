@@ -106,6 +106,26 @@ li > .imgWrapper {
   margin-right: 1em;
 }
 
+.max_eighthsize {
+  height: auto;
+  max-width: 12.5%;
+}
+
+.max_fullsize {
+  height: auto;
+  max-width: 100%;
+}
+
+.max_halfsize {
+  height: auto;
+  max-width: 50%;
+}
+
+.max_quartersize {
+  height: auto;
+  max-width: 25%;
+}
+
 .quartersize {
   height: auto;
   width: 25%;

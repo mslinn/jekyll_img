@@ -249,9 +249,14 @@ $ demo/_bin/debug -r
 - `caption="A caption"` No default value
 - `classes="class1 class2 classN"` Extra &lt;img&gt; classes; default is `rounded shadow`
 - `id="someId"` No default value
-- `nofollow`  Generates `rel='nofollow'`; only applicable when `url` is specified
-- `size='eighthsize|fullsize|halfsize|initial|quartersize|XXXYY|XXX%'`
+- `max-width='eighthsize|fullsize|halfsize|initial|quartersize|XXXYY|XXX%'`
    Defines width of image.
+  - `initial` is the default behavior.
+  - `eighthsize`, `fullsize`, `halfsize`, and `quartersize` are relative to the enclosing tag's width.
+  - CSS units can also be used, for those cases `XXX` is a float and `YY` is `unit` (see below)
+- `nofollow`  Generates `rel='nofollow'`; only applicable when `url` is specified
+- `width='eighthsize|fullsize|halfsize|initial|quartersize|XXXYY|XXX%'`
+   Defines width of image (alias for `size`).
   - `initial` is the default behavior.
   - `eighthsize`, `fullsize`, `halfsize`, and `quartersize` are relative to the enclosing tag's width.
   - CSS units can also be used, for those cases `XXX` is a float and `YY` is `unit` (see below)
@@ -314,8 +319,9 @@ Within the wrapper `<div />`, the embedded `<img />` is displayed with `width=10
 If a caption is required, the generated `<figure />` only makes the space taken by the generated HTML longer;
 the image&rsquo;s width and height are not affected.
 
-The wrapper will not exceed the width of the tag that encloses it if the `size` parameter has values
+The wrapper will not exceed the width of the tag that encloses it if the `width` parameter has values
 `eighthsize`, `fullsize`, `halfsize`, `initial` or `quartersize`.
+You can also use the `max-width` option.
 
 The wrapper's width can be defined independently of its enclosing tag by using
 [CSS units](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#numbers_lengths_and_percentages)

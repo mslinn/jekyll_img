@@ -36,9 +36,12 @@ module Jekyll
       props.die_on_img_error  = @die_on_img_error
       props.id                = @helper.parameter_specified? 'id'
       props.lazy              = ' loading="lazy"' if @helper.parameter_specified?('lazy')
+      props.max_width         = @helper.parameter_specified?('max-width')
       props.nofollow          = @helper.parameter_specified? 'nofollow'
       props.priority          = ' fetchpriority="high"' if @helper.parameter_specified?('priority')
-      props.size              = @helper.parameter_specified?('size') || @helper.parameter_specified?('_size')
+      props.size              = @helper.parameter_specified?('size') ||
+                                @helper.parameter_specified?('_size') ||
+                                @helper.parameter_specified?('width')
       props.src               = @helper.parameter_specified? 'src'
       props.style             = @helper.parameter_specified? 'style'
       props.target            = @helper.parameter_specified? 'target'

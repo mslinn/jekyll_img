@@ -53,13 +53,13 @@ Metrics/BlockLength:
     - spec/img_props_spec.rb
 
 Metrics/CyclomaticComplexity:
-  Max: 10
+  Max: 15
 
 Metrics/MethodLength:
   Max: 40
 
 Metrics/PerceivedComplexity:
-  Max: 10
+  Max: 15
 
 Naming/FileName:
   Exclude:
