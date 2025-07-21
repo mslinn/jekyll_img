@@ -84,9 +84,11 @@ class ImgBuilder
   end
 
   def generate_wrapper
-    classes = "imgWrapper #{@props.img_display} #{@props.align} #{@props.attr_size_class} #{@props.attr_max_width_class} #{@props.wrapper_class}".squish
+    classes = ("imgWrapper #{@props.img_display} #{@props.align} #{@props.attr_size_class} " +
+              "#{@props.attr_max_width_class} #{@props.wrapper_class}").squish
+    styles = "#{@props.attr_width_style} #{@props.attr_max_width_style} #{@props.wrapper_style}".squish
     <<~END_HTML.remove_blank_lines
-      <div class='#{classes}' style='#{@props.attr_width_style} #{@props.attr_max_width_style} #{@props.wrapper_style}'>
+      <div class='#{classes}' style='#{styles}'>
         #{"<figure>\n" if @props.caption}
           #{@props.url ? generate_url_wrapper : generate_picture}
           #{generate_figcaption if @props.caption}

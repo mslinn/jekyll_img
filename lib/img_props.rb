@@ -116,14 +116,14 @@ class ImgProperties
     max_width_not_specified = @max_width == false || @max_width.to_s.strip.empty?
     return false if max_width_not_specified
 
-    @max_width&.end_with?(*UNITS)
+    @max_width&.end_with?(*UNITS) || @max_width&.start_with?('calc')
   end
 
   def size_unit_specified?
     size_not_specified = @size == false || @size.to_s.strip.empty?
     return false if size_not_specified
 
-    @size&.end_with?(*UNITS)
+    @size&.end_with?(*UNITS) || @size&.start_with?('calc')
   end
 
   def url?(src)
