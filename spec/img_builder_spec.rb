@@ -3,33 +3,43 @@ require_relative '../lib/img_builder'
 require_relative '../lib/img_props'
 require_relative '../lib/source'
 
-# Test ImgProperties
+class ImgTest
+  attr_accessor :page, :cite, :url
+
+  def initialize
+    @page = { 'path' => 'mypage.html' }
+    @cite = 'this is a cite'
+    @url  = 'http://localhost:4001/mypage.html'
+  end
+end
+
 class ImgPropertiesTest
   RSpec.describe ImgBuilder do
     Dir.chdir("demo")
     props = ImgProperties.new
     props.src = '/assets/images/jekyll.webp'
-    builder = described_class.new(props)
+    img = ImgTest.new
+    builder = described_class.new(img, props)
 
     it 'generates sources' do
       actual = builder.source.generate
-      desired = [
+      expected = [
         '<source srcset="/assets/images/jekyll.webp" type="image/webp">',
         '<source srcset="/assets/images/jekyll.png" type="image/png">'
       ]
-      expect(actual).to match_array(desired)
+      expect(actual).to match_array(expected)
     end
 
     it 'generates a figcaption' do
-      desired = <<~END_STRING
+      expected = <<~END_STRING
         <figcaption class='imgFigCaption '>
         </figcaption>
       END_STRING
-      expect(builder.generate_figcaption).to match_ignoring_whitespace(desired)
+      expect(builder.generate_figcaption).to match_ignoring_whitespace(expected)
     end
 
     it 'generates a picture' do
-      desired = <<~END_DESIRED
+      expected = <<~END_DESIRED
         <picture class='imgPicture'>
           <source srcset="/assets/images/jekyll.webp" type="image/webp">
           <source srcset="/assets/images/jekyll.png" type="image/png">
@@ -40,12 +50,12 @@ class ImgPropertiesTest
         </picture>
       END_DESIRED
       actual = builder.generate_picture
-      expect(actual).to match_ignoring_whitespace(desired)
+      expect(actual).to match_ignoring_whitespace(expected)
     end
 
     it 'generates a default img' do
-      desired = <<~END_IMG
-        <div class='imgWrapper imgFlex' style=' '>
+      expected = <<~END_IMG
+        <div class='imgWrapper imgFlex' style=''>
           <picture class='imgPicture'>
             <source srcset="/assets/images/jekyll.webp" type="image/webp">
             <source srcset="/assets/images/jekyll.png" type="image/png">
@@ -58,13 +68,13 @@ class ImgPropertiesTest
       END_IMG
 
       actual = builder.generate_wrapper
-      expect(actual).to match_ignoring_whitespace(desired)
+      expect(actual).to match_ignoring_whitespace(expected)
     end
 
     it 'generates an img wrapper with size and caption' do
       props.caption = 'This is a caption'
       props.size = '123px'
-      builder = described_class.new(props)
+      builder = described_class.new(img, props)
 
       caption = <<~END_CAPTION
         <figcaption class='imgFigCaption '>
@@ -72,8 +82,8 @@ class ImgPropertiesTest
         </figcaption>
       END_CAPTION
 
-      desired = <<~END_IMG
-        <div class='imgWrapper imgBlock' style='width: 123px; '>
+      expected = <<~END_IMG
+        <div class='imgWrapper imgBlock' style='width: 123px;'>
           <figure>
             <picture class='imgPicture'>
               <source srcset="/assets/images/jekyll.webp" type="image/webp">
@@ -91,7 +101,7 @@ class ImgPropertiesTest
       END_IMG
 
       actual = builder.generate_wrapper
-      expect(actual).to match_ignoring_whitespace(desired)
+      expect(actual).to match_ignoring_whitespace(expected)
     end
   end
 end
