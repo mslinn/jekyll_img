@@ -5,7 +5,7 @@ require 'jekyll_plugin_support'
 require 'rspec/match_ignoring_whitespace'
 require_relative '../lib/jekyll_img'
 
-Registers = Struct.new(:page, :site) unless defined? :Registers
+Registers = Struct.new(:page, :site) unless defined? Registers
 
 # Mock for Collections
 class Collections
@@ -56,7 +56,7 @@ class MyTest
       )
     end
 
-    xit 'has no cite or url' do
+    it 'has no cite or url', skip: 'unfinished' do
       helper.reinitialize('src="./blah.webp"')
       img = described_class.send(
         :new,

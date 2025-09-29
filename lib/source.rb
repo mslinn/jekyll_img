@@ -41,7 +41,7 @@ class Source
     return result unless result.end_with? '.webp' # we know @path will be a webp after this
 
     files = sorted_files
-    return files[0] if files.count == 1
+    return files[0] if files.one?
 
     files.each do |filename|
       ext = File.extname filename

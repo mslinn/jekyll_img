@@ -36,7 +36,7 @@
 * Corrected `README.md#Configuration` and fixed demo `_config.yml`
   so they correctly specify error handling for this plugin:
 
-  ```ruby
+  ```yaml
   img:
     die_on_img_error: false
     pry_on_img_error: false
