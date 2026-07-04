@@ -1,6 +1,5 @@
 require 'jekyll_plugin_support'
 require 'helper/jekyll_plugin_helper'
-require 'pry'
 require_relative 'img_builder'
 require_relative 'img_props'
 require_relative 'source'

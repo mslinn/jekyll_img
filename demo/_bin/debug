@@ -41,7 +41,7 @@ cd "${GIT_ROOT}/demo" || exit
 
 export BUNDLE_WITH=development
 rm -f Gemfile.lock
-bundle
+bundle install
 bundle exec jekyll clean # Ensure all hooks get called
 
 run="serve \

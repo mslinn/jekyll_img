@@ -345,7 +345,7 @@ end
 And then execute:
 
 ```shell
-$ bundle
+$ bundle install
 ```
 
 

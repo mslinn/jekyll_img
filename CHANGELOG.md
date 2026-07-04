@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.10 /2026-07-04
+
+* Pry is no longer a production dependency
+
 ## 0.2.9 / 2025-05-19
 
 * `max-width` option added.
