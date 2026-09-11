@@ -32,7 +32,6 @@ class ImgProperties
   # FIXME: this method does not work when max-width is specified as a % or a unit such as 15em
   # @return class name: max_fullsize, max_halfsize, max_quartersize
   def attr_max_width_class
-    # FIXME: should the next line contain !max_width_unit_specified?
     return nil if @max_width == false || @max_width.nil? || max_width_unit_specified?
 
     unless SIZES.include?(@max_width) || @max_width.end_with?('%')

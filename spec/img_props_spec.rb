@@ -85,6 +85,7 @@ class ImgPropertiesTest
 
     it 'generates widths' do
       props = described_class.new
+
       props.size = '100px'
       expect(props.attr_size_class).to be_nil
       expect(props.attr_style_img).to eq("style='width: 100%; '")
@@ -98,10 +99,23 @@ class ImgPropertiesTest
       props.size = 'fullsize'
       expect(props.attr_size_class).to eq('fullsize')
       expect(props.attr_width_style).to be_nil
+
+      props.size = 'halfsize'
+      expect(props.attr_size_class).to eq('halfsize')
+      expect(props.attr_width_style).to be_nil
+
+      props.size = 'quartersize'
+      expect(props.attr_size_class).to eq('quartersize')
+      expect(props.attr_width_style).to be_nil
+
+      props.size = 'eighthsize'
+      expect(props.attr_size_class).to eq('eighthsize')
+      expect(props.attr_width_style).to be_nil
     end
 
     it 'generates max_widths' do
       props = described_class.new
+
       props.max_width = '100px'
       expect(props.attr_max_width_class).to be_nil
       expect(props.attr_max_width_style).to eq('max-width: 100px;')
@@ -112,6 +126,18 @@ class ImgPropertiesTest
 
       props.max_width = 'fullsize'
       expect(props.attr_max_width_class).to eq('max_fullsize')
+      expect(props.attr_max_width_style).to be_nil
+
+      props.max_width = 'halfsize'
+      expect(props.attr_max_width_class).to eq('max_halfsize')
+      expect(props.attr_max_width_style).to be_nil
+
+      props.max_width = 'quartersize'
+      expect(props.attr_max_width_class).to eq('max_quartersize')
+      expect(props.attr_max_width_style).to be_nil
+
+      props.max_width = 'eighthsize'
+      expect(props.attr_max_width_class).to eq('max_eighthsize')
       expect(props.attr_max_width_style).to be_nil
     end
   end
