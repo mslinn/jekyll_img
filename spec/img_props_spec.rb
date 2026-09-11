@@ -88,13 +88,18 @@ class ImgPropertiesTest
 
       props.size = '100px'
       expect(props.attr_size_class).to be_nil
-      expect(props.attr_style_img).to eq("style='width: 100%; '")
+      expect(props.attr_style_img).to eq('width: 100px;')
       expect(props.attr_width_style).to eq('width: 100px;')
+
+      props.size = '100em'
+      expect(props.attr_size_class).to be_nil
+      expect(props.attr_style_img).to eq('width: 100em;')
+      expect(props.attr_width_style).to eq('width: 100em;')
 
       props.size = '10%'
       expect(props.attr_size_class).to be_nil
       expect(props.attr_width_style).to eq('width: 10%;')
-      expect(props.attr_style_img).to eq("style='width: 100%; '")
+      expect(props.attr_style_img).to eq('width: 10%;')
 
       props.size = 'fullsize'
       expect(props.attr_size_class).to eq('fullsize')
@@ -119,6 +124,10 @@ class ImgPropertiesTest
       props.max_width = '100px'
       expect(props.attr_max_width_class).to be_nil
       expect(props.attr_max_width_style).to eq('max-width: 100px;')
+
+      props.max_width = '100em'
+      expect(props.attr_max_width_class).to be_nil
+      expect(props.attr_max_width_style).to eq('max-width: 100em;')
 
       props.max_width = '10%'
       expect(props.attr_max_width_class).to be_nil
