@@ -89,6 +89,9 @@ Style/Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/OneClassPerFile:
+  Enabled: false
+
 Style/StringConcatenation:
   Exclude:
     - spec/**/*

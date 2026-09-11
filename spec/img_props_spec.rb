@@ -71,6 +71,20 @@ class ImgPropertiesTest
       props.size = 'initial'
       expect(props.attr_size_class).to eq('initial')
 
+      props.target = 'moon'
+      expect(props.attr_target).to eq(" target='moon'")
+
+      props.title = 'The End'
+      expect(props.attr_title).to eq("title='The End'")
+
+      props.size = '100px'
+      props.caption = 'A caption'
+      expect(props.attr_size_class).to be_nil
+      expect(props.attr_width_style).to eq('width: 100px;')
+    end
+
+    it 'generates widths' do
+      props = described_class.new
       props.size = '100px'
       expect(props.attr_size_class).to be_nil
       expect(props.attr_style_img).to eq("style='width: 100%; '")
@@ -84,17 +98,21 @@ class ImgPropertiesTest
       props.size = 'fullsize'
       expect(props.attr_size_class).to eq('fullsize')
       expect(props.attr_width_style).to be_nil
+    end
 
-      props.target = 'moon'
-      expect(props.attr_target).to eq(" target='moon'")
+    it 'generates max_widths' do
+      props = described_class.new
+      props.max_width = '100px'
+      expect(props.attr_max_width_class).to be_nil
+      expect(props.attr_max_width_style).to eq('max-width: 100px;')
 
-      props.title = 'The End'
-      expect(props.attr_title).to eq("title='The End'")
+      props.max_width = '10%'
+      expect(props.attr_max_width_class).to be_nil
+      expect(props.attr_max_width_style).to eq('max-width: 10%;')
 
-      props.size = '100px'
-      props.caption = 'A caption'
-      expect(props.attr_size_class).to be_nil
-      expect(props.attr_width_style).to eq('width: 100px;')
+      props.max_width = 'fullsize'
+      expect(props.attr_max_width_class).to eq('max_fullsize')
+      expect(props.attr_max_width_style).to be_nil
     end
   end
 end

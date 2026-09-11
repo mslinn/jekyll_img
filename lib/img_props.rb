@@ -9,8 +9,8 @@ class ImgProperties
                 :id, :img_display, :lazy, :local_src, :max_width, :nofollow, :priority, :src, :size, :style,
                 :target, :title, :url, :wrapper_class, :wrapper_style
 
-  SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze
-  UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze
+  SIZES = %w[eighthsize fullsize halfsize initial quartersize].freeze unless const_defined?(:SIZES)
+  UNITS = %w[Q ch cm em dvh dvw ex in lh lvh lvw mm pc px pt rem rlh svh svw vb vh vi vmax vmin vw %].freeze unless const_defined?(:UNITS)
 
   def attr_alt
     "alt='#{@alt}'" if @alt
@@ -29,16 +29,20 @@ class ImgProperties
     " rel='nofollow'" if @nofollow
   end
 
+  # FIXME: this method does not work when max-width is specified as a % or a unit such as 15em
+  # @return class name: max_fullsize, max_halfsize, max_quartersize
   def attr_max_width_class
-    return nil if @max_width == false || @max_width.nil? || !max_width_unit_specified?
+    # FIXME: should the next line contain !max_width_unit_specified?
+    return nil if @max_width == false || @max_width.nil? || max_width_unit_specified?
 
-    unless SIZES.include?(@max_width)
+    unless SIZES.include?(@max_width) || @max_width.end_with?('%')
       msg = "'#{@max_width}' is not a recognized size; must be one of #{SIZES.join(', ')}, or an explicit unit."
       raise Jekyll::ImgError, msg
     end
-    "max_#{@max_width}"
+    "max_#{@max_width}" # FIXME: this only works with fullsize, halfsize, quartersize and not % or units
   end
 
+  # FIXME: this method does not work when width is specified as a unit such as 15em
   def attr_size_class
     return nil if @size == false || @size.nil? || size_unit_specified?
 
