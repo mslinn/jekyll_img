@@ -30,7 +30,7 @@ class ImgProperties
   end
 
   def attr_max_width_class
-    return nil if @max_width == false || @max_width.nil? || max_width_unit_specified?
+    return nil if @max_width == false || @max_width.nil? || !max_width_unit_specified?
 
     unless SIZES.include?(@max_width)
       msg = "'#{@max_width}' is not a recognized size; must be one of #{SIZES.join(', ')}, or an explicit unit."

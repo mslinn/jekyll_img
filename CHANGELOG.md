@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.11 /2026-09-11
+
+* Fixed bug related to max-width percentage specification
+
 ## 0.2.10 /2026-07-04
 
 * Pry is no longer a production dependency
