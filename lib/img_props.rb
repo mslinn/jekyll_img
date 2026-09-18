@@ -53,11 +53,7 @@ class ImgProperties
   end
 
   def attr_style_img
-    if size_unit_specified?
-      "width: #{@size};"
-    else
-      "style='width: 100%; #{@style}'".squish
-    end
+    "style='width: 100%; #{@style}'".squish
   end
 
   def attr_target

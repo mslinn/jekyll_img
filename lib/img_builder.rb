@@ -33,7 +33,7 @@ class ImgBuilder
     <<~END_IMG
       <img #{@props.attr_alt}
         class="imgImg #{img_classes.squish}"
-        src="#{@source.src_fallback}"
+        src="#{@props.src}"
         #{@props.attr_style_img}
         #{@props.attr_title}
         #{@props.lazy}

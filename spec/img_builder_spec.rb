@@ -44,7 +44,7 @@ class ImgPropertiesTest
           <source srcset="/assets/images/jekyll.webp" type="image/webp">
           <source srcset="/assets/images/jekyll.png" type="image/png">
           <img class="imgImg rounded shadow"
-            src="/assets/images/jekyll.png"
+            src="/assets/images/jekyll.webp"
             style='width: 100%; '
           />
         </picture>
@@ -60,7 +60,7 @@ class ImgPropertiesTest
             <source srcset="/assets/images/jekyll.webp" type="image/webp">
             <source srcset="/assets/images/jekyll.png" type="image/png">
             <img class="imgImg rounded shadow"
-              src="/assets/images/jekyll.png"
+              src="/assets/images/jekyll.webp"
               style='width: 100%; '
             />
           </picture>
@@ -90,7 +90,7 @@ class ImgPropertiesTest
               <source srcset="/assets/images/jekyll.png" type="image/png">
               <img alt='This is a caption'
                 class="imgImg rounded shadow"
-                src="/assets/images/jekyll.png"
+                src="/assets/images/jekyll.webp"
                 style='width: 100%; '
                 title='This is a caption'
               />

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.12 /2026-09-18
+
+* Got tangled up with LLMs running in circles. Hopefully better now.
+
 ## 0.2.11 /2026-09-11
 
 Not fixed yet:
